@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { authContext } from "../context/ContextProvider";
 import WelcomeNavigation from "./WelcomeNavigation";
 import AuthNavigation from "./AuthNavigation";
+import { useSelector } from "react-redux";
 
 function NavigationDecider() {
-    let authCTX = useContext(authContext);
-    let navigationToRender = authCTX.isLoggedIn ? <WelcomeNavigation /> : <AuthNavigation />
+
+    const userState = useSelector(state => state.user);
+    let navigationToRender = userState.userData.userData ? <WelcomeNavigation /> : <AuthNavigation />
     return (navigationToRender);
 }
 
