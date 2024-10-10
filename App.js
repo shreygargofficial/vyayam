@@ -1,10 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import ContextProvider from './components/context/ContextProvider';
 import NavigationDecider from './components/navigation/NavigationDecider';
+import { configureStore } from '@reduxjs/toolkit';
+import { userReducer } from './slice/userSlice';
+import { Provider } from 'react-redux'
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
+import { PersistGate } from 'redux-persist/integration/react';
 
+const persistConfig = {
+  key: 'root', // key for the storage
+  storage: AsyncStorage, // storage engine (AsyncStorage for React Native)
+};
+
+const persistedReducer = persistReducer(persistConfig, userReducer);
+const store = configureStore({
+  reducer: {
+    user: persistedReducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'], // Ignore specific actions
+        ignoredPaths: ['register'], // Ignore paths in the state
+      },
+    }),
+});
+
+const persistor = persistStore(store);
+
+//splash screen delay logic
 SplashScreen.preventAutoHideAsync();
 let delay = (time) => {
   return new Promise((res, rej) => {
@@ -13,7 +39,7 @@ let delay = (time) => {
     }, time)
   })
 }
-
+//splash screen delay logic end
 export default function App() {
 
   useEffect(() => {
@@ -25,17 +51,13 @@ export default function App() {
   }, []);
 
   return (
-    <ContextProvider>
-      <NavigationDecider />
-    </ContextProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ContextProvider>
+          <NavigationDecider />
+        </ContextProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

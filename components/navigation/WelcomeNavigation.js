@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Landing from "../welcome/Landing";
+import Landing from "../../screen/welcome/Landing";
 function WelcomeNavigation() {
     let nativeStack = createNativeStackNavigator()
     return (
