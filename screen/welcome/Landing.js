@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { Button, Text, View } from "react-native";
+import { Button, Text, View, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../slice/userSlice";
 
@@ -11,7 +11,7 @@ function Landing({ navigation }) {
         })
     }, [])
     return (
-        <View>
+        <View style={styles.root}>
             <Text>
                 Landing Page
             </Text>
@@ -20,3 +20,12 @@ function Landing({ navigation }) {
 }
 
 export default Landing;
+
+
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})

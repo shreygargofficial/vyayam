@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function NavigationDecider() {
 
     const userState = useSelector(state => state.user);
-    let navigationToRender = userState.userData.userData ? <WelcomeNavigation /> : <AuthNavigation />
+    let navigationToRender = userState.userData ? <WelcomeNavigation /> : <AuthNavigation />
     return (navigationToRender);
 }
 

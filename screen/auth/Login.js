@@ -5,6 +5,7 @@ import InputCustom from "../../components/ui/InputCustom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userActionCreator } from "../../utils/userActionsCreator";
+import IconInputCustom from "../../components/ui/IconInputCustom";
 
 
 function Login({ navigation }) {
@@ -68,9 +69,22 @@ function Login({ navigation }) {
                         <Image source={require('../../assets/images/loginIcon.png')} style={{ height: 50, width: 50 }} />
                     </View>
                     <Text style={styles.title}>Login</Text>
-                    {mystate.error && <Text style={{ color: 'red' }}>{mystate.error}</Text>}
-                    <InputCustom value={userName} onChangeText={onChangeUseName} style={styles.input} placeholder={'Username or Email Address'} />
-                    <InputCustom value={password} onChangeText={onChangePassword} style={styles.input} placeholder={'Password'} secureTextEntry={true} />
+                    {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}
+                    <IconInputCustom value={userName} onChangeText={onChangeUseName}
+                        name={'user'}
+                        style={styles.input}
+                        placeholderTextColor={colors.grey}
+                        placeholder={'Username or Email Address'}
+
+                    />
+                    <IconInputCustom
+                        name={'lock'}
+                        value={password}
+                        onChangeText={onChangePassword}
+                        placeholderTextColor={colors.grey}
+                        style={styles.input}
+                        placeholder={'Password'}
+                        secureTextEntry={true} />
                     <ButtonSimple title="Login" color={colors.white} onPress={loginHandler} style={styles.button} disabled={disabledCondition()} />
                 </View>
                 <Pressable style={styles.signUpTextContainer} onPress={signUpToggler}>

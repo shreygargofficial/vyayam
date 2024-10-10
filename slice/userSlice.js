@@ -3,20 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        userData: {},
+        userData: null,
         error: ""
     },
     reducers: {
         addUserData: (state, action) => {
             state.userData = action.payload;
-            return state
         },
         deleteUserData: (state, action) => {
-            state = {
-                userData: {},
-                error: ""
-            }
-            return state
+
+            state.userData = null,
+                state.error = ""
         },
         logError: (state, action) => {
             state.error = action.payload
