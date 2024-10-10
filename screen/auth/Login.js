@@ -71,14 +71,14 @@ function Login({ navigation }) {
                     <Text style={styles.title}>Login</Text>
                     {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}
                     <IconInputCustom value={userName} onChangeText={onChangeUseName}
-                        name={'user'}
+                        name={'account-circle'}
                         style={styles.input}
                         placeholderTextColor={colors.grey}
                         placeholder={'Username or Email Address'}
 
                     />
                     <IconInputCustom
-                        name={'lock'}
+                        name={'key'}
                         value={password}
                         onChangeText={onChangePassword}
                         placeholderTextColor={colors.grey}

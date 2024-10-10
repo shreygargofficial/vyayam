@@ -1,12 +1,12 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import { colors } from "../../constants/Colors";
-import { Entypo } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
 
 function IconInputCustom({ placeholder, style, value, onChangeText, secureTextEntry = false, placeholderTextColor, name }) {
     return (
         <View style={styles.inputWrapper}>
-            <Entypo name={name} size={25} style={styles.icon} color={colors.primary} />
+            <MaterialIcons name={name} size={25} style={styles.icon} color={colors.primary} />
             <TextInput placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
                 style={[styles.input, style]}

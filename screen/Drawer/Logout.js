@@ -11,7 +11,7 @@ function Logout() {
     }
     return (
         <View style={styles.root}>
-            <Text style={styles.text}>Are you sure to logout <Text style={styles.textUserName}>{user?.userData?.userData?.userName}</Text>?</Text>
+            <Text style={styles.text}>Are you sure to logout <Text style={styles.textUserName}>{user?.userData?.userName}</Text>?</Text>
             <ButtonWithBorder title={'Logout'} onPress={logoutHandler} />
         </View>
     );
