@@ -17,7 +17,7 @@ export function userActionCreator(data) {
             else {
                 dispatch(userActions.logError(e.message))
             }
-            dispatch(userActions.addUserData({}))
+            dispatch(userActions.addUserData(null))
 
         }
     }
