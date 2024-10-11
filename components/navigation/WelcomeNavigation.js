@@ -15,8 +15,9 @@ const tab = createBottomTabNavigator();
 function DrawerNavigator() {
     return <drawer.Navigator screenOptions={
         {
-            headerTransparent: true,
-            headerTintColor: colors.primaryDark,
+            headerTransparent: false,
+            headerTintColor: colors.white,
+            headerStyle: { backgroundColor: colors.primaryDark },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
             headerTitleAlign: 'left'

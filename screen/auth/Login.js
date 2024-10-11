@@ -4,7 +4,7 @@ import ButtonSimple from "../../components/ui/ButtonSimple";
 import InputCustom from "../../components/ui/InputCustom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActionCreator } from "../../utils/userActionsCreator";
+import { loginUserActionCreator } from "../../utils/userActionsCreator";
 import IconInputCustom from "../../components/ui/IconInputCustom";
 
 
@@ -49,7 +49,7 @@ function Login({ navigation }) {
         }
 
         else {
-            dispatch(userActionCreator({ userName, password }))
+            dispatch(loginUserActionCreator({ userName, password }))
         }
     }
     const disabledCondition = () => {
@@ -71,14 +71,14 @@ function Login({ navigation }) {
                     <Text style={styles.title}>Login</Text>
                     {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}
                     <IconInputCustom value={userName} onChangeText={onChangeUseName}
-                        name={'user'}
+                        name={'account-circle'}
                         style={styles.input}
                         placeholderTextColor={colors.grey}
                         placeholder={'Username or Email Address'}
 
                     />
                     <IconInputCustom
-                        name={'lock'}
+                        name={'key'}
                         value={password}
                         onChangeText={onChangePassword}
                         placeholderTextColor={colors.grey}
