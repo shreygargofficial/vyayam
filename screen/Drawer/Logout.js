@@ -1,13 +1,13 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../slice/userSlice";
 import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
+import { logoutActionCreator } from "../../utils/ActionCreators/userActionsCreator";
 
 function Logout() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
     const logoutHandler = () => {
-        dispatch(userActions.deleteUserData())
+        dispatch(logoutActionCreator())
     }
     return (
         <View style={styles.root}>

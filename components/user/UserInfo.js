@@ -2,13 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import ButtonWithBorder from "../ui/ButtonWithBorder";
 import { useDispatch } from "react-redux";
-import { userActions } from "../../slice/userSlice";
+import { logoutActionCreator } from "../../utils/ActionCreators/userActionsCreator";
 
 function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, targetedWeight, birthDate } }) {
     let dispatch = useDispatch()
 
     const logoutHandler = () => {
-        dispatch(userActions.deleteUserData())
+        dispatch(logoutActionCreator())
     }
 
     return (

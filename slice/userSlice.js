@@ -10,10 +10,10 @@ export const userSlice = createSlice({
         addUserData: (state, action) => {
             state.userData = action.payload;
         },
-        deleteUserData: (state, action) => {
+        logoutUser: (state, action) => {
 
-            state.userData = null,
-                state.error = ""
+            state.userData = null;
+            state.error = "";
         },
         logError: (state, action) => {
             state.error = action.payload
