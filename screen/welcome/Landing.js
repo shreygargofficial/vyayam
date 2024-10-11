@@ -7,7 +7,7 @@ function Landing({ navigation }) {
     const dispatch = useDispatch()
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => <Button title="Logout" onPress={() => dispatch(userActions.deleteUserData())} />
+            headerRight: () => <Button title="Logout" onPress={() => dispatch(userActions.logoutUser())} />
         })
     }, [])
     return (
