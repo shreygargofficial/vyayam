@@ -4,7 +4,7 @@ import ButtonSimple from "../../components/ui/ButtonSimple";
 import InputCustom from "../../components/ui/InputCustom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userActionCreator } from "../../utils/userActionsCreator";
+import { loginUserActionCreator } from "../../utils/userActionsCreator";
 import IconInputCustom from "../../components/ui/IconInputCustom";
 
 
@@ -49,7 +49,7 @@ function Login({ navigation }) {
         }
 
         else {
-            dispatch(userActionCreator({ userName, password }))
+            dispatch(loginUserActionCreator({ userName, password }))
         }
     }
     const disabledCondition = () => {

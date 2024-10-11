@@ -26,6 +26,6 @@ let styles = StyleSheet.create({
         textTransform: 'uppercase'
     },
     pressed: {
-        opacity: 0.5
+        opacity: 0.2
     }
 })
