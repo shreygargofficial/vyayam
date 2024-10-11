@@ -9,6 +9,7 @@ import { colors } from "../../constants/Colors";
 import Supplements from "../../screen/bottomTabs/Supplements";
 import Meals from "../../screen/bottomTabs/Meals";
 import User from "../../screen/bottomTabs/User";
+import MyMeal from "../../screen/welcome/MyMeal";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -83,11 +84,21 @@ function WelcomeNavigation() {
     let nativeStack = createNativeStackNavigator()
     return (
         <NavigationContainer>
-            <nativeStack.Navigator screenOptions={{ headerTintColor: colors.primaryDark }}>
+            <nativeStack.Navigator screenOptions={
+                {
+                    headerTintColor: colors.white,
+                    headerStyle: { backgroundColor: colors.primaryDark }
+                }
+            }>
                 <nativeStack.Screen
                     name="home"
                     component={DrawerNavigator}
                     options={{ headerShown: false }} />
+                <nativeStack.Screen
+                    options={{ title: 'Meal', headerBackTitle: 'All Meals' }}
+                    name="myMeal"
+                    component={MyMeal}
+                />
             </nativeStack.Navigator>
         </NavigationContainer>);
 }

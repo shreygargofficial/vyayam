@@ -1,10 +1,10 @@
 import Axios from "axios"
-import { SERVERURL } from "../../constants/Environment"
-import { userActions } from "../../slice/userSlice";
-import { loaderActions } from "../../slice/loaderSlice";
+import { SERVERURL } from "../constants/Environment"
+import { userActions } from "../slice/userSlice";
+import { loaderActions } from "../slice/loaderSlice";
 import * as SecureStore from 'expo-secure-store';
 
-async function setHeader() {
+export async function setHeader() {
     let token = await SecureStore.getItemAsync('token');
     let exp = await SecureStore.getItemAsync('exp');
 
