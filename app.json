@@ -7,21 +7,28 @@
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/splash1.png",
       "resizeMode": "contain",
-      "backgroundColor": "#20bbd7"
+      "backgroundColor": "#035D64"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "in.shreygarg.vyayam"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "in.shreygarg.vyayam"
     },
     "web": {
       "favicon": "./assets/images/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9b41e12b-c3d6-47a4-a9fe-b0c05aa3e16c"
+      }
     }
   }
 }
