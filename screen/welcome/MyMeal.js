@@ -27,7 +27,7 @@ function MyMeal({ route }) {
                     <Text style={styles.title}> {meals.myMeal?.dishName} </Text>
                     <Text style={styles.description}>{meals.myMeal?.description}</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}>Total Calories: </Text>{meals.myMeal?.nutritionContent?.totalCalories}Kcal</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Protein: </Text> {meals.myMeal?.nutritionContent?.protien}g</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Protein: </Text> {meals.myMeal?.nutritionContent?.protein}g</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}> Fats: </Text> {meals.myMeal?.nutritionContent?.fats}g</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}> Carbs: </Text>{meals.myMeal?.nutritionContent?.carbs}g</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}>Fiber: </Text> {meals.myMeal?.nutritionContent?.fiber}g</Text>
