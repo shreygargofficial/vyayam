@@ -20,6 +20,7 @@ let styles = StyleSheet.create({
         height: '100%',
         zIndex: 100,
         backgroundColor: colors.white,
+        elevation: 5,
         alignItems: 'center',
         justifyContent: 'center'
     }

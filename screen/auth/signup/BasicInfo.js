@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Button, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 import { styles } from "./SignUp";
@@ -153,7 +153,7 @@ function BasicInfo() {
                 <View style={infoStyles.rowFlexing}>
                     <View>
                         <Button title="Select Year of Birth" onPress={() => setShow(true)} />
-                        <Controller
+                        {show && <Controller
                             name="birthDate"
                             control={control}
                             render={({ field: { onChange, value } }) => (
@@ -162,8 +162,11 @@ function BasicInfo() {
                                     mode="date"
                                     display="spinner"
                                     onChange={(event, selectedDate) => {
-
-                                        if (selectedDate) {
+                                        if (event.type === "dismissed" || !selectedDate) {
+                                            setShow(false); // Hide picker when dismissed
+                                        } else {
+                                            if (Platform.OS == 'android')
+                                                setShow(false); // Hide picker after selecting date
                                             onChange(selectedDate); // Update the form field with the selected date
                                         }
                                     }}
@@ -171,7 +174,7 @@ function BasicInfo() {
                                     minimumDate={minimumDate}
                                 />
                             )}
-                        />
+                        />}
                     </View>
                 </View>
             </View>

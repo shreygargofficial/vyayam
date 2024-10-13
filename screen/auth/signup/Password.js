@@ -58,8 +58,7 @@ function Password() {
     }
 
     const passwordValidatorsFunction = (val) => {
-        const passwordRegex = /^(?=.*[!@#$%^&*(),+-=.?":{}|<>])[A-Za-z\d!@#$%^&*(),+-=.?":{}|<>]{8,16}$/;
-
+        const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
 
         if (!val) {
             setPasswordValidators("Password can't be empty");
@@ -86,6 +85,7 @@ function Password() {
                     name={'account-circle'}
                     placeholder={'Password'}
                     onChangeText={onChangeValue}
+                    secureTextEntry={true}
                     style={styles.input}
                     size={30}
                     value={password}
