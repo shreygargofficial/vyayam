@@ -1,12 +1,13 @@
 import { StyleSheet, TextInput, View } from "react-native";
 import { colors } from "../../constants/Colors";
 
-function InputCustom({ placeholder, style, value, onChangeText, secureTextEntry = false, placeholderTextColor }) {
+function InputCustom({ placeholder, style, value, onChangeText, secureTextEntry = false, placeholderTextColor, keyboardType }) {
     return (
         <View style={styles.inputWrapper}>
             <TextInput placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
                 style={[styles.input, style]}
+                keyboardType={keyboardType}
                 value={value}
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry} />

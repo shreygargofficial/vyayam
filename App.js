@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // Use Asy
 import { PersistGate } from 'redux-persist/integration/react';
 import { loaderReducer } from './slice/loaderSlice';
 import { mealReducer } from './slice/MealsSlice';
+import { snackbarReducer } from './slice/snakbarSlice';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -21,7 +22,8 @@ const store = configureStore({
   reducer: {
     user: persistedReducer,
     loader: loaderReducer,
-    meals: mealReducer
+    meals: mealReducer,
+    snackbar: snackbarReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
