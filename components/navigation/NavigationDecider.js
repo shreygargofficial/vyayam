@@ -8,7 +8,10 @@ function NavigationDecider() {
     const userState = useSelector(state => state.user);
     const loader = useSelector(state => state.loader)
     let navigationToRender = userState.userData ? <WelcomeNavigation /> : <AuthNavigation />
-    return (loader ? <CustomLoader /> : navigationToRender);
+    return <>
+        {loader && <CustomLoader />}
+        {navigationToRender}
+    </>
 }
 
 export default NavigationDecider;

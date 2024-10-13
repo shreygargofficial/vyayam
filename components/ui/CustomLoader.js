@@ -15,6 +15,11 @@ export default CustomLoader;
 let styles = StyleSheet.create({
     root: {
         flex: 1,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        zIndex: 100,
+        backgroundColor: colors.white,
         alignItems: 'center',
         justifyContent: 'center'
     }

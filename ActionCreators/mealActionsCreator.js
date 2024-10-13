@@ -12,7 +12,7 @@ export function allMealsFetchActionCreator() {
                 dispatch(logoutActionCreator())
                 return;
             }
-            // dispatch(loaderActions.setLoading(true))
+            dispatch(loaderActions.setLoading(true))
             let response = await Axios.get(`${SERVERURL}/getMeals`, {
                 headers: headers
             })
@@ -41,7 +41,7 @@ export function singleMealFetchActionCreator(id) {
                 dispatch(logoutActionCreator())
                 return;
             }
-            // dispatch(loaderActions.setLoading(true))
+            dispatch(loaderActions.setLoading(true))
             let response = await Axios.get(`${SERVERURL}/getMealsByFoodId/${id}`, {
                 headers: headers
             })
