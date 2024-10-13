@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserActionCreator } from "../../ActionCreators/userActionsCreator";
 import IconInputCustom from "../../components/ui/IconInputCustom";
+import Snackbar from "../../components/ui/Snackbar";
 
 
 function Login({ navigation }) {
@@ -85,7 +86,11 @@ function Login({ navigation }) {
                         style={styles.input}
                         placeholder={'Password'}
                         secureTextEntry={true} />
-                    <ButtonSimple title="Login" color={colors.white} onPress={loginHandler} style={styles.button} disabled={disabledCondition()} />
+                    <ButtonSimple title="Login"
+                        color={colors.white}
+                        onPress={loginHandler}
+                        style={styles.button}
+                        disabled={disabledCondition()} />
                 </View>
                 <Pressable style={styles.signUpTextContainer} onPress={signUpToggler}>
                     <Text style={styles.signUpText}>New user? Sign up now</Text>

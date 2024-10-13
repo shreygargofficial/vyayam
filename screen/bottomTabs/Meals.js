@@ -16,7 +16,6 @@ function Meals({ navigation }) {
             id: _id
         })
     }
-    // console.log(meals.allMeals);
     if (meals.allMeals)
         return (
             <FlatList
