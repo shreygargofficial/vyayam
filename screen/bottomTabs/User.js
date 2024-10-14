@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         paddingHorizontal: 30,
+        marginTop: 40
     },
     lineHeight: {
         lineHeight: 50,

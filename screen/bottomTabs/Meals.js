@@ -19,6 +19,7 @@ function Meals({ navigation }) {
     if (meals.allMeals)
         return (
             <FlatList
+                style={{ marginTop: 60 }}
                 data={meals?.allMeals}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {

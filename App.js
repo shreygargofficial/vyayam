@@ -11,6 +11,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { loaderReducer } from './slice/loaderSlice';
 import { mealReducer } from './slice/MealsSlice';
 import { snackbarReducer } from './slice/snakbarSlice';
+import { StatusBar } from 'react-native';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -58,14 +59,17 @@ export default function App() {
 
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ContextProvider>
-          <NavigationDecider />
-          {/* <CustomLoader /> */}
-        </ContextProvider>
-      </PersistGate>
-    </Provider>
+    <>
+      <StatusBar />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ContextProvider>
+            <NavigationDecider />
+            {/* <CustomLoader /> */}
+          </ContextProvider>
+        </PersistGate>
+      </Provider>
+    </>
   );
 }
 

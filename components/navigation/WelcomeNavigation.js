@@ -10,6 +10,7 @@ import Supplements from "../../screen/bottomTabs/Supplements";
 import Meals from "../../screen/bottomTabs/Meals";
 import User from "../../screen/bottomTabs/User";
 import MyMeal from "../../screen/welcome/MyMeal";
+import { View } from "react-native";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -27,8 +28,17 @@ function DrawerNavigator() {
     }>
         <drawer.Screen
             name="Vyayam"
-            component={BottomTabNavigator}
-            options={{ drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color} /> }}
+            component={Landing}
+            options={{
+                headerTintColor: colors.primary,
+                headerTransparent: true,
+                drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color} />,
+                headerBackground: () => (
+                    <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', height: '100%', }}>
+
+                    </View>
+                )
+            }}
         />
         <drawer.Screen
             name="Logout"
@@ -39,46 +49,53 @@ function DrawerNavigator() {
 }
 
 function BottomTabNavigator() {
-    return <tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.primaryDark, }}>
-        <tab.Screen
-            name="landing"
-            component={Landing}
-            options={
-                {
-                    tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
+    return (
+        <tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.grey, tabBarInactiveTintColor: colors.primary }}>
+            <tab.Screen
+                name="landing"
+                component={DrawerNavigator}
+                options={
+                    {
+                        tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
+                        tabBarStyle: {
+                            position: 'absolute',               // Makes the tab bar overlay content
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)', // White with 50% opacity
+                            borderTopWidth: 0,                  // Optional: Remove top border
+                            elevation: 0,                       // Optional: Remove shadow on Android
+                        },
 
+                    }
                 }
-            }
-        />
+            />
 
-        <tab.Screen
-            name="Meals"
-            component={Meals}
-            options={
-                {
-                    tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />
+            <tab.Screen
+                name="Meals"
+                component={Meals}
+                options={
+                    {
+                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />
+                    }
                 }
-            }
-        />
-        <tab.Screen
-            name="Supplements"
-            component={Supplements}
-            options={
-                {
-                    tabBarIcon: ({ color, size }) => <Octicons name="archive" color={color} size={size} />
+            />
+            <tab.Screen
+                name="Supplements"
+                component={Supplements}
+                options={
+                    {
+                        tabBarIcon: ({ color, size }) => <Octicons name="archive" color={color} size={size} />
+                    }
                 }
-            }
-        />
-        <tab.Screen
-            name="User"
-            component={User}
-            options={
-                {
-                    tabBarIcon: ({ color, size }) => <Entypo name="user" color={color} size={size} />
+            />
+            <tab.Screen
+                name="User"
+                component={User}
+                options={
+                    {
+                        tabBarIcon: ({ color, size }) => <Entypo name="user" color={color} size={size} />
+                    }
                 }
-            }
-        />
-    </tab.Navigator>
+            />
+        </tab.Navigator>)
 }
 function WelcomeNavigation() {
     let nativeStack = createNativeStackNavigator()
@@ -92,7 +109,7 @@ function WelcomeNavigation() {
             }>
                 <nativeStack.Screen
                     name="home"
-                    component={DrawerNavigator}
+                    component={BottomTabNavigator}
                     options={{ headerShown: false }} />
                 <nativeStack.Screen
                     options={{ title: 'Meal', headerBackTitle: 'All Meals' }}
