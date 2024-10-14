@@ -1,30 +1,42 @@
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { View, Text, StyleSheet, Platform, Button } from "react-native";
 import { colors } from "../../constants/Colors";
 import InputLabelCustom from "../../components/ui/InputLabelCustom";
 import ButtonSimple from "../../components/ui/ButtonSimple";
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useWatch } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Slider from '@react-native-community/slider';
 import { RadioButton } from 'react-native-paper';
 import { useState } from "react";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import ButtonWithBorder from "../ui/ButtonWithBorder";
 
 const schema = yup.object().shape({
     firstName: yup.string().required('First name is required'),
     lastName: yup.string().required('Last name is required'),
-    birthDate: yup.number().typeError('Birth Date must be a number').required('Birth is required').positive().integer(),
+    birthDate: yup.date().required('Birth is required'),
     height: yup.number().typeError('Height must be a number').required('Height is required').positive(),
     targetedWeight: yup.number().typeError('Targeted Weight must be a number').required('Targeted weight is required').positive(),
     bio: yup.string().max(50, "Bio should not more than 50 character"),
     gender: yup.string().oneOf(['male', 'female', 'others'], 'Gender must be either male or female').required('Gender is required'),
 });
+
+const maxYear = parseInt(new Date().getFullYear() - 14);
+const minYear = parseInt(new Date().getFullYear() - 80);
+const minimumDate = new Date(`${minYear}-01-01`);
+const maximumDate = new Date(`${maxYear}-01-01`);
+
+
+
 function UserUpdateForm({ defaultValueUser, submitHandler }) {
     const { control, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: defaultValueUser
+        defaultValues: { ...defaultValueUser, birthDate: new Date(`${defaultValueUser.birthDate}-01-01`) }
     });
     const [height, setHeight] = useState(defaultValueUser.height)
     const [targetedWeight, setTargetedWeight] = useState(defaultValueUser.targetedWeight)
+    const [show, setShow] = useState(false);
+    const date = useWatch({ control, name: "birthDate" })
 
     return (
         <View style={styles.canEditTextContainer}>
@@ -117,19 +129,35 @@ function UserUpdateForm({ defaultValueUser, submitHandler }) {
                     )}
                 />
                 {errors.height && <Text style={styles.errorText}>{errors.height.message}</Text>}
-                <Controller
-                    name="birthDate"
-                    control={control}
-                    render={({ field: { value, onChange } }) => (
-                        <InputLabelCustom
-                            keyboardType={"numeric"}
-                            value={value?.toString()}
-                            label={'Birth Year*'}
-                            onChangeText={onChange}
-                            style={styles.LabelInput}
-                            labelColor={colors.primaryDark} />
-                    )}
-                />
+                <View style={styles.datePickerContainer}>
+                    <ButtonWithBorder
+                        title="Select Date of Birth"
+                        style={styles.buttonDate}
+                        onPress={() => setShow((prev) => !prev)} color={colors.primaryDark} />
+                    {show && <Controller
+                        name="birthDate"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <DateTimePicker
+                                value={value}
+                                mode="date"
+                                display="spinner"
+                                onChange={(event, selectedDate) => {
+                                    if (event.type === "dismissed" || !selectedDate) {
+                                        setShow(false); // Hide picker when dismissed
+                                    } else {
+                                        if (Platform.OS == 'android')
+                                            setShow(false); // Hide picker after selecting date
+                                        onChange(selectedDate); // Update the form field with the selected date
+                                    }
+                                }}
+                                maximumDate={maximumDate}  // This prevents picking a future year
+                                minimumDate={minimumDate}
+                            />
+                        )}
+                    />}
+                    <Text style={{ marginTop: 30, color: colors.primary }}>{date.toDateString()}</Text>
+                </View>
                 {errors.birthDate && <Text style={styles.errorText}>{errors.birthDate.message}</Text>}
 
                 <Text style={styles.label}>Targeted Weight {targetedWeight} kg</Text>
@@ -207,10 +235,17 @@ const styles = StyleSheet.create({
         marginLeft: Platform.select({ ios: 0, android: -8 }),
         maxWidth: 700,
     },
-
+    datePickerContainer: {
+        marginVertical: 30,
+    },
     button: {
         marginTop: 30,
         textAlign: 'center',
         alignItems: 'center'
     },
+    buttonDate: {
+        paddingVertical: 8,
+        alignSelf: 'flex-start',
+        paddingHorizontal: 8
+    }
 })
