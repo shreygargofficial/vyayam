@@ -53,7 +53,11 @@ function User() {
 
 
     const submitHandler = (val) => {
-        dispatch(updateUserCreator(user?.userData?.userName, val))
+        let dataToSend = {
+            ...val,
+            birthDate: val.birthDate.getFullYear()
+        }
+        dispatch(updateUserCreator(user?.userData?.userName, dataToSend))
         editToggler()
     }
     const editToggler = () => {

@@ -4,7 +4,7 @@ import ButtonWithBorder from "../ui/ButtonWithBorder";
 import { useDispatch } from "react-redux";
 import { logoutActionCreator } from "../../ActionCreators/userActionsCreator";
 
-function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, targetedWeight, birthDate } }) {
+function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, targetedWeight, birthDate, height } }) {
     let dispatch = useDispatch()
 
     const logoutHandler = () => {
@@ -19,7 +19,8 @@ function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, target
                 <Text style={styles.text}>Last Name : {lastName}</Text>
                 <Text style={styles.text}>Gener : {gender}</Text>
                 <Text style={styles.text}>Bio : {bio}</Text>
-                <Text style={styles.text}>Targeted Weight : {targetedWeight}</Text>
+                <Text style={styles.text}>Height: {height}cm</Text>
+                <Text style={styles.text}>Targeted Weight : {targetedWeight}kg</Text>
                 <Text style={styles.text}>Age : {new Date().getFullYear() - birthDate}</Text>
             </View>
             <View style={styles.logoutContainer}>
