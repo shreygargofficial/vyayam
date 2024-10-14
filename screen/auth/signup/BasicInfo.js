@@ -5,10 +5,8 @@ import { Picker } from '@react-native-picker/picker';
 import { styles } from "./SignUp";
 import { useState } from "react";
 import ButtonSimple from "../../../components/ui/ButtonSimple";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { colors } from "../../../constants/Colors";
-import axios from "axios";
-
 
 const weightArray = new Array(170).fill(0).map((_, index) => (index + 30));
 const heightArray = new Array(125).fill(0).map((_, index) => (index + 120));
@@ -35,7 +33,7 @@ function BasicInfo() {
     }
     )
 
-
+    const date = useWatch({ control, name: "birthDate" })
     const nextHandler = (val) => {
         let finalData = {
             ...route.params,
@@ -62,7 +60,7 @@ function BasicInfo() {
             <View style={{ marginTop: -150 }}>
                 <View style={infoStyles.rowFlexing}>
                     <View style={infoStyles.marginTop}>
-                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Weight</Text>
+                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Weight(kg)</Text>
                         <Controller
                             name="weight"
                             control={control}
@@ -84,7 +82,7 @@ function BasicInfo() {
 
                     </View>
                     <View style={infoStyles.marginTop}>
-                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Targeted Weight</Text>
+                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Targeted Weight(kg)</Text>
                         <Controller
                             name="targetedWeight"
                             control={control}
@@ -108,7 +106,7 @@ function BasicInfo() {
                 </View>
                 <View style={infoStyles.rowFlexing}>
                     <View style={infoStyles.marginTop}>
-                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Height</Text>
+                        <Text style={[infoStyles.centerAlign, infoStyles.bold]}>Height(cm)</Text>
                         <Controller
                             name="height"
                             control={control}
@@ -152,7 +150,7 @@ function BasicInfo() {
                 </View>
                 <View style={infoStyles.rowFlexing}>
                     <View>
-                        <Button title="Select Year of Birth" onPress={() => setShow(true)} />
+                        <Button title="Select Date of Birth" onPress={() => setShow(true)} color={colors.primary} />
                         {show && <Controller
                             name="birthDate"
                             control={control}
@@ -177,6 +175,7 @@ function BasicInfo() {
                         />}
                     </View>
                 </View>
+                <Text style={{ textAlign: 'center', marginTop: 10, color: colors.primary }}>{date.toDateString()}</Text>
             </View>
             <View style={[styles.buttonContainer, { marginTop: 40 }]}>
                 <ButtonSimple
@@ -201,7 +200,8 @@ const infoStyles = StyleSheet.create({
         justifyContent: 'space-evenly'
     },
     centerAlign: {
-        textAlign: 'center'
+        textAlign: Platform.select({ android: 'auto', ios: 'center' }),
+
     },
     bold: {
         fontWeight: '800'
