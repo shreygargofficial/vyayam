@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Landing from "../../screen/welcome/Landing";
+import Landing from "../../screen/nativeStack/Landing";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Octicons, MaterialIcons, Entypo } from '@expo/vector-icons'
@@ -9,8 +9,10 @@ import { colors } from "../../constants/Colors";
 import Supplements from "../../screen/bottomTabs/Supplements";
 import Meals from "../../screen/bottomTabs/Meals";
 import User from "../../screen/bottomTabs/User";
-import MyMeal from "../../screen/welcome/MyMeal";
+import MyMeal from "../meals/MyMeal";
 import { View } from "react-native";
+import ExerciseById from "../../screen/nativeStack/ExerciseById";
+import AllExercise from "../../screen/nativeStack/AllExercise";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -116,6 +118,17 @@ function WelcomeNavigation() {
                     name="myMeal"
                     component={MyMeal}
                 />
+                <nativeStack.Screen
+                    options={{ title: 'Exercises', headerBackTitle: 'Home' }}
+                    name="allExercise"
+                    component={AllExercise}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Exercise', headerBackTitle: 'All Exercise' }}
+                    name="myExercise"
+                    component={ExerciseById}
+                />
+
             </nativeStack.Navigator>
         </NavigationContainer>);
 }

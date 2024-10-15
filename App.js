@@ -12,6 +12,8 @@ import { loaderReducer } from './slice/loaderSlice';
 import { mealReducer } from './slice/MealsSlice';
 import { snackbarReducer } from './slice/snakbarSlice';
 import { StatusBar } from 'react-native';
+import { exerciseReducer } from './slice/exerciseSlice';
+import { colors } from './constants/Colors';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -24,6 +26,7 @@ const store = configureStore({
     user: persistedReducer,
     loader: loaderReducer,
     meals: mealReducer,
+    exercise: exerciseReducer,
     snackbar: snackbarReducer
   },
   middleware: (getDefaultMiddleware) =>
@@ -60,7 +63,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar />
+      <StatusBar backgroundColor={colors.white} />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ContextProvider>

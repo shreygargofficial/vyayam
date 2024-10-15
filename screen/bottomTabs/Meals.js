@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, StatusBar } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allMealsFetchActionCreator } from "../../ActionCreators/mealActionsCreator";
 import MealsList from "../../components/meals/MealsList";
+import { colors } from "../../constants/Colors";
 
 function Meals({ navigation }) {
     const meals = useSelector(state => state.meals)
@@ -18,23 +19,27 @@ function Meals({ navigation }) {
     }
     if (meals.allMeals)
         return (
-            <FlatList
-                style={{ marginTop: 60 }}
-                data={meals?.allMeals}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {
-                    return (
-                        <MealsList
-                            dishName={dishName}
-                            _id={_id}
-                            totalCalories={totalCalories}
-                            photoURL={photoURL}
-                            onPress={navigateMyMeal}
-                        />
+            <>
+                <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
+                <FlatList
+                    style={{ marginTop: 60 }}
+                    data={meals?.allMeals}
+                    keyExtractor={(item) => item._id}
+                    renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {
+                        return (
+                            <MealsList
+                                dishName={dishName}
+                                _id={_id}
+                                totalCalories={totalCalories}
+                                photoURL={photoURL}
+                                onPress={navigateMyMeal}
+                            />
 
-                    )
-                }}
-            />
+                        )
+                    }}
+                />
+            </>
+
 
         )
     else
