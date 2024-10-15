@@ -116,7 +116,7 @@ function UserUpdateForm({ defaultValueUser, submitHandler }) {
                             minimumValue={120}
                             maximumValue={240}
                             value={value}
-                            thumbImage={Platform.OS == "ios" ? require('../../assets/images/sliders/tape.png') : require('../../assets/images/sliders/tapeAndroid.png')}
+                            thumbImage={require('../../assets/images/sliders/tape.png')}
                             onValueChange={(val) => {
                                 setHeight(val)
                                 onChange(val)
@@ -170,7 +170,7 @@ function UserUpdateForm({ defaultValueUser, submitHandler }) {
                             minimumValue={30}
                             maximumValue={200}
                             value={value}
-                            thumbImage={Platform.OS == "ios" ? require('../../assets/images/sliders/weight.png') : require('../../assets/images/sliders/weightAndroid.png')}
+                            thumbImage={require('../../assets/images/sliders/weight.png')}
                             onValueChange={(val) => {
                                 setTargetedWeight(val)
                                 onChange(val)

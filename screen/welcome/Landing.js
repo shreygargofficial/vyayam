@@ -43,7 +43,7 @@ function Landing({ navigation }) {
                         </View>
                         <View style={styles.rowFlex}>
                             <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-                                <Image style={styles.cardImage} source={require('../../assets/images/cardHome/measurement.jpg')} />
+                                <Image style={styles.cardImage} source={require('../../assets/images/cardHome/split.jpg')} />
                                 <View style={styles.cardTitleContainer}>
                                     <Text style={styles.cardTitle}>My Workout Split</Text>
                                 </View>
@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
     cardImage: {
         width: '100%',
         height: 140,
-        opacity: 0.3
+        opacity: 0.9,
+        borderRadius: 10
     },
     cardTitleContainer: {
         justifyContent: 'center',
