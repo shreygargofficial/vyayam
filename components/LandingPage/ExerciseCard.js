@@ -5,7 +5,8 @@ function ExerciseCard({
     exerciseName,
     _id,
     exerciseType,
-    photoURL
+    photoURL,
+    style
 }) {
     const navigation = useNavigation()
     const onExerciseCardPress = (_id) => {
@@ -15,7 +16,7 @@ function ExerciseCard({
         })
     }
     return (
-        <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]} onPress={onExerciseCardPress.bind(this, _id)}>
+        <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed, style]} onPress={onExerciseCardPress.bind(this, _id)}>
             <View style={styles.rowFlex}>
                 <View style={styles.imageContainer}>
                     {photoURL ?
