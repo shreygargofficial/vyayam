@@ -3,6 +3,7 @@ import { SERVERURL } from "../constants/Environment"
 import { userActions } from "../slice/userSlice";
 import { loaderActions } from "../slice/loaderSlice";
 import * as SecureStore from 'expo-secure-store';
+import { snackbarActions } from "../slice/snakbarSlice";
 
 export async function setHeader() {
     let token = await SecureStore.getItemAsync('token');
@@ -96,6 +97,40 @@ export function updateUserCreator(userName, data) {
         }
     }
 }
+
+export function updateWeightForUserCreator(userName, data) {
+    return async (dispatch) => {
+        try {
+            let headers = await setHeader() //setting headers
+            if (!headers) {
+                dispatch(logoutActionCreator())
+                return;
+            }
+            dispatch(loaderActions.setLoading(true))
+            let myData = await Axios.put(`${SERVERURL}/updateWeightForUser/${userName}`, data, {
+                headers: headers
+            });
+            dispatch(userActions.addUserData(myData.data))
+        }
+        catch (e) {
+            console.log(e);
+            if (e.response) {
+                dispatch(snackbarActions.enableSnakBar('Error ' + e.response.data.message))
+                // dispatch(userActions.logError(e.response.data.message))
+            }
+            else {
+                dispatch(snackbarActions.enableSnakBar('Error ' + e.message))
+                // dispatch(userActions.logError(e.message))
+            }
+
+        }
+        finally {
+            dispatch(loaderActions.setLoading(false))
+        }
+    }
+}
+
+
 
 export function logoutActionCreator() {
     return async (dispatch) => {

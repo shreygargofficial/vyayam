@@ -13,6 +13,7 @@ import MyMeal from "../meals/MyMeal";
 import { View } from "react-native";
 import ExerciseById from "../../screen/nativeStack/ExerciseById";
 import AllExercise from "../../screen/nativeStack/AllExercise";
+import WeightLog from "../../screen/nativeStack/WeightLog";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -127,6 +128,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Exercise', headerBackTitle: 'All Exercise' }}
                     name="myExercise"
                     component={ExerciseById}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Weight', headerBackTitle: 'Home' }}
+                    name="weight"
+                    component={WeightLog}
                 />
 
             </nativeStack.Navigator>
