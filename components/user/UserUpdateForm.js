@@ -141,7 +141,7 @@ function UserUpdateForm({ defaultValueUser, submitHandler }) {
                             <DateTimePicker
                                 value={value}
                                 mode="date"
-                                display="spinner"
+                                display="inline"
                                 onChange={(event, selectedDate) => {
                                     if (event.type === "dismissed" || !selectedDate) {
                                         setShow(false); // Hide picker when dismissed

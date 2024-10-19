@@ -1,13 +1,18 @@
+import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/Colors';
 
 const { View, Pressable, Image, Text, StyleSheet } = require('react-native');
 
 
 function LandingCardsTiles() {
+    const navigation = useNavigation()
+    const tileClickHandler = (screen) => {
+        navigation.navigate(screen)
+    }
     return (
         <View style={styles.tilesContainer}>
             <View style={styles.rowFlex}>
-                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]} onPress={tileClickHandler.bind(this, 'weight')}>
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/weight.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>Weight Log</Text>
