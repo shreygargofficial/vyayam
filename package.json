@@ -40,7 +40,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
     "yup": "^1.4.0",
-    "react-native-svg": "15.2.0"
+    "react-native-svg": "15.2.0",
+    "undefined": "react-native-paper/lib/typescript/styles/themes/v2/colors"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

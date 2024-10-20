@@ -51,11 +51,8 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
     }
     return (
         <ScrollView
-            contentContainerStyle={{ paddingBottom: 50 }}
+            contentContainerStyle={{ paddingBottom: 50, backgroundColor: '#bbb' }}
         >
-            <Pressable style={styles.crossContainer} onPress={modalToggler}>
-                <Text style={styles.cross}>x</Text>
-            </Pressable>
             <View style={styles.innerModalContent}>
                 <Controller
                     name="armRight"
@@ -179,7 +176,7 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                 <Text style={{ marginTop: 30 }}>{selectedDate.toDateString()}</Text>
                 <View style={weightLogModalStyle.dateContainer}>
                     <ButtonWithBorder
-                        title="Date of Measurement"
+                        title="Measurement Date"
                         style={weightLogModalStyle.buttonDate}
                         onPress={() => setShowDatePicker((prev) => !prev)} color={colors.primaryDark} />
                     {showDatePicker &&
@@ -207,9 +204,10 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                             }}
                         />}
                 </View>
+                <ButtonSimple title={'Submit'} style={styles.cancelBtn} onPress={(handleSubmit(submitHandler))} color={colors.white} />
+                <ButtonWithBorder title={'Cancel'} style={styles.cancelBtn} onPress={(modalToggler)} />
             </View>
-            <ButtonSimple title={'Submit'} style={styles.cancelBtn} onPress={(handleSubmit(submitHandler))} color={colors.white} />
-            <ButtonWithBorder title={'Cancel'} style={styles.cancelBtn} onPress={(modalToggler)} />
+
         </ScrollView>
     );
 }
@@ -224,19 +222,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     innerModalContent: {
-        padding: 40
+        padding: 40,
+        backgroundColor: '#bbb',
     },
-    crossContainer: {
-        position: 'absolute',
-        top: 0,
-        zIndex: 2,
-        elevation: 2,
-        right: 10,
-        padding: 10
-    },
-    cross: {
-        fontSize: 30,
-        fontWeight: '400',
-        color: colors.primaryDark
-    },
+
 })

@@ -84,7 +84,7 @@ function WeightLog() {
             <View style={styles.chartContainer}>
                 <LineChart
                     withInnerLines={false}
-                    withOuterLines={false}
+                    withOuterLines={true}
                     fromZero={true}
                     yAxisSuffix={" kg"}
                     onDataPointClick={onDataPointClick}
