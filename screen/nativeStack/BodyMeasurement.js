@@ -2,9 +2,10 @@ import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, Vi
 import { styles as weightLogStyles } from "./WeightLog";
 import IconButton from "../../components/ui/IconButton";
 import { colors } from "../../constants/Colors";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import ModalContent from "../../components/userMeasurement/ModalContent";
+import UserMeasurementModalContent from "../../components/userMeasurement/UserMeasurementModalContent";
+import { sortArrayBasedOnDate } from "../../utils/helperFunction/DateFunction";
 
 
 function BodyMeasurement() {
@@ -21,6 +22,9 @@ function BodyMeasurement() {
     const modalToggler = () => {
         setShowModal(prev => !prev)
     }
+    let sortedBodyMeasurement = useMemo(() => {
+        return sortArrayBasedOnDate(user.userData.bodyMeasurements)
+    }, [])
     return (
         <ScrollView
             alwaysBounceVertical={false}
@@ -41,7 +45,10 @@ function BodyMeasurement() {
             >
                 <View style={styles.overlay} >
                     <View style={styles.modalContent}>
-                        <ModalContent modalToggler={modalToggler} />
+                        <UserMeasurementModalContent
+                            modalToggler={modalToggler}
+                            userName={user.userData.userName}
+                            sortedBodyMeasurement={sortedBodyMeasurement[sortedBodyMeasurement.length - 1]} />
                     </View>
 
                 </View>

@@ -18,13 +18,13 @@ function InputPlusMinus(
 ) {
 
     const onPressMinus = () => {
-        if (value == "")
+        if (value == "" || value == '0' || isNaN(value))
             onChangeText(0)
         else
             onChangeText(parseFloat(value) - steps)
     }
     const onPressPlus = () => {
-        if (value == "")
+        if (value == "" || isNaN(value))
             onChangeText(steps)
         else
             onChangeText(parseFloat(value) + steps)

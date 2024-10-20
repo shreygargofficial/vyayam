@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { updateWeightForUserCreator } from "../../ActionCreators/userActionsCreator";
@@ -23,6 +23,7 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
             date: new Date()
         }
     })
+    const selectedDate = useWatch({ control, name: "date" })
 
     const updateWeight = (data) => {
         dispatch(updateWeightForUserCreator(userName, data))
@@ -52,6 +53,7 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
                         />
                     }}
                 />
+                <Text style={{ marginTop: 10 }}>{selectedDate.toDateString()}</Text>
                 <View style={styles.dateContainer}>
                     <ButtonWithBorder
                         title="Date of Measurement"
@@ -93,7 +95,7 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
 
 export default WeightAddModalContent;
 
-let styles = StyleSheet.create({
+export let styles = StyleSheet.create({
 
     modalOverlay: {
         flex: 1,
@@ -115,8 +117,7 @@ let styles = StyleSheet.create({
         maxWidth: 700,
     },
     dateContainer: {
-        marginTop: 40,
-        // backgroundColor: '#ddd'
+        marginTop: 20,
     },
     buttonDate: {
         paddingVertical: 8,
