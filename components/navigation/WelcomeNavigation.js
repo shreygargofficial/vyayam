@@ -14,6 +14,7 @@ import { View } from "react-native";
 import ExerciseById from "../../screen/nativeStack/ExerciseById";
 import AllExercise from "../../screen/nativeStack/AllExercise";
 import WeightLog from "../../screen/nativeStack/WeightLog";
+import BodyMeasurement from "../../screen/nativeStack/BodyMeasurement";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -134,7 +135,11 @@ function WelcomeNavigation() {
                     name="weight"
                     component={WeightLog}
                 />
-
+                <nativeStack.Screen
+                    options={{ title: 'Your Measurement', headerBackTitle: 'Home' }}
+                    name="measurement"
+                    component={BodyMeasurement}
+                />
             </nativeStack.Navigator>
         </NavigationContainer>);
 }

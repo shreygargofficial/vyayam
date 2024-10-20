@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import IconButton from "../../components/ui/IconButton";
 import { colors } from "../../constants/Colors";
 import { useMemo, useState } from 'react';
-import { dateFormatterToShowOnXAxis, sortWeight } from "../../utils/helperFunction/DateFunction";
+import { dateFormatterToShowOnXAxis, sortArrayBasedOnDate } from "../../utils/helperFunction/DateFunction";
 import { LineChart } from 'react-native-chart-kit';
 import WeightAddModalContent from "../../components/weight/WeightAddModalContent";
 import { usePagination } from "../../hooks/usePagination";
@@ -29,7 +29,7 @@ function WeightLog() {
     const [choosenIndex, setChoosenIndex] = useState(-1)
     const [modalShow, setModalShow] = useState(false)
     const userData = user.userData;
-    const sortedWeightArray = useMemo(() => sortWeight(userData?.weight), [userData?.weight])
+    const sortedWeightArray = useMemo(() => sortArrayBasedOnDate(userData?.weight), [userData?.weight])
 
     const CONTENT_TO_SHOW = 5
     const { begginingIndex, lastIndex, prevPage, nextPage } = usePagination(CONTENT_TO_SHOW, sortedWeightArray);
@@ -84,7 +84,7 @@ function WeightLog() {
             <View style={styles.chartContainer}>
                 <LineChart
                     withInnerLines={false}
-                    withOuterLines={false}
+                    withOuterLines={true}
                     fromZero={true}
                     yAxisSuffix={" kg"}
                     onDataPointClick={onDataPointClick}
@@ -131,7 +131,7 @@ function WeightLog() {
 
 export default WeightLog;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     root: {
         flex: 1
     },
