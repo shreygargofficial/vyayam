@@ -131,7 +131,7 @@ function WeightLog() {
 
 export default WeightLog;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     root: {
         flex: 1
     },

@@ -12,13 +12,17 @@ function LandingCardsTiles() {
     return (
         <View style={styles.tilesContainer}>
             <View style={styles.rowFlex}>
-                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]} onPress={tileClickHandler.bind(this, 'weight')}>
+                <Pressable
+                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+                    onPress={tileClickHandler.bind(this, 'weight')}>
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/weight.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>Weight Log</Text>
                     </View>
                 </Pressable>
-                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+                <Pressable
+                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+                    onPress={tileClickHandler.bind(this, 'measurement')} >
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/measurement.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>Body Measurement</Text>
@@ -26,13 +30,15 @@ function LandingCardsTiles() {
                 </Pressable>
             </View>
             <View style={styles.rowFlex}>
-                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+                <Pressable
+                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/split.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>My Workout Split</Text>
                     </View>
                 </Pressable>
-                <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+                <Pressable
+                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/log.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>Exercise Log</Text>
