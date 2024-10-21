@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { updateWeightForUserCreator } from "../../ActionCreators/userActionsCreator";
 import { colors } from "../../constants/Colors";
@@ -8,6 +8,7 @@ import ButtonWithBorder from "../ui/ButtonWithBorder";
 import Slider from "@react-native-community/slider";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ButtonSimple from "../ui/ButtonSimple";
+import InputPlusMinus from "../ui/InputPlusMinus";
 
 
 const maximumDate = new Date();
@@ -31,67 +32,72 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
     }
     return (
         <Pressable style={styles.modalOverlay} onPress={modalToggler}>
-            <Pressable style={styles.modalContent} onPress={(e) => e.stopPropagation()}>
-                <Text>Weight: {sliderWeight} kg</Text>
-                <Controller
-                    name="value"
-                    control={control}
-                    render={({ field: { onChange, value } }) => {
-                        return <Slider
-                            style={styles.slider}
-                            minimumValue={30}
-                            maximumValue={200}
-                            value={value}
-                            thumbImage={require('../../assets/images/sliders/weight.png')}
-                            onValueChange={(val) => {
-                                setSliderWeight(val)
-                                onChange(val)
-                            }}
-                            step={0.5}
-                            minimumTrackTintColor={colors.primaryDark}
-                            maximumTrackTintColor={colors.grey}
-                        />
-                    }}
-                />
-                <Text style={{ marginTop: 10 }}>{selectedDate.toDateString()}</Text>
-                <View style={styles.dateContainer}>
-                    <ButtonWithBorder
-                        title="Date of Measurement"
-                        style={styles.buttonDate}
-                        onPress={() => setShowDatePicker((prev) => !prev)} color={colors.primaryDark} />
-                    {showDatePicker && <Controller
-                        name="date"
-                        control={control}
-                        render={({ field: { onChange, value } }) => {
-                            return <DateTimePicker
-                                value={value}
-                                mode="date"
-                                textColor="red" //Not working
-                                display="inline"
-                                onChange={(event, selectedDate) => {
-                                    if (event.type === "dismissed" || !selectedDate) {
-                                        setShowDatePicker(false); // Hide picker when dismissed
-                                    } else {
-                                        if (Platform.OS == 'android')
-                                            setShowDatePicker(false); // Hide picker after selecting date
-                                        onChange(selectedDate); // Update the form field with the selected date
-                                    }
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <KeyboardAvoidingView
+                    style={styles.container}
+                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                    keyboardVerticalOffset={0} // Adjust based on your UI
+                >
+                    <View>
+                        <ScrollView contentContainerStyle={styles.modalContent} onPress={(e) => e.stopPropagation()}>
+                            <Text>Weight: {sliderWeight} kg</Text>
+                            <Controller
+                                name="value"
+                                control={control}
+                                render={({ field: { onChange, value } }) => {
+                                    return <InputPlusMinus
+                                        placeholder={"Your Weight"}
+                                        onChangeText={onChange}
+                                        steps={0.5}
+                                        value={value}
+                                        label={"Your Weight"}
+
+                                    />
                                 }}
-                                maximumDate={maximumDate}  // This prevents picking a future year
-                                minimumDate={minimumDate}
                             />
-                        }}
-                    />}
-                </View>
-                <ButtonSimple
-                    onPress={handleSubmit(updateWeight)}
-                    color={colors.white}
-                    title="Submit"
-                    style={styles.submitBtn} />
-            </Pressable>
+                            <Text style={{ marginTop: 10 }}>{selectedDate.toDateString()}</Text>
+                            <View style={styles.dateContainer}>
+                                <ButtonWithBorder
+                                    title="Date of Measurement"
+                                    style={styles.buttonDate}
+                                    onPress={() => setShowDatePicker((prev) => !prev)} color={colors.primaryDark} />
+                                {showDatePicker && <Controller
+                                    name="date"
+                                    control={control}
+                                    render={({ field: { onChange, value } }) => {
+                                        return <DateTimePicker
+                                            value={value}
+                                            mode="date"
+                                            textColor="red" //Not working
+                                            display="inline"
+                                            onChange={(event, selectedDate) => {
+                                                if (event.type === "dismissed" || !selectedDate) {
+                                                    setShowDatePicker(false); // Hide picker when dismissed
+                                                } else {
+                                                    if (Platform.OS == 'android')
+                                                        setShowDatePicker(false); // Hide picker after selecting date
+                                                    onChange(selectedDate); // Update the form field with the selected date
+                                                }
+                                            }}
+                                            maximumDate={maximumDate}  // This prevents picking a future year
+                                            minimumDate={minimumDate}
+                                        />
+                                    }}
+                                />}
+                            </View>
+                            <ButtonSimple
+                                onPress={handleSubmit(updateWeight)}
+                                color={colors.white}
+                                title="Submit"
+                                style={styles.submitBtn} />
+                        </ScrollView>
+                    </View>
+                </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
         </Pressable>
     );
 }
+
 
 export default WeightAddModalContent;
 
