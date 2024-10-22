@@ -15,6 +15,7 @@ import ExerciseById from "../../screen/nativeStack/ExerciseById";
 import AllExercise from "../../screen/nativeStack/AllExercise";
 import WeightLog from "../../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../../screen/nativeStack/BodyMeasurement";
+import SplitExerciseOption from "../../screen/nativeStack/SplitExerciseOption";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -139,6 +140,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Your Measurement', headerBackTitle: 'Home' }}
                     name="measurement"
                     component={BodyMeasurement}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Choose Splits', headerBackTitle: 'Home' }}
+                    name="splitChoice"
+                    component={SplitExerciseOption}
                 />
             </nativeStack.Navigator>
         </NavigationContainer>);
