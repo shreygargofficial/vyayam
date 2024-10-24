@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import ExerciseCard from "../../components/LandingPage/ExerciseCard";
 import { colors } from "../../constants/Colors";
 import IconInputCustom from "../../components/ui/IconInputCustom";
+import { useNavigation } from "@react-navigation/native";
 
 function AllExercise() {
     const [searchTerm, setSearchTerm] = useState('')
     const reduxExercise = useSelector(state => state.exercise);
-    const [exercises, setExercises] = useState(reduxExercise.exerciseData)
+    const [exercises, setExercises] = useState(reduxExercise.exerciseData);
+    const navigation = useNavigation()
 
     useEffect(() => {
 
@@ -32,7 +34,12 @@ function AllExercise() {
     const onSearchChange = (val) => {
         setSearchTerm(val)
     }
-
+    const onExerciseClick = (_id) => {
+        navigation.navigate('myExercise', {
+            _id: _id,
+            from: 'Exercises'
+        })
+    }
 
     return (
         <View style={styles.root}>
@@ -42,9 +49,11 @@ function AllExercise() {
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
                 data={exercises}
+                numColumns={2}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: { _id, exerciseName, exerciseType, photoURL } }) => (
                     <ExerciseCard
+                        onPress={onExerciseClick}
                         exerciseName={exerciseName}
                         _id={_id}
                         exerciseType={exerciseType}
@@ -69,11 +78,10 @@ let styles = StyleSheet.create({
     root: {
         backgroundColor: 'rgba(0,0,0,0.9)',
         flex: 1,
+        alignItems: 'center'
     },
     card: {
-        alignSelf: 'center',
-        width: 300,
-        backgroundColor: 'rgba(8,133,142,0.2)'
+        width: 130,
     },
     searchInputContainer: {
         width: 250,
