@@ -10,7 +10,8 @@ function AllExercise() {
     const [searchTerm, setSearchTerm] = useState('')
     const reduxExercise = useSelector(state => state.exercise);
     const [exercises, setExercises] = useState(reduxExercise.exerciseData);
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const ITEMS_TO_DISPLAY = 20
 
     useEffect(() => {
 
@@ -46,9 +47,10 @@ function AllExercise() {
             <View style={styles.searchInputContainer}>
                 <IconInputCustom placeholder={'Search Exercise'} name={'search'} style={styles.searchInput} onChangeText={onSearchChange} />
             </View>
+            <Text style={styles.itemsToDisplayText}>Top {ITEMS_TO_DISPLAY} Items Search for More</Text>
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
-                data={exercises}
+                data={exercises.slice(0, ITEMS_TO_DISPLAY)}
                 numColumns={2}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: { _id, exerciseName, exerciseType, photoURL } }) => (
@@ -92,6 +94,11 @@ let styles = StyleSheet.create({
         paddingVertical: 12,
         paddingLeft: 10,
         borderRadius: 5
+    },
+    itemsToDisplayText: {
+        color: colors.primary,
+        textAlign: 'center',
+        marginVertical: 10,
     },
     noExercise: {
         flex: 1,

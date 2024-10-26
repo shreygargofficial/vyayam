@@ -1,49 +1,88 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
+import ButtonSimple from "../../components/ui/ButtonSimple";
 
-function SplitExerciseOption() {
+export default function SplitExerciseOption({ navigation }) {
+    function splitChoosen(splitType) {
+        navigation.navigate(splitType)
+    }
     return (<View style={styles.root}>
-        <Pressable style={({ pressed }) => [pressed && styles.press, styles.card]}>
-            <Text style={styles.text}>Sample Split</Text>
-        </Pressable>
+        <Image
+            source={require('../../assets/images/splits/chooseSplit.png')}
+            style={styles.image}
+        />
+        <View style={styles.imageBelowTextContainer}>
+            <Text style={styles.imageBelowTextHeading}>
+                Want Our Designed Split?
+            </Text>
+            <Text style={styles.imageBelowTextDescription}>
+                You can also create your own split based on your goals and requirement choose from the range of exercises and edit anytime
+            </Text>
+        </View>
 
-        <Pressable style={({ pressed }) => [pressed && styles.press, styles.card, styles.marginTop]}>
-            <Text style={styles.text}>Customized Split</Text>
-        </Pressable>
+        <View style={styles.rowFlex}>
+            <ButtonSimple
+                title={'Our Designed'}
+                onPress={splitChoosen.bind(this, 'sampleSplit')}
+                color={colors.white}
+                style={styles.button}
+            />
+            <ButtonSimple
+                title={'Your Custom'}
+                onPress={splitChoosen.bind(this, 'customSplit')}
+                color={colors.white}
+                style={styles.button}
+            />
+        </View>
+
     </View>);
 }
 
-export default SplitExerciseOption;
 
 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        // alignItems: 'center',
-        justifyContent: 'center',
-        padding: 40
+        paddingHorizontal: 20
     },
-    card: {
-        justifyContent: 'center',
-        // alignItems: 'center',
-        backgroundColor: colors.white,
-        elevation: 5,
-        shadowColor: colors.grey,
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 10,
-        shadowRadius: 5,
-        height: 140,
+    image: {
+        width: '80%',
+        maxWidth: 400,
+        alignSelf: 'center',
+        height: 300,
     },
-    marginTop: {
-        marginTop: 30,
+    imageBelowTextContainer: {
+        alignItems: 'center'
     },
-    text: {
+    imageBelowTextHeading: {
+        fontSize: 36,
+        fontWeight: '200',
         textAlign: 'center',
-        color: colors.primaryDark,
-        fontSize: 27,
-        fontWeight: '300'
+        color: colors.black,
+        marginVertical: 10
     },
-    press: {
-        opacity: 0.5
-    }
+    imageBelowTextDescription: {
+        fontSize: 18,
+        color: colors.black,
+        lineHeight: 24,
+        fontWeight: '300',
+        textAlign: 'center',
+        marginVertical: 26,
+    },
+    rowFlex: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 20,
+
+    },
+    button: {
+        margin: 5,
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 10,
+        borderBottomRightRadius: 20
+
+    },
+
 })

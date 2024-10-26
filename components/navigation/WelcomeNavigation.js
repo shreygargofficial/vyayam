@@ -16,6 +16,10 @@ import AllExercise from "../../screen/nativeStack/AllExercise";
 import WeightLog from "../../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../../screen/nativeStack/BodyMeasurement";
 import SplitExerciseOption from "../../screen/nativeStack/SplitExerciseOption";
+import SampleSplit from "../../screen/nativeStack/SampleSplit";
+import CustomSplit from "../../screen/nativeStack/CustomSplit";
+import PerDaySplitScreen from "../../screen/nativeStack/PerDaySplitScreen";
+import EditSplitPerDay from "../../screen/nativeStack/EditSplitPerDay";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -142,9 +146,29 @@ function WelcomeNavigation() {
                     component={BodyMeasurement}
                 />
                 <nativeStack.Screen
-                    options={{ title: 'Choose Splits', headerBackTitle: 'Home' }}
+                    options={{ title: 'Workout Splits', headerBackTitle: 'Home' }}
                     name="splitChoice"
                     component={SplitExerciseOption}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Sample Split', headerBackTitle: 'Split Type' }}
+                    name="sampleSplit"
+                    component={SampleSplit}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Your Split', headerBackTitle: 'Split Type' }}
+                    name="customSplit"
+                    component={CustomSplit}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Day Wise Split', headerBackTitle: 'Back' }}
+                    name="perDaySplitScreen"
+                    component={PerDaySplitScreen}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Edit Day Split', headerBackTitle: 'Back' }}
+                    name="EditSplit"
+                    component={EditSplitPerDay}
                 />
             </nativeStack.Navigator>
         </NavigationContainer>);

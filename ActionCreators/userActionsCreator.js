@@ -130,6 +130,39 @@ export function updateWeightForUserCreator(userName, data) {
     }
 }
 
+export function updateSplitForUserCreator(userName, data) {
+    return async (dispatch) => {
+        try {
+            let headers = await setHeader() //setting headers
+            if (!headers) {
+                dispatch(logoutActionCreator())
+                return;
+            }
+            dispatch(loaderActions.setLoading(true))
+            let myData = await Axios.put(`${SERVERURL}/updateSplitForUser/${userName}`, data, {
+                headers: headers
+            });
+            dispatch(userActions.addUserData(myData.data))
+        }
+        catch (e) {
+            console.log(e);
+            if (e.response) {
+                dispatch(snackbarActions.enableSnakBar('Error ' + e.response.data.message))
+                // dispatch(userActions.logError(e.response.data.message))
+            }
+            else {
+                dispatch(snackbarActions.enableSnakBar('Error ' + e.message))
+                // dispatch(userActions.logError(e.message))
+            }
+
+        }
+        finally {
+            dispatch(loaderActions.setLoading(false))
+        }
+    }
+}
+
+
 export function updateUserMeasurementForUserCreator(userName, data) {
     return async (dispatch) => {
         try {
