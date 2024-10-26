@@ -67,7 +67,6 @@ function EditSplitPerDay({ navigation, route }) {
             ...user?.exerciseSplit,
             [day]: daysExistingExerciseArrayOfId
         }
-        // console.log(dataToSubmit);
         dispatch(updateSplitForUserCreator(user.userName, dataToSubmit))
 
     }
