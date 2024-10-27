@@ -81,6 +81,7 @@ function BodyMeasurement() {
         <View style={{ flex: 1 }}>
             <ScrollView
                 alwaysBounceVertical={false}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ minHeight: height }}>
                 {
                     (sortedBodyMeasurement && sortedBodyMeasurement?.length) ?

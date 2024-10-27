@@ -31,7 +31,9 @@ function LandingCardsTiles() {
             </View>
             <View style={styles.rowFlex}>
                 <Pressable
-                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
+                    style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+                    onPress={tileClickHandler.bind(this, 'splitChoice')}
+                >
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/split.jpg')} />
                     <View style={styles.cardTitleContainer}>
                         <Text style={styles.cardTitle}>My Workout Split</Text>

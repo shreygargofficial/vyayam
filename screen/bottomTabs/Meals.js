@@ -9,8 +9,9 @@ function Meals({ navigation }) {
     const meals = useSelector(state => state.meals)
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(allMealsFetchActionCreator())
-    }, [])
+        if (!meals.allMeals || meals.allMeals?.length == 0)
+            dispatch(allMealsFetchActionCreator())
+    }, [meals])
 
     const navigateMyMeal = (_id) => {
         navigation.navigate("myMeal", {
@@ -23,6 +24,8 @@ function Meals({ navigation }) {
                 <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
                 <FlatList
                     style={{ marginTop: 60 }}
+                    showsVerticalScrollIndicator={false}
+                    alwaysBounceVertical={false}
                     data={meals?.allMeals}
                     keyExtractor={(item) => item._id}
                     renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {

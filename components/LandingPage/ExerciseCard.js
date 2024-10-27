@@ -1,33 +1,30 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
-import { useNavigation } from "@react-navigation/native";
 function ExerciseCard({
     exerciseName,
+    onPress,
     _id,
     exerciseType,
     photoURL,
-    style
+    style,
+    imageContainerStyle,
+    infoContainerStyle
 }) {
-    const navigation = useNavigation()
-    const onExerciseCardPress = (_id) => {
-        navigation.navigate('myExercise', {
-            _id: _id,
-            from: 'back'
-        })
-    }
-    return (
-        <Pressable style={({ pressed }) => [styles.card, pressed && styles.pressed, style]} onPress={onExerciseCardPress.bind(this, _id)}>
-            <View style={styles.rowFlex}>
-                <View style={styles.imageContainer}>
-                    {photoURL ?
-                        <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.cardImage} /> :
-                        <Image source={require('../../assets/images/exercise/dumbelllunges.jpg')} style={styles.cardImage} />}
 
-                </View>
-                <View style={styles.infoContainer}>
-                    <Text style={[styles.cardTitle]}>{exerciseName}</Text>
-                    <Text style={[styles.cardSubTitle]}>{exerciseType} Exercise</Text>
-                </View>
+    return (
+        <Pressable
+            style={({ pressed }) => [styles.card, pressed && styles.pressed, style]}
+            onPress={onPress.bind(this, _id)}>
+
+            <View style={[styles.imageContainer, imageContainerStyle]}>
+                {photoURL ?
+                    <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.cardImage} /> :
+                    <Image source={require('../../assets/images/exercise/dumbelllunges.jpg')} style={styles.cardImage} />}
+
+            </View>
+            <View style={[styles.infoContainer, infoContainerStyle]}>
+                <Text style={[styles.cardTitle]}>{exerciseName}</Text>
+                {exerciseType && <Text style={[styles.cardSubTitle]}>{exerciseType} Exercise</Text>}
             </View>
         </Pressable>
     );
@@ -38,39 +35,44 @@ export default ExerciseCard;
 let styles = StyleSheet.create({
 
     card: {
-        width: 250,
-        backgroundColor: 'rgba(70,70,70,0.4)',
-        padding: 4,
+        borderRadius: 10,
+        width: 120,
         margin: 10,
-        borderRadius: 4,
+        padding: 10,
+        backgroundColor: colors.white,
+
+
     },
     imageContainer: {
         flex: 5,
         borderRadius: 4,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     infoContainer: {
-        flex: 7,
-        paddingHorizontal: 20,
-        paddingVertical: 5
+        flex: 2,
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     cardTitle: {
-        color: colors.white,
+        color: colors.primaryDark,
         fontWeight: '300',
-        fontSize: 20,
-        flex: 2,
+        fontSize: 14,
+        marginBottom: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     cardSubTitle: {
         fontSize: 12,
-        color: colors.white,
-        flex: 1
+        color: colors.primary,
+        marginBottom: 3,
     },
     rowFlex: {
         flexDirection: 'row'
     },
     cardImage: {
         width: '100%',
-        height: 70
+        height: 100
     },
     pressed: {
         opacity: 0.3

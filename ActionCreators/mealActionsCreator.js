@@ -32,34 +32,3 @@ export function allMealsFetchActionCreator() {
         }
     }
 }
-
-export function singleMealFetchActionCreator(id) {
-    return async (dispatch) => {
-        try {
-            let headers = await setHeader();
-            if (!headers) {
-                dispatch(logoutActionCreator())
-                return;
-            }
-            dispatch(loaderActions.setLoading(true))
-            let response = await Axios.get(`${SERVERURL}/getMealsByFoodId/${id}`, {
-                headers: headers
-            })
-            dispatch(mealActions.myMeal(response.data))
-            dispatch(mealActions.logError(''))
-        }
-        catch (e) {
-            if (e.response) {
-                dispatch(mealActions.logError(e.response.data.message))
-            }
-            else {
-                dispatch(mealActions.logError(e.message))
-            }
-        }
-        finally {
-            dispatch(loaderActions.setLoading(false))
-        }
-    }
-}
-
-

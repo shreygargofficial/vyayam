@@ -67,6 +67,7 @@ function User() {
         <ScrollView
             style={styles.root}
             alwaysBounceVertical={false}
+            showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: scrollViewPadding }}>
             <View style={styles.rowFlexing}>
                 <View style={styles.imageContainer}>

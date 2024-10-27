@@ -1,38 +1,39 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { singleMealFetchActionCreator } from "../../ActionCreators/mealActionsCreator";
+import { useSelector } from "react-redux";
 import { SERVERURL } from "../../constants/Environment";
 import { colors } from "../../constants/Colors";
 
 function MyMeal({ route }) {
-    const dispatch = useDispatch();
-    const meals = useSelector(state => state.meals)
+    const meals = useSelector(state => state.meals.allMeals)
+    const [myMeal, setMyMeal] = useState(null)
 
     useEffect(() => {
-        dispatch(singleMealFetchActionCreator(route.params.id))
+        let meal = meals.find(ele => ele._id == route.params.id)
+        setMyMeal(meal);
     }, [route.params.id])
 
-    if (meals.myMeal)
+    if (meals)
         return (
             <ScrollView
                 style={styles}
                 alwaysBounceVertical={false}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 100 }}
             >
                 <View style={styles.photoContainer}>
-                    {meals.myMeal?.photoURL ? <Image source={{ uri: `${SERVERURL}/${meals.myMeal?.photoURL}` }} style={styles.photo} /> : <Image source={require('../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
+                    {myMeal?.photoURL ? <Image source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
                 </View>
                 <View style={styles.infoContainer}>
-                    <Text style={styles.title}> {meals.myMeal?.dishName} </Text>
-                    <Text style={styles.description}>{meals.myMeal?.description}</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}>Total Calories: </Text>{meals.myMeal?.nutritionContent?.totalCalories}Kcal</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Protein: </Text> {meals.myMeal?.nutritionContent?.protein}g</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Fats: </Text> {meals.myMeal?.nutritionContent?.fats}g</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Carbs: </Text>{meals.myMeal?.nutritionContent?.carbs}g</Text>
-                    <Text style={[styles.marginTop]}> <Text style={styles.bold}>Fiber: </Text> {meals.myMeal?.nutritionContent?.fiber}g</Text>
+                    <Text style={styles.title}> {myMeal?.dishName} </Text>
+                    <Text style={styles.description}>{myMeal?.description}</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}>Total Calories: </Text>{myMeal?.nutritionContent?.totalCalories}Kcal</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Protein: </Text> {myMeal?.nutritionContent?.protein}g</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Fats: </Text> {myMeal?.nutritionContent?.fats}g</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}> Carbs: </Text>{myMeal?.nutritionContent?.carbs}g</Text>
+                    <Text style={[styles.marginTop]}> <Text style={styles.bold}>Fiber: </Text> {myMeal?.nutritionContent?.fiber}g</Text>
                     <Text style={styles.ingredientsTitle}>Ingredients: </Text>
-                    {meals.myMeal?.ingredients.map(ele => {
+                    {myMeal?.ingredients.map(ele => {
                         return (
                             <View key={ele._id} style={[styles.ingredients]}>
                                 <Text>{ele.name}</Text>
@@ -48,7 +49,7 @@ function MyMeal({ route }) {
     else
         return (
             <View style={styles.root}>
-                <Text>{meals.mealFetchError}</Text>
+                <Text>Something went Wrong!</Text>
             </View>
         )
 }

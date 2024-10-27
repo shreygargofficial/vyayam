@@ -4,11 +4,14 @@ import { useSelector } from "react-redux";
 import ExerciseCard from "../../components/LandingPage/ExerciseCard";
 import { colors } from "../../constants/Colors";
 import IconInputCustom from "../../components/ui/IconInputCustom";
+import { useNavigation } from "@react-navigation/native";
 
 function AllExercise() {
     const [searchTerm, setSearchTerm] = useState('')
     const reduxExercise = useSelector(state => state.exercise);
-    const [exercises, setExercises] = useState(reduxExercise.exerciseData)
+    const [exercises, setExercises] = useState(reduxExercise.exerciseData);
+    const navigation = useNavigation();
+    const ITEMS_TO_DISPLAY = 20
 
     useEffect(() => {
 
@@ -32,22 +35,30 @@ function AllExercise() {
     const onSearchChange = (val) => {
         setSearchTerm(val)
     }
-
+    const onExerciseClick = (_id) => {
+        navigation.navigate('myExercise', {
+            _id: _id,
+            from: 'Exercises'
+        })
+    }
 
     return (
         <View style={styles.root}>
             <View style={styles.searchInputContainer}>
                 <IconInputCustom placeholder={'Search Exercise'} name={'search'} style={styles.searchInput} onChangeText={onSearchChange} />
             </View>
+            <Text style={styles.itemsToDisplayText}>Top {ITEMS_TO_DISPLAY} Items Search for More</Text>
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
-                data={exercises}
+                showsVerticalScrollIndicator={false}
+                data={exercises.slice(0, ITEMS_TO_DISPLAY)}
+                numColumns={2}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: { _id, exerciseName, exerciseType, photoURL } }) => (
                     <ExerciseCard
+                        onPress={onExerciseClick}
                         exerciseName={exerciseName}
                         _id={_id}
-                        exerciseType={exerciseType}
                         photoURL={photoURL}
                         style={styles.card}
                     />
@@ -69,11 +80,10 @@ let styles = StyleSheet.create({
     root: {
         backgroundColor: 'rgba(0,0,0,0.9)',
         flex: 1,
+        alignItems: 'center'
     },
     card: {
-        alignSelf: 'center',
-        width: 300,
-        backgroundColor: 'rgba(8,133,142,0.2)'
+        width: 130,
     },
     searchInputContainer: {
         width: 250,
@@ -84,6 +94,11 @@ let styles = StyleSheet.create({
         paddingVertical: 12,
         paddingLeft: 10,
         borderRadius: 5
+    },
+    itemsToDisplayText: {
+        color: colors.primary,
+        textAlign: 'center',
+        marginVertical: 10,
     },
     noExercise: {
         flex: 1,
