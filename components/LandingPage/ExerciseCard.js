@@ -6,7 +6,9 @@ function ExerciseCard({
     _id,
     exerciseType,
     photoURL,
-    style
+    style,
+    imageContainerStyle,
+    infoContainerStyle
 }) {
 
     return (
@@ -14,15 +16,15 @@ function ExerciseCard({
             style={({ pressed }) => [styles.card, pressed && styles.pressed, style]}
             onPress={onPress.bind(this, _id)}>
 
-            <View style={styles.imageContainer}>
+            <View style={[styles.imageContainer, imageContainerStyle]}>
                 {photoURL ?
                     <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.cardImage} /> :
                     <Image source={require('../../assets/images/exercise/dumbelllunges.jpg')} style={styles.cardImage} />}
 
             </View>
-            <View style={styles.infoContainer}>
+            <View style={[styles.infoContainer, infoContainerStyle]}>
                 <Text style={[styles.cardTitle]}>{exerciseName}</Text>
-                <Text style={[styles.cardSubTitle]}>{exerciseType} Exercise</Text>
+                {exerciseType && <Text style={[styles.cardSubTitle]}>{exerciseType} Exercise</Text>}
             </View>
         </Pressable>
     );
@@ -37,7 +39,8 @@ let styles = StyleSheet.create({
         width: 120,
         margin: 10,
         padding: 10,
-        backgroundColor: colors.white
+        backgroundColor: colors.white,
+
 
     },
     imageContainer: {
@@ -48,14 +51,17 @@ let styles = StyleSheet.create({
     infoContainer: {
         flex: 2,
         marginTop: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     cardTitle: {
         color: colors.primaryDark,
         fontWeight: '300',
         fontSize: 14,
         flex: 2,
-        marginBottom: 6
+        marginBottom: 6,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     cardSubTitle: {
         fontSize: 12,

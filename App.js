@@ -14,6 +14,7 @@ import { snackbarReducer } from './slice/snakbarSlice';
 import { StatusBar } from 'react-native';
 import { exerciseReducer } from './slice/exerciseSlice';
 import { colors } from './constants/Colors';
+import { splitReducer } from './slice/splitExerciseSlice';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -27,7 +28,8 @@ const store = configureStore({
     loader: loaderReducer,
     meals: mealReducer,
     exercise: exerciseReducer,
-    snackbar: snackbarReducer
+    snackbar: snackbarReducer,
+    split: splitReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -3,7 +3,7 @@ import { colors } from "../../constants/Colors";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
-function DayWiseCard({ day, source = 1 }) {
+function DayCard({ day, source = 1 }) {
     const [isPressed, setIsPressed] = useState(false);
     const navigation = useNavigation()
     const imageSource = source == 1 ?
@@ -35,7 +35,7 @@ function DayWiseCard({ day, source = 1 }) {
     );
 }
 
-export default DayWiseCard;
+export default DayCard;
 
 const styles = StyleSheet.create({
     card: {

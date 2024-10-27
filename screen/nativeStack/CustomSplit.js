@@ -1,6 +1,6 @@
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
-import DayWiseCard from "../../components/splits/DayWiseCard";
+import DayCard from "../../components/splits/DayCard";
 
 let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 function CustomSplit() {
@@ -9,7 +9,7 @@ function CustomSplit() {
             alwaysBounceVertical={false}
             contentContainerStyle={{ alignItems: 'center', paddingTop: 80 }}
             data={days}
-            renderItem={({ item, index }) => <DayWiseCard source={index % 2 + 1} day={item} />}
+            renderItem={({ item, index }) => <DayCard source={index % 2 + 1} day={item} />}
             numColumns={3}
             keyExtractor={(item) => item}
         />
