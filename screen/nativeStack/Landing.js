@@ -50,6 +50,7 @@ function Landing({ navigation }) {
             <StatusBar backgroundColor={colors.black} />
             <ScrollView
                 alwaysBounceVertical={false}
+                showsVerticalScrollIndicator={false}
                 style={{ backgroundColor: colors.black }}
             >
                 <ImageBackground

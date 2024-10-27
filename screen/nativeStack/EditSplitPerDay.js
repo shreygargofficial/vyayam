@@ -79,6 +79,7 @@ function EditSplitPerDay({ navigation, route }) {
                 <Text style={styles.title}> Your Selected One</Text>
                 <ScrollView
                     alwaysBounceVertical={false}
+                    showsVerticalScrollIndicator={false}
                 >
                     <View style={styles.existingTileContainer}>
                         {
@@ -115,6 +116,7 @@ function EditSplitPerDay({ navigation, route }) {
                 <ScrollView
                     contentContainerStyle={{ paddingBottom: 40 }}
                     alwaysBounceVertical={false}
+                    showsVerticalScrollIndicator={false}
                 >
                     {allExerciseState.slice(0, ITEMS_TO_DISPLAY).map(ele => {
                         return (

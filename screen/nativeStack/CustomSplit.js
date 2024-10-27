@@ -7,6 +7,7 @@ function CustomSplit() {
     return (
         <FlatList
             alwaysBounceVertical={false}
+            showsVerticalScrollIndicator={false}
             contentContainerStyle={{ alignItems: 'center', paddingTop: 80 }}
             data={days}
             renderItem={({ item, index }) => <DayCard source={index % 2 + 1} day={item} />}

@@ -33,33 +33,6 @@ export function allExercisesFetchActionCreator() {
     }
 }
 
-export function singleExerciseFetchActionCreator(id) {
-    return async (dispatch) => {
-        try {
-            let headers = await setHeader();
-            if (!headers) {
-                dispatch(logoutActionCreator())
-                return;
-            }
-            dispatch(loaderActions.setLoading(true))
-            let response = await Axios.get(`${SERVERURL}/getExerciseByExerciseId/${id}`, {
-                headers: headers
-            })
-            dispatch(exerciseActions.myExercise(response.data))
-            dispatch(exerciseActions.logError(''))
-        }
-        catch (e) {
-            if (e.response) {
-                dispatch(exerciseActions.logError(e.response.data.message))
-            }
-            else {
-                dispatch(exerciseActions.logError(e.message))
-            }
-        }
-        finally {
-            dispatch(loaderActions.setLoading(false))
-        }
-    }
-}
+
 
 

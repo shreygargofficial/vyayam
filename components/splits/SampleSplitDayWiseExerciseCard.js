@@ -16,6 +16,7 @@ export default function ({ exercisesArray, title }) {
         <View>
             <Text style={styles.title}>{title}</Text>
             {exercisesArray ? <ScrollView
+                showsHorizontalScrollIndicator={false}
                 horizontal={true}>
                 {exercisesArray.map(exercise => {
                     return (
@@ -23,7 +24,6 @@ export default function ({ exercisesArray, title }) {
                             key={exercise._id}
                             exerciseName={exercise.exerciseName}
                             _id={exercise._id}
-                            exerciseType={""}
                             onPress={onPress}
                             style={styles.card}
                             imageContainerStyle={styles.imageContainerStyle}
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
 
     },
     infoContainerStyle: {
-        marginTop: 30
+        // marginTop: 30,
+        justifyContent: 'center'
     },
     subtitle: {
         fontSize: 18

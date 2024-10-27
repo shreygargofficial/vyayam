@@ -46,28 +46,26 @@ let styles = StyleSheet.create({
     imageContainer: {
         flex: 5,
         borderRadius: 4,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     infoContainer: {
         flex: 2,
         marginTop: 10,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     cardTitle: {
         color: colors.primaryDark,
         fontWeight: '300',
         fontSize: 14,
-        flex: 2,
-        marginBottom: 6,
+        marginBottom: 8,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     cardSubTitle: {
         fontSize: 12,
         color: colors.primary,
-        flex: 1,
-        marginBottom: 3
+        marginBottom: 3,
     },
     rowFlex: {
         flexDirection: 'row'

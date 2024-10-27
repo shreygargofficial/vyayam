@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { exerciseSplitActionCreator } from "../../ActionCreators/exerciseSplitActionCreator";
-import ExerciseCard from "../../components/LandingPage/ExerciseCard";
 import CustomLoader from "../../components/ui/CustomLoader";
 import SampleSplitDayWiseExerciseCard from "../../components/splits/SampleSplitDayWiseExerciseCard";
 
-function SampleSplit({ navigation }) {
+function SampleSplit() {
     const dispatch = useDispatch();
     const split = useSelector(state => state.split)
     const [mySampleSplit, setMySampleSplit] = useState(null)
@@ -37,6 +36,7 @@ function SampleSplit({ navigation }) {
         return (
             <ScrollView
                 alwaysBounceVertical={false}
+                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 60 }}
             >
                 <SampleSplitDayWiseExerciseCard

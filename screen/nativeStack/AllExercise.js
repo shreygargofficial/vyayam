@@ -50,6 +50,7 @@ function AllExercise() {
             <Text style={styles.itemsToDisplayText}>Top {ITEMS_TO_DISPLAY} Items Search for More</Text>
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
+                showsVerticalScrollIndicator={false}
                 data={exercises.slice(0, ITEMS_TO_DISPLAY)}
                 numColumns={2}
                 keyExtractor={(item) => item._id}
@@ -58,7 +59,6 @@ function AllExercise() {
                         onPress={onExerciseClick}
                         exerciseName={exerciseName}
                         _id={_id}
-                        exerciseType={exerciseType}
                         photoURL={photoURL}
                         style={styles.card}
                     />

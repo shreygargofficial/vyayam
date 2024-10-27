@@ -39,6 +39,7 @@ function PerDaySplitScreen({ navigation, route }) {
                 </View>
                 <ScrollView
                     horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                     alwaysBounceHorizontal={false}
                 // contentContainerStyle={{ flex: 2 }}
                 >

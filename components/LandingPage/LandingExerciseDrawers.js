@@ -13,7 +13,10 @@ function LandingExerciseDrawer({ exerciseArray }) {
     }
     return (
         <View>
-            <ScrollView horizontal={true} >
+            <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+            >
                 {exerciseArray?.map(exercise => {
                     return (
                         <ExerciseCard
@@ -21,7 +24,6 @@ function LandingExerciseDrawer({ exerciseArray }) {
                             key={exercise._id}
                             exerciseName={exercise.exerciseName}
                             _id={exercise._id}
-                            exerciseType={exercise.exerciseType}
                             photoURL={exercise.photoURL}
                         />
                     )
