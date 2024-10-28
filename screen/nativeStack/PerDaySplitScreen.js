@@ -51,7 +51,6 @@ function PerDaySplitScreen({ navigation, route }) {
                                 key={ele}
                                 exerciseName={exercise.exerciseName}
                                 style={styles.card}
-                                exerciseType={exercise.exerciseType}
                                 photoURL={exercise.photoURL}
                                 _id={exercise._id}
                                 onPress={onExerciseClick.bind(this, exercise._id)}
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
         fontWeight: '300'
     },
     card: {
-        height: 200,
+        height: 140,
         // marginTop: 200
     },
     textContainer: {
@@ -89,6 +88,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     HeadingText: {
+        fontFamily: 'king',
+        letterSpacing: 2,
         fontSize: 28,
         fontWeight: '300'
     }

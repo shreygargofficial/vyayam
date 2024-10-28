@@ -15,6 +15,8 @@ import { StatusBar } from 'react-native';
 import { exerciseReducer } from './slice/exerciseSlice';
 import { colors } from './constants/Colors';
 import { splitReducer } from './slice/splitExerciseSlice';
+import { useFonts } from 'expo-font';
+import CustomLoader from './components/ui/CustomLoader';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -53,7 +55,12 @@ let delay = (time) => {
 }
 //splash screen delay logic end
 export default function App() {
+  const [loadedFont] = useFonts({
+    'shadeBlue': require('./assets/fonts/shadeBlue.ttf'),
+    'wedding': require('./assets/fonts/wedding.ttf'),
+    'king': require('./assets/fonts/king.ttf'),
 
+  })
   useEffect(() => {
     async function callDelay() {
       await delay(3000);
@@ -62,7 +69,9 @@ export default function App() {
     callDelay()
   }, []);
 
-
+  if (!loadedFont) {
+    return <CustomLoader />
+  }
   return (
     <>
       <StatusBar backgroundColor={colors.white} />

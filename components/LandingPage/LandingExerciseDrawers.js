@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import ExerciseCard from "./ExerciseCard";
 import { useNavigation } from "@react-navigation/native";
+import { colors } from "../../constants/Colors";
 
 function LandingExerciseDrawer({ exerciseArray }) {
     const navigation = useNavigation()
@@ -20,6 +21,8 @@ function LandingExerciseDrawer({ exerciseArray }) {
                 {exerciseArray?.map(exercise => {
                     return (
                         <ExerciseCard
+                            titleColor={colors.white}
+                            style={styles.card}
                             onPress={onExerciseClick}
                             key={exercise._id}
                             exerciseName={exercise.exerciseName}
@@ -37,5 +40,8 @@ function LandingExerciseDrawer({ exerciseArray }) {
 export default LandingExerciseDrawer;
 
 let styles = StyleSheet.create({
+    card: {
+        backgroundColor: 'rgba(255,255,255,0.1)',
 
+    }
 })

@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         justifyContent: 'center',
-        // overflow: 'hidden',
         elevation: 5,
         shadowColor: colors.grey,
         shadowOpacity: 0.5,
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
 
     },
     infoContainerStyle: {
-        // marginTop: 30,
         justifyContent: 'center'
     },
     subtitle: {
