@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         opacity: 0.2
     },
     searchInputContainer: {
-        flex: 2,
+        flex: 3,
         paddingHorizontal: 20
     },
     searchResultContainer: {
@@ -212,9 +212,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     numberOfItemsText: {
-        marginTop: -8,
+        marginTop: 0,
         textAlign: 'center',
         fontWeight: '400',
+        fontSize: 12,
         color: colors.black
     },
     card: {

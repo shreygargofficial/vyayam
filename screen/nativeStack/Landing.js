@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, StatusBar } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions } from "react-native";
 import { colors } from "../../constants/Colors";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +8,8 @@ import LandingCardsTiles from "../../components/LandingPage/LandingCardsTiles";
 import LandingExerciseDrawer from "../../components/LandingPage/LandingExerciseDrawers";
 import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
 import Testimonials from "../../components/LandingPage/Testimonials";
-
-
+import { StatusBar } from 'expo-status-bar';
+import { useIsFocused } from "@react-navigation/native";
 
 
 function Landing({ navigation }) {
@@ -17,7 +17,8 @@ function Landing({ navigation }) {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const exercise = useSelector(state => state.exercise)
-    const [muscleOBJ, setMuscleOJ] = useState(null)
+    const [muscleOBJ, setMuscleOJ] = useState(null);
+    const isFocused = useIsFocused();
     useEffect(() => {
         dispatch(allExercisesFetchActionCreator())
 
@@ -47,7 +48,7 @@ function Landing({ navigation }) {
     }
     return (
         <>
-            <StatusBar backgroundColor={colors.black} />
+            {isFocused && <StatusBar style="light" />}
             <ScrollView
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
