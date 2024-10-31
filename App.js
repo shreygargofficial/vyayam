@@ -11,10 +11,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { loaderReducer } from './slice/loaderSlice';
 import { mealReducer } from './slice/MealsSlice';
 import { snackbarReducer } from './slice/snakbarSlice';
-import { StatusBar } from 'react-native';
 import { exerciseReducer } from './slice/exerciseSlice';
-import { colors } from './constants/Colors';
 import { splitReducer } from './slice/splitExerciseSlice';
+import { useFonts } from 'expo-font';
+import CustomLoader from './components/ui/CustomLoader';
+import { StatusBar } from 'expo-status-bar';
 
 const persistConfig = {
   key: 'root', // key for the storage
@@ -53,7 +54,12 @@ let delay = (time) => {
 }
 //splash screen delay logic end
 export default function App() {
+  const [loadedFont] = useFonts({
+    'shadeBlue': require('./assets/fonts/shadeBlue.ttf'),
+    'wedding': require('./assets/fonts/wedding.ttf'),
+    'king': require('./assets/fonts/king.ttf'),
 
+  })
   useEffect(() => {
     async function callDelay() {
       await delay(3000);
@@ -62,10 +68,12 @@ export default function App() {
     callDelay()
   }, []);
 
-
+  if (!loadedFont) {
+    return <CustomLoader />
+  }
   return (
     <>
-      <StatusBar backgroundColor={colors.white} />
+      <StatusBar style="auto" />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ContextProvider>

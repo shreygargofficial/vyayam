@@ -21,7 +21,6 @@ function AllExercise() {
                 ex.exerciseName.toLowerCase().includes(search) ||
                 ex.exerciseType.toLowerCase().includes(search) ||
                 ex.primaryMuscleTargeted.toLowerCase().includes(search) ||
-                ex.allMusclesUsed.some(ele => ele.toLowerCase().includes(search)) ||
                 ex.splitDerivative.some(ele => ele.toLowerCase().includes(search))
             );
             setExercises(filteredExercise);
@@ -54,7 +53,7 @@ function AllExercise() {
                 data={exercises.slice(0, ITEMS_TO_DISPLAY)}
                 numColumns={2}
                 keyExtractor={(item) => item._id}
-                renderItem={({ item: { _id, exerciseName, exerciseType, photoURL } }) => (
+                renderItem={({ item: { _id, exerciseName, photoURL } }) => (
                     <ExerciseCard
                         onPress={onExerciseClick}
                         exerciseName={exerciseName}
@@ -80,10 +79,12 @@ let styles = StyleSheet.create({
     root: {
         backgroundColor: 'rgba(0,0,0,0.9)',
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     card: {
         width: 130,
+        marginHorizontal: 24,
+
     },
     searchInputContainer: {
         width: 250,
@@ -91,7 +92,7 @@ let styles = StyleSheet.create({
     },
     searchInput: {
         backgroundColor: 'white',
-        paddingVertical: 12,
+        paddingVertical: 7,
         paddingLeft: 10,
         borderRadius: 5
     },

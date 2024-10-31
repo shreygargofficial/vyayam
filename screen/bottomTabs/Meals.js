@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, StatusBar } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allMealsFetchActionCreator } from "../../ActionCreators/mealActionsCreator";
 import MealsList from "../../components/meals/MealsList";
-import { colors } from "../../constants/Colors";
 
 function Meals({ navigation }) {
     const meals = useSelector(state => state.meals)
@@ -21,7 +20,6 @@ function Meals({ navigation }) {
     if (meals.allMeals)
         return (
             <>
-                <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
                 <FlatList
                     style={{ marginTop: 60 }}
                     showsVerticalScrollIndicator={false}
@@ -47,9 +45,11 @@ function Meals({ navigation }) {
         )
     else
         return (
-            <View style={styles.root}>
-                <Text>{meals.mealFetchError}</Text>
-            </View>
+            <>
+                <View style={styles.root}>
+                    <Text>{meals.mealFetchError}</Text>
+                </View>
+            </>
         )
 }
 

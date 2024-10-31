@@ -8,7 +8,8 @@ function ExerciseCard({
     photoURL,
     style,
     imageContainerStyle,
-    infoContainerStyle
+    infoContainerStyle,
+    titleColor
 }) {
 
     return (
@@ -19,14 +20,14 @@ function ExerciseCard({
             <View style={[styles.imageContainer, imageContainerStyle]}>
                 {photoURL ?
                     <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.cardImage} /> :
-                    <Image source={require('../../assets/images/exercise/dumbelllunges.jpg')} style={styles.cardImage} />}
+                    <Image source={require('../../assets/images/exercise/exercise.jpg')} style={styles.cardImage} />}
 
             </View>
             <View style={[styles.infoContainer, infoContainerStyle]}>
-                <Text style={[styles.cardTitle]}>{exerciseName}</Text>
+                <Text style={[styles.cardTitle, titleColor ? { color: titleColor } : { color: colors.primaryDark }]}>{exerciseName}</Text>
                 {exerciseType && <Text style={[styles.cardSubTitle]}>{exerciseType} Exercise</Text>}
             </View>
-        </Pressable>
+        </Pressable >
     );
 }
 
@@ -38,7 +39,6 @@ let styles = StyleSheet.create({
         borderRadius: 10,
         width: 120,
         margin: 10,
-        padding: 10,
         backgroundColor: colors.white,
 
 

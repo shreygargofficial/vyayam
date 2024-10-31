@@ -4,7 +4,7 @@ import { colors } from "../../constants/Colors";
 function CustomLoader() {
     return (
         <View style={styles.root}>
-            <ActivityIndicator size="small" color={colors.primaryDark} />
+            <ActivityIndicator size="medium" color={colors.primaryDark} />
         </View>
     );
 }

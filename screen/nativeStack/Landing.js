@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, StatusBar } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions } from "react-native";
 import { colors } from "../../constants/Colors";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
@@ -7,17 +7,18 @@ import { allExercisesFetchActionCreator } from "../../ActionCreators/exerciseAct
 import LandingCardsTiles from "../../components/LandingPage/LandingCardsTiles";
 import LandingExerciseDrawer from "../../components/LandingPage/LandingExerciseDrawers";
 import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
-
-
+import Testimonials from "../../components/LandingPage/Testimonials";
+import { StatusBar } from 'expo-status-bar';
+import { useIsFocused } from "@react-navigation/native";
 
 
 function Landing({ navigation }) {
     const { height, width } = useWindowDimensions()
     const user = useSelector(state => state.user);
-    const [status, setStatus] = useState(<StatusBar backgroundColor={colors.black} />)
     const dispatch = useDispatch();
     const exercise = useSelector(state => state.exercise)
-    const [muscleOBJ, setMuscleOJ] = useState(null)
+    const [muscleOBJ, setMuscleOJ] = useState(null);
+    const isFocused = useIsFocused();
     useEffect(() => {
         dispatch(allExercisesFetchActionCreator())
 
@@ -47,7 +48,7 @@ function Landing({ navigation }) {
     }
     return (
         <>
-            <StatusBar backgroundColor={colors.black} />
+            {isFocused && <StatusBar style="light" />}
             <ScrollView
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
@@ -60,7 +61,7 @@ function Landing({ navigation }) {
                     style={[styles.banner, { width, height }]}
                 >
                     <View >
-                        <Text style={styles.slogan}>"Lets start your journey with us!"</Text>
+                        <Text style={[styles.slogan, styles.fontSlogan]}>"Lets start your journey with us!"</Text>
                     </View>
                 </ImageBackground>
 
@@ -72,6 +73,7 @@ function Landing({ navigation }) {
                     <View>
                         <Text style={styles.slogan}>Record Your</Text>
                         <LandingCardsTiles />
+                        <Testimonials />
                         <Text style={styles.slogan}>Learn Exercise</Text>
                         {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
                             return (
@@ -105,6 +107,9 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: '200',
         color: colors.white
+    },
+    fontSlogan: {
+        fontFamily: 'king',
     },
     horizontalScrollContainer: {
         marginTop: 40

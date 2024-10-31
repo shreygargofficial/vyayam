@@ -27,7 +27,7 @@ function ExerciseById() {
         >
             {myExercise?.photoURL ?
                 <Image source={{ uri: myExercise?.photoURL }} style={styles.image} /> :
-                <Image source={require('../../assets/images/exercise/dumbelllunges.jpg')} style={styles.image} />
+                <Image source={require('../../assets/images/exercise/exercise.jpg')} style={styles.image} />
             }
             <Text style={styles.title}>{myExercise?.exerciseName}</Text>
             <Text style={styles.normalText}>
