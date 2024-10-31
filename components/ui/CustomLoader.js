@@ -1,10 +1,16 @@
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import LottieView from "lottie-react-native";
 import { colors } from "../../constants/Colors";
 
 function CustomLoader() {
     return (
         <View style={styles.root}>
-            <ActivityIndicator size="medium" color={colors.primaryDark} />
+            <LottieView
+                autoPlay
+                style={styles.lottie}
+                // Find more Lottie files at https://lottiefiles.com/featured
+                source={require('../../assets/animationLottie/burgerAndGym.json')}
+            />
         </View>
     );
 }
@@ -23,5 +29,9 @@ let styles = StyleSheet.create({
         elevation: 5,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    lottie: {
+        width: 200,
+        height: 200,
     }
 })
