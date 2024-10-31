@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { ScrollView, } from "react-native";
+import { ScrollView, StyleSheet, Text, View, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { exerciseSplitActionCreator } from "../../ActionCreators/exerciseSplitActionCreator";
-import CustomLoader from "../../components/ui/CustomLoader";
 import SampleSplitDayWiseExerciseCard from "../../components/splits/SampleSplitDayWiseExerciseCard";
 
 function SampleSplit() {
@@ -79,10 +78,19 @@ function SampleSplit() {
         );
     else {
         return (
-            <CustomLoader />
+            <View style={styles.root}>
+                <Text>There is some issue in Loading</Text>
+            </View>
         )
     }
 }
 
 export default SampleSplit;
 
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
