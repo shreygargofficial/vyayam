@@ -20,6 +20,9 @@ import SampleSplit from "../../screen/nativeStack/SampleSplit";
 import CustomSplit from "../../screen/nativeStack/CustomSplit";
 import PerDaySplitScreen from "../../screen/nativeStack/PerDaySplitScreen";
 import EditSplitPerDay from "../../screen/nativeStack/EditSplitPerDay";
+import About from "../../screen/Drawer/About";
+import Privacy from "../../screen/Drawer/Privacy";
+import Contact from "../../screen/Drawer/Contact";
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -48,6 +51,21 @@ function DrawerNavigator() {
                     </View>
                 )
             }}
+        />
+        <drawer.Screen
+            name="About"
+            component={About}
+            options={{ drawerIcon: ({ size, color }) => <Entypo name="users" size={size} color={color} /> }}
+        />
+        <drawer.Screen
+            name="Privacy"
+            component={Privacy}
+            options={{ drawerIcon: ({ size, color }) => <Entypo name="text-document" size={size} color={color} /> }}
+        />
+        <drawer.Screen
+            name="Contact"
+            component={Contact}
+            options={{ drawerIcon: ({ size, color }) => <Entypo name="chat" size={size} color={color} /> }}
         />
         <drawer.Screen
             name="Logout"

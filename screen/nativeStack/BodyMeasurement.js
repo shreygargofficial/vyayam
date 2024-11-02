@@ -1,8 +1,8 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { FlatList, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { styles as weightLogStyles } from "./WeightLog";
 import IconButton from "../../components/ui/IconButton";
 import { colors } from "../../constants/Colors";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import UserMeasurementModalContent from "../../components/userMeasurement/UserMeasurementModalContent";
 import { sortArrayBasedOnDate } from "../../utils/helperFunction/DateFunction";
@@ -12,7 +12,6 @@ import GraphUserMeasurements from "../../components/ui/GraphUserMeasurements";
 function BodyMeasurement() {
     const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.user);
-    const { height } = useWindowDimensions();
 
     useEffect(() => {
         if (user.userData.bodyMeasurements.length == 0) {
@@ -20,9 +19,10 @@ function BodyMeasurement() {
         }
     }, [user.userData.bodyMeasurements])
 
-    const modalToggler = () => {
-        setShowModal(prev => !prev)
-    }
+    const modalToggler = useCallback(() => {
+        setShowModal((prev) => !prev);
+    }, []);
+
     let sortedBodyMeasurement = useMemo(() => {
         return sortArrayBasedOnDate(user.userData.bodyMeasurements)
     }, [user.userData]);
@@ -79,84 +79,72 @@ function BodyMeasurement() {
 
     return (
         <View style={{ flex: 1 }}>
-            <ScrollView
-                alwaysBounceVertical={false}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ minHeight: height }}>
-                {
-                    (sortedBodyMeasurement && sortedBodyMeasurement?.length) ?
-                        <View style={styles.allGraphs}>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Left calf Measurement</Text>
-                                <GraphUserMeasurements color={colors.red} dateData={dateData} measurementData={leftCalfData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Right calf Measurement</Text>
-                                <GraphUserMeasurements color={colors.primary} dateData={dateData} measurementData={rightCalfData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Right Thigh Measurement</Text>
-                                <GraphUserMeasurements color={colors.purple100} dateData={dateData} measurementData={rightThighData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Left Thigh Measurement</Text>
-                                <GraphUserMeasurements color={colors.brown} dateData={dateData} measurementData={leftThighData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Left Arm Measurement</Text>
-                                <GraphUserMeasurements color={colors.orange} dateData={dateData} measurementData={armLeftData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Right Arm Measurement</Text>
-                                <GraphUserMeasurements color={colors.purple800} dateData={dateData} measurementData={armRightData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Chest Measurement</Text>
-                                <GraphUserMeasurements color={colors.red200} dateData={dateData} measurementData={chestData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Waist Measurement</Text>
-                                <GraphUserMeasurements color={colors.black} dateData={dateData} measurementData={waistData} />
-                            </View>
-                            <View style={styles.graphContainer}>
-                                <Text style={styles.headingMuscle}>Hips Measurement</Text>
-                                <GraphUserMeasurements color={colors.green} dateData={dateData} measurementData={hipsData} />
-                            </View>
-                        </View>
-                        :
-                        <View style={{ flex: 1, justifyContent: 'center', marginTop: -130 }}>
-                            <Text style={styles.headingMuscle}>
-                                Please Log your First Measurement!
-                            </Text>
-                        </View>
-                }
+            {
+                (sortedBodyMeasurement && sortedBodyMeasurement?.length) ?
+                    <View style={styles.allGraphs}>
+                        <FlatList
+                            data={
+                                [
+                                    { dateData, measurementData: armLeftData, color: colors.red, label: "Left Arm Measurement" },
+                                    { dateData, measurementData: armRightData, color: colors.primary, label: "Right Arm Measurement" },
+                                    { dateData, measurementData: leftCalfData, color: colors.purple100, label: "Left Calf Measurement" },
+                                    { dateData, measurementData: rightCalfData, color: colors.brown, label: "Right Calf Measurement" },
+                                    { dateData, measurementData: leftThighData, color: colors.orange, label: "Left Thigh Measurement" },
+                                    { dateData, measurementData: rightThighData, color: colors.purple800, label: "Right Thigh Measurement" },
+                                    { dateData, measurementData: waistData, color: colors.red200, label: "Waist Measurement" },
+                                    { dateData, measurementData: chestData, color: colors.black, label: "Chest Measurement" },
+                                    { dateData, measurementData: hipsData, color: colors.green, label: "Hips Measurement" }
 
-                <Modal
-                    visible={showModal}
-                    animationType="slide"
-                    transparent={true}
-                >
-                    <View style={styles.overlay} >
-                        <View style={styles.modalContent}>
-                            <Pressable style={styles.crossContainer} onPress={modalToggler}>
-                                <Text style={styles.cross}>x</Text>
-                            </Pressable>
-                            <UserMeasurementModalContent
-                                modalToggler={modalToggler}
-                                userName={user.userData.userName}
-                                sortedBodyMeasurement={
-                                    (sortedBodyMeasurement && sortedBodyMeasurement.length)
-                                        ? (sortedBodyMeasurement[sortedBodyMeasurement.length - 1])
-                                        : null
-                                }
-                            />
-                        </View>
+                                ]
+                            }
+                            renderItem={({ item: { dateData, measurementData, color, label } }) => {
+                                return (
+                                    <View style={styles.graphContainer}>
+                                        <Text style={styles.headingMuscle}>{label}</Text>
+                                        <GraphUserMeasurements color={color} dateData={dateData} measurementData={measurementData} />
+                                    </View>
+                                )
+                            }}
+                            keyExtractor={(item) => item.label}
+                            initialNumToRender={3}
+                            windowSize={5}
+                        />
 
                     </View>
+                    :
+                    <View style={{ flex: 1, justifyContent: 'center', marginTop: -130 }}>
+                        <Text style={styles.headingMuscle}>
+                            Please Log your First Measurement!
+                        </Text>
+                    </View>
+            }
+
+            <Modal
+                visible={showModal}
+                animationType="slide"
+                transparent={true}
+            >
+                <View style={styles.overlay} >
+                    <View style={styles.modalContent}>
+                        <Pressable style={styles.crossContainer} onPress={modalToggler}>
+                            <Text style={styles.cross}>x</Text>
+                        </Pressable>
+                        <UserMeasurementModalContent
+                            modalToggler={modalToggler}
+                            userName={user.userData.userName}
+                            sortedBodyMeasurement={
+                                (sortedBodyMeasurement && sortedBodyMeasurement.length)
+                                    ? (sortedBodyMeasurement[sortedBodyMeasurement.length - 1])
+                                    : null
+                            }
+                        />
+                    </View>
+
+                </View>
 
 
-                </Modal>
-            </ScrollView>
+            </Modal>
+            {/* </ScrollView> */}
 
             <IconButton
                 name={'add'}
