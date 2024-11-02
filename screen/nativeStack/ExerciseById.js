@@ -4,6 +4,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { WebView } from 'react-native-webview';
 import { colors } from "../../constants/Colors";
+import { SERVERURL } from "../../constants/Environment";
 
 function ExerciseById() {
     const route = useRoute();
@@ -26,7 +27,7 @@ function ExerciseById() {
             contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 10 }}
         >
             {myExercise?.photoURL ?
-                <Image source={{ uri: myExercise?.photoURL }} style={styles.image} /> :
+                <Image source={{ uri: SERVERURL + '/' + myExercise?.photoURL }} style={styles.image} /> :
                 <Image source={require('../../assets/images/exercise/exercise.jpg')} style={styles.image} />
             }
             <Text style={styles.title}>{myExercise?.exerciseName}</Text>

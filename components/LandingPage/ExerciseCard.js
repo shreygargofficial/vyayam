@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
+import { SERVERURL } from "../../constants/Environment";
 function ExerciseCard({
     exerciseName,
     onPress,
