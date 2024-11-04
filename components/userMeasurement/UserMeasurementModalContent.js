@@ -55,6 +55,19 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
         >
             <View style={styles.innerModalContent}>
                 <Controller
+                    name="armLeft"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <InputPlusMinus
+                            placeholder={'Arm Left'}
+                            label={'Arm Left(cm)'}
+                            value={value}
+                            onChangeText={onChange}
+                            steps={0.5}
+                        />
+                    )}
+                />
+                <Controller
                     name="armRight"
                     control={control}
                     render={({ field: { onChange, value } }) => (
@@ -68,12 +81,26 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                     )}
                 />
                 <Controller
-                    name="armLeft"
+                    name="leftCalf"
                     control={control}
                     render={({ field: { onChange, value } }) => (
                         <InputPlusMinus
-                            placeholder={'Arm Left'}
-                            label={'Arm Left(cm)'}
+                            placeholder={'Left Calf'}
+                            label={'Left Calf(cm)'}
+                            value={value}
+                            onChangeText={onChange}
+                            steps={0.5}
+                        />
+                    )}
+                />
+
+                <Controller
+                    name="rightCalf"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <InputPlusMinus
+                            placeholder={'Right Calf'}
+                            label={'Right Calf(cm)'}
                             value={value}
                             onChangeText={onChange}
                             steps={0.5}
@@ -107,33 +134,7 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                     )}
                 />
 
-                <Controller
-                    name="leftCalf"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Left Calf'}
-                            label={'Left Calf(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
 
-                <Controller
-                    name="rightCalf"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Right Calf'}
-                            label={'Right Calf(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
                 <Controller
                     name="waist"
                     control={control}

@@ -55,10 +55,7 @@ let delay = (time) => {
 //splash screen delay logic end
 export default function App() {
   const [loadedFont] = useFonts({
-    'shadeBlue': require('./assets/fonts/shadeBlue.ttf'),
-    'wedding': require('./assets/fonts/wedding.ttf'),
     'king': require('./assets/fonts/king.ttf'),
-
   })
   useEffect(() => {
     async function callDelay() {
