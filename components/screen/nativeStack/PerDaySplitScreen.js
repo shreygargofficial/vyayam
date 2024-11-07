@@ -1,9 +1,9 @@
 import { useLayoutEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
-import { colors } from "../../constants/Colors";
-import ExerciseCard from "../../components/LandingPage/ExerciseCard";
-import IconButton from "../../components/ui/IconButton";
+import { colors } from "../../../constants/Colors";
+import ExerciseCard from "../../LandingPage/ExerciseCard";
+import IconButton from "../../ui/IconButton";
 
 function PerDaySplitScreen({ navigation, route }) {
     const { day } = route.params;

@@ -1,12 +1,12 @@
 import { FlatList, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { styles as weightLogStyles } from "./WeightLog";
-import IconButton from "../../components/ui/IconButton";
-import { colors } from "../../constants/Colors";
+import IconButton from "../../ui/IconButton";
+import { colors } from "../../../constants/Colors";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import UserMeasurementModalContent from "../../components/userMeasurement/UserMeasurementModalContent";
-import { sortArrayBasedOnDate } from "../../utils/helperFunction/DateFunction";
-import GraphUserMeasurements from "../../components/ui/GraphUserMeasurements";
+import UserMeasurementModalContent from "../../userMeasurement/UserMeasurementModalContent";
+import { sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
+import GraphUserMeasurements from "../../ui/GraphUserMeasurements";
 
 
 function BodyMeasurement() {

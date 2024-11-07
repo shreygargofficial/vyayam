@@ -1,6 +1,6 @@
 import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { colors } from "../../constants/Colors";
-import DayCard from "../../components/splits/DayCard";
+import { colors } from "../../../constants/Colors";
+import DayCard from "../../splits/DayCard";
 
 let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 function CustomSplit() {

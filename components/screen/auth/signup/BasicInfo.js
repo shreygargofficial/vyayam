@@ -4,9 +4,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
 import { styles } from "./SignUp";
 import { useState } from "react";
-import ButtonSimple from "../../../components/ui/ButtonSimple";
+import ButtonSimple from "../../../ui/ButtonSimple";
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { colors } from "../../../constants/Colors";
+import { colors } from "../../../../constants/Colors";
 
 const weightArray = new Array(170).fill(0).map((_, index) => (index + 30));
 const heightArray = new Array(125).fill(0).map((_, index) => (index + 120));

@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
-import { logoutActionCreator } from "../../redux/ActionCreators/userActionsCreator";
+import { logoutActionCreator } from "../../../redux/ActionCreators/userActionsCreator";
+import ButtonWithBorder from "../../ui/ButtonWithBorder";
 
 function Logout() {
     const dispatch = useDispatch();

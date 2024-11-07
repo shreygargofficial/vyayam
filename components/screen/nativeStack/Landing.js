@@ -1,13 +1,13 @@
 import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions } from "react-native";
-import { colors } from "../../constants/Colors";
+import { colors } from "../../../constants/Colors";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { allExercisesFetchActionCreator } from "../../redux/ActionCreators/exerciseActionsCreator";
-import LandingCardsTiles from "../../components/LandingPage/LandingCardsTiles";
-import LandingExerciseDrawer from "../../components/LandingPage/LandingExerciseDrawers";
-import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
-import Testimonials from "../../components/LandingPage/Testimonials";
+import { allExercisesFetchActionCreator } from "../../../redux/ActionCreators/exerciseActionsCreator";
+import LandingCardsTiles from "../../LandingPage/LandingCardsTiles";
+import LandingExerciseDrawer from "../../LandingPage/LandingExerciseDrawers";
+import ButtonWithBorder from "../../ui/ButtonWithBorder";
+import Testimonials from "../../LandingPage/Testimonials";
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
 
@@ -56,8 +56,8 @@ function Landing({ navigation }) {
             >
                 <ImageBackground
                     source={user?.userData?.gender == "male" ?
-                        require('../../assets/images/banner/male.jpg') :
-                        require('../../assets/images/banner/female.jpg')}
+                        require('../../../assets/images/banner/male.jpg') :
+                        require('../../../assets/images/banner/female.jpg')}
                     style={[styles.banner, { width, height }]}
                 >
                     <View >

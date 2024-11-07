@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { exerciseSplitActionCreator } from "../../redux/ActionCreators/exerciseSplitActionCreator";
-import SampleSplitDayWiseExerciseCard from "../../components/splits/SampleSplitDayWiseExerciseCard";
+import { exerciseSplitActionCreator } from "../../../redux/ActionCreators/exerciseSplitActionCreator";
+import SampleSplitDayWiseExerciseCard from "../../splits/SampleSplitDayWiseExerciseCard";
 
 function SampleSplit() {
     const dispatch = useDispatch();

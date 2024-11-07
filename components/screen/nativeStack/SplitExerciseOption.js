@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { colors } from "../../constants/Colors";
-import ButtonSimple from "../../components/ui/ButtonSimple";
+import { colors } from "../../../constants/Colors";
+import ButtonSimple from "../../ui/ButtonSimple";
 
 export default function SplitExerciseOption({ navigation }) {
     function splitChoosen(splitType) {
@@ -8,7 +8,7 @@ export default function SplitExerciseOption({ navigation }) {
     }
     return (<View style={styles.root}>
         <Image
-            source={require('../../assets/images/splits/chooseSplit.png')}
+            source={require('../../../assets/images/splits/chooseSplit.png')}
             style={styles.image}
         />
         <View style={styles.imageBelowTextContainer}>

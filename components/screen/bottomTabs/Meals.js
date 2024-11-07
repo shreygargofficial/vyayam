@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { allMealsFetchActionCreator } from "../../redux/ActionCreators/mealActionsCreator";
-import MealsList from "../../components/meals/MealsList";
+import { allMealsFetchActionCreator } from "../../../redux/ActionCreators/mealActionsCreator";
+import MealsList from "../../meals/MealsList";
 
 function Meals({ navigation }) {
     const meals = useSelector(state => state.meals)

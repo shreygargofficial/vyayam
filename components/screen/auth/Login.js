@@ -1,10 +1,10 @@
 import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
-import { colors } from "../../constants/Colors";
-import ButtonSimple from "../../components/ui/ButtonSimple";
+import { colors } from "../../../constants/Colors";
+import ButtonSimple from "../../ui/ButtonSimple";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserActionCreator } from "../../redux/ActionCreators/userActionsCreator";
-import IconInputCustom from "../../components/ui/IconInputCustom";
+import { loginUserActionCreator } from "../../../redux/ActionCreators/userActionsCreator";
+import IconInputCustom from "../../ui/IconInputCustom";
 
 
 function Login({ navigation }) {
@@ -65,7 +65,7 @@ function Login({ navigation }) {
             >
                 <View style={styles.form}>
                     <View style={styles.loginImage}>
-                        <Image source={require('../../assets/images/loginIcon.png')} style={{ height: 50, width: 50 }} />
+                        <Image source={require('../../../assets/images/loginIcon.png')} style={{ height: 50, width: 50 }} />
                     </View>
                     <Text style={styles.title}>Login</Text>
                     {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}

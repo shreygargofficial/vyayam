@@ -1,12 +1,12 @@
 import { Modal, Platform, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import IconButton from "../../components/ui/IconButton";
-import { colors } from "../../constants/Colors";
+import IconButton from "../../ui/IconButton";
+import { colors } from "../../../constants/Colors";
 import { useMemo, useState } from 'react';
-import { dateFormatterToShowOnXAxis, sortArrayBasedOnDate } from "../../utils/helperFunction/DateFunction";
+import { dateFormatterToShowOnXAxis, sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
 import { LineChart } from 'react-native-chart-kit';
-import WeightAddModalContent from "../../components/weight/WeightAddModalContent";
-import { usePagination } from "../../hooks/usePagination";
+import WeightAddModalContent from "../../weight/WeightAddModalContent";
+import { usePagination } from "../../../hooks/usePagination";
 import { MaterialIcons } from "@expo/vector-icons";
 
 

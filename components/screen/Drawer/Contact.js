@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Values } from "../../constants/Values";
+import { Values } from "../../../constants/Values";
 import * as Linking from 'expo-linking';
-import { colors } from "../../constants/Colors";
+import { colors } from "../../../constants/Colors";
 function Contact() {
     const handleEmailPress = () => {
         const email = Values.support; // replace with your email

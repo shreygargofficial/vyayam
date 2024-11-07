@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Values } from "../../constants/Values";
+import { Values } from "../../../constants/Values";
 
 function Privacy() {
     return (

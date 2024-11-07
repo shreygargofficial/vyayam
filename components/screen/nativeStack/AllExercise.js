@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
-import ExerciseCard from "../../components/LandingPage/ExerciseCard";
-import { colors } from "../../constants/Colors";
-import IconInputCustom from "../../components/ui/IconInputCustom";
+import ExerciseCard from "../../LandingPage/ExerciseCard";
+import { colors } from "../../../constants/Colors";
+import IconInputCustom from "../../ui/IconInputCustom";
 import { useNavigation } from "@react-navigation/native";
 
 function AllExercise() {

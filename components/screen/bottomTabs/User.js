@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Image, ScrollView, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { updateUserCreator } from "../../redux/ActionCreators/userActionsCreator";
-import UserInfo from "../../components/user/UserInfo";
-import UserUpdateForm from "../../components/user/UserUpdateForm";
-import { colors } from "../../constants/Colors";
-import IconButton from "../../components/ui/IconButton";
+import { updateUserCreator } from "../../../redux/ActionCreators/userActionsCreator";
+import UserInfo from "../../user/UserInfo";
+import UserUpdateForm from "../../user/UserUpdateForm";
+import { colors } from "../../../constants/Colors";
+import IconButton from "../../ui/IconButton";
 
 
 
@@ -29,9 +29,9 @@ function User() {
 
     const randomFolder = user?.userData?.gender ? user?.userData?.gender : 'others'
     const images = {
-        'male': require('../../assets/images/avatar/male/3.png'),
-        'female': require('../../assets/images/avatar/female/3.png'),
-        'others': require('../../assets/images/avatar/others/3.png')
+        'male': require('../../../assets/images/avatar/male/3.png'),
+        'female': require('../../../assets/images/avatar/female/3.png'),
+        'others': require('../../../assets/images/avatar/others/3.png')
     }
 
 

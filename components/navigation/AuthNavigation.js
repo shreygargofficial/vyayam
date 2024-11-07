@@ -1,13 +1,13 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "../../screen/auth/Login";
-import SignUp from "../../screen/auth/signup/SignUp";
+import Login from "../screen/auth/Login";
+import SignUp from "../screen/auth/signup/SignUp";
 import { colors } from "../../constants/Colors";
-import Name from "../../screen/auth/signup/Name";
-import BasicInfo from "../../screen/auth/signup/BasicInfo";
-import Email from "../../screen/auth/signup/Email";
-import Contact from "../../screen/auth/signup/Contact";
-import Password from "../../screen/auth/signup/Password";
+import Name from "../screen/auth/signup/Name";
+import BasicInfo from "../screen/auth/signup/BasicInfo";
+import Email from "../screen/auth/signup/Email";
+import Contact from "../screen/auth/signup/Contact";
+import Password from "../screen/auth/signup/Password";
 function AuthNavigation() {
     let nativeStack = createNativeStackNavigator()
     return (

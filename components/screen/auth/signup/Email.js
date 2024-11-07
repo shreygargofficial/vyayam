@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import ButtonSimple from "../../../components/ui/ButtonSimple";
+import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
-import { colors } from "../../../constants/Colors";
-import InputCustom from "../../../components/ui/InputCustom";
+import { colors } from "../../../../constants/Colors";
+import InputCustom from "../../../ui/InputCustom";
 import { styles } from "./SignUp";
 
 function Email() {
