@@ -3,7 +3,7 @@ import { colors } from "../../constants/Colors";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { allExercisesFetchActionCreator } from "../../ActionCreators/exerciseActionsCreator";
+import { allExercisesFetchActionCreator } from "../../redux/ActionCreators/exerciseActionsCreator";
 import LandingCardsTiles from "../../components/LandingPage/LandingCardsTiles";
 import LandingExerciseDrawer from "../../components/LandingPage/LandingExerciseDrawers";
 import ButtonWithBorder from "../../components/ui/ButtonWithBorder";

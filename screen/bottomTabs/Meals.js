@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { allMealsFetchActionCreator } from "../../ActionCreators/mealActionsCreator";
+import { allMealsFetchActionCreator } from "../../redux/ActionCreators/mealActionsCreator";
 import MealsList from "../../components/meals/MealsList";
 
 function Meals({ navigation }) {

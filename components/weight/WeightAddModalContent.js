@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import { Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { updateWeightForUserCreator } from "../../ActionCreators/userActionsCreator";
+import { updateWeightForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 import { colors } from "../../constants/Colors";
 import ButtonWithBorder from "../ui/ButtonWithBorder";
 import Slider from "@react-native-community/slider";

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import IconInputCustom from "../../components/ui/IconInputCustom";
 import { colors } from "../../constants/Colors";
 import ButtonWithBorder from "../../components/ui/ButtonWithBorder";
-import { updateSplitForUserCreator } from "../../ActionCreators/userActionsCreator";
+import { updateSplitForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 
 function EditSplitPerDay({ navigation, route }) {
     const { day } = route.params;

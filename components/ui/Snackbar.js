@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../../constants/Colors";
 import { useDispatch, useSelector } from "react-redux";
-import { snackbarActions } from "../../slice/snakbarSlice";
+import { snackbarActions } from "../../redux/slice/snakbarSlice";
 import { useEffect } from "react";
 
 function Snackbar({ style, textStyle }) {

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, ScrollView, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { updateUserCreator } from "../../ActionCreators/userActionsCreator";
+import { updateUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 import UserInfo from "../../components/user/UserInfo";
 import UserUpdateForm from "../../components/user/UserUpdateForm";
 import { colors } from "../../constants/Colors";

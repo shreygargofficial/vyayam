@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { logoutActionCreator, setHeader } from "./userActionsCreator"
-import { SERVERURL } from "../constants/Environment";
+import { SERVERURL } from "../../constants/Environment";
 import { loaderActions } from "../slice/loaderSlice";
 import { exerciseActions } from "../slice/exerciseSlice";
 

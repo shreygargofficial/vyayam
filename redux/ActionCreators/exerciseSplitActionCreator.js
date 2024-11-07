@@ -2,7 +2,7 @@ import axios from "axios";
 import { loaderActions } from "../slice/loaderSlice"
 import { snackbarActions } from "../slice/snakbarSlice"
 import { logoutActionCreator, setHeader } from "./userActionsCreator"
-import { SERVERURL } from "../constants/Environment";
+import { SERVERURL } from "../../constants/Environment";
 import { splitActions } from "../slice/splitExerciseSlice";
 
 export function exerciseSplitActionCreator() {

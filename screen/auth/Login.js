@@ -1,12 +1,10 @@
-import { Button, Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import ButtonSimple from "../../components/ui/ButtonSimple";
-import InputCustom from "../../components/ui/InputCustom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserActionCreator } from "../../ActionCreators/userActionsCreator";
+import { loginUserActionCreator } from "../../redux/ActionCreators/userActionsCreator";
 import IconInputCustom from "../../components/ui/IconInputCustom";
-import Snackbar from "../../components/ui/Snackbar";
 
 
 function Login({ navigation }) {

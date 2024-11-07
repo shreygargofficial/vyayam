@@ -7,9 +7,9 @@ import InputCustom from "../../../components/ui/InputCustom";
 import { styles } from "./SignUp";
 import { useDispatch } from "react-redux";
 import { SERVERURL } from "../../../constants/Environment";
-import { loaderActions } from "../../../slice/loaderSlice";
-import { snackbarActions } from "../../../slice/snakbarSlice";
-import { mealActions } from "../../../slice/MealsSlice";
+import { loaderActions } from "../../../redux/slice/loaderSlice";
+import { snackbarActions } from "../../../redux/slice/snakbarSlice";
+import { mealActions } from "../../../redux/slice/MealsSlice";
 import axios from "axios";
 
 function Password() {

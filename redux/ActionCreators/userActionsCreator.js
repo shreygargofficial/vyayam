@@ -1,5 +1,5 @@
 import Axios from "axios"
-import { SERVERURL } from "../constants/Environment"
+import { SERVERURL } from "../../constants/Environment"
 import { userActions } from "../slice/userSlice";
 import { loaderActions } from "../slice/loaderSlice";
 import * as SecureStore from 'expo-secure-store';
