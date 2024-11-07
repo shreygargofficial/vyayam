@@ -8,7 +8,7 @@ import { styles as weightLogModalStyle } from "../weight/WeightAddModalContent";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateUserMeasurementForUserCreator, updateWeightForUserCreator } from "../../ActionCreators/userActionsCreator";
+import { updateUserMeasurementForUserCreator, updateWeightForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 const maximumDate = new Date();
 const minimumDate = new Date(`${maximumDate.getFullYear() - 2}-01-01`)
 

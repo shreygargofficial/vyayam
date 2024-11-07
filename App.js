@@ -3,16 +3,16 @@ import { useEffect } from 'react';
 import ContextProvider from './components/context/LoaderContextProvider';
 import NavigationDecider from './components/navigation/NavigationDecider';
 import { configureStore } from '@reduxjs/toolkit';
-import { userReducer } from './slice/userSlice';
+import { userReducer } from './redux/slice/userSlice';
 import { Provider } from 'react-redux'
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
 import { PersistGate } from 'redux-persist/integration/react';
-import { loaderReducer } from './slice/loaderSlice';
-import { mealReducer } from './slice/MealsSlice';
-import { snackbarReducer } from './slice/snakbarSlice';
-import { exerciseReducer } from './slice/exerciseSlice';
-import { splitReducer } from './slice/splitExerciseSlice';
+import { loaderReducer } from './redux/slice/loaderSlice';
+import { mealReducer } from './redux/slice/MealsSlice';
+import { snackbarReducer } from './redux/slice/snakbarSlice';
+import { exerciseReducer } from './redux/slice/exerciseSlice';
+import { splitReducer } from './redux/slice/splitExerciseSlice';
 import { useFonts } from 'expo-font';
 import CustomLoader from './components/ui/CustomLoader';
 import { StatusBar } from 'expo-status-bar';

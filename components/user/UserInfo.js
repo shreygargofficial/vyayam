@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import ButtonWithBorder from "../ui/ButtonWithBorder";
 import { useDispatch } from "react-redux";
-import { logoutActionCreator } from "../../ActionCreators/userActionsCreator";
+import { logoutActionCreator } from "../../redux/ActionCreators/userActionsCreator";
 
 function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, targetedWeight, birthDate, height } }) {
     let dispatch = useDispatch()
