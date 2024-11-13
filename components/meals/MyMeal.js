@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import { useSelector } from "react-redux";
 import { SERVERURL } from "../../constants/Environment";
 import { colors } from "../../constants/Colors";
+import HTMLView from 'react-native-htmlview';
 
 function MyMeal({ route }) {
     const meals = useSelector(state => state.meals.allMeals)
@@ -26,7 +27,9 @@ function MyMeal({ route }) {
                 </View>
                 <View style={styles.infoContainer}>
                     <Text style={styles.title}> {myMeal?.dishName} </Text>
-                    <Text style={styles.description}>{myMeal?.description}</Text>
+                    <HTMLView
+                        value={myMeal?.description || ''}
+                    />
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}>Total Calories: </Text>{myMeal?.nutritionContent?.totalCalories}Kcal</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}> Protein: </Text> {myMeal?.nutritionContent?.protein}g</Text>
                     <Text style={[styles.marginTop]}> <Text style={styles.bold}> Fats: </Text> {myMeal?.nutritionContent?.fats}g</Text>
