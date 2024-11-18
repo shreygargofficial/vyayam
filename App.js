@@ -57,16 +57,20 @@ export default function App() {
   const [loadedFont] = useFonts({
     'king': require('./assets/fonts/king.ttf'),
   })
+
   useEffect(() => {
     async function callDelay() {
-      await delay(3000);
-      SplashScreen.hideAsync();
+
+      if (loadedFont) {
+        await delay(2000);
+        await SplashScreen.hideAsync();
+      }
     }
     callDelay()
-  }, []);
+  }, [loadedFont]);
 
   if (!loadedFont) {
-    return <CustomLoader />
+    return null; // Prevent rendering anything until the font is loaded
   }
   return (
     <>

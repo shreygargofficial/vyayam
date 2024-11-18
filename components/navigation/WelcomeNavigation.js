@@ -100,7 +100,8 @@ function BottomTabNavigator() {
                 component={Meals}
                 options={
                     {
-                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />
+                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
+                        title: 'Recipes'
                     }
                 }
             />
