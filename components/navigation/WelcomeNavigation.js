@@ -9,7 +9,7 @@ import { colors } from "../../constants/Colors";
 import Supplements from "../screen/bottomTabs/Supplements";
 import Meals from "../screen/bottomTabs/Meals";
 import User from "../screen/bottomTabs/User";
-import MyMeal from "../meals/MyMeal";
+import MyMeal from "../screen/nativeStack/MyMeal";
 import { View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
 import AllExercise from "../screen/nativeStack/AllExercise";
@@ -77,7 +77,17 @@ function DrawerNavigator() {
 
 function BottomTabNavigator() {
     return (
-        <tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.grey, tabBarInactiveTintColor: colors.primary }}>
+        <tab.Navigator screenOptions={
+            {
+                headerShown: false,
+                tabBarActiveTintColor: colors.grey,
+                tabBarInactiveTintColor: colors.primary,
+                tabBarStyle: {
+                    backgroundColor: colors.bottomNavigation
+                },
+
+            }
+        }>
             <tab.Screen
                 name="landing"
                 component={DrawerNavigator}
@@ -91,6 +101,7 @@ function BottomTabNavigator() {
                             elevation: 0,                       // Optional: Remove shadow on Android
                         },
 
+
                     }
                 }
             />
@@ -101,7 +112,8 @@ function BottomTabNavigator() {
                 options={
                     {
                         tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
-                        title: 'Recipes'
+                        title: 'Recipes',
+
                     }
                 }
             />
@@ -132,7 +144,10 @@ function WelcomeNavigation() {
             <nativeStack.Navigator screenOptions={
                 {
                     headerTintColor: colors.white,
-                    headerStyle: { backgroundColor: colors.primaryDark }
+                    headerStyle: { backgroundColor: colors.primaryDark },
+                    contentStyle: {
+                        // backgroundColor: colors.darkBackground
+                    }
                 }
             }>
                 <nativeStack.Screen

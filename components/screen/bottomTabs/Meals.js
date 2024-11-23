@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allMealsFetchActionCreator } from "../../../redux/ActionCreators/mealActionsCreator";
-import MealsList from "../../meals/MealsList";
+import MealCard from "../../meals/MealsCard";
+import { colors } from "../../../constants/Colors";
 
 function Meals({ navigation }) {
     const meals = useSelector(state => state.meals)
@@ -19,16 +20,22 @@ function Meals({ navigation }) {
     }
     if (meals.allMeals)
         return (
-            <>
+            <View style={styles.root}>
+                <View>
+                    <Text style={styles.title}>
+                        Healthy Recipes
+                    </Text>
+                </View>
                 <FlatList
                     style={{ marginTop: 60 }}
                     showsVerticalScrollIndicator={false}
                     alwaysBounceVertical={false}
                     data={meals?.allMeals}
+                    numColumns={2}
                     keyExtractor={(item) => item._id}
                     renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {
                         return (
-                            <MealsList
+                            <MealCard
                                 dishName={dishName}
                                 _id={_id}
                                 totalCalories={totalCalories}
@@ -39,7 +46,7 @@ function Meals({ navigation }) {
                         )
                     }}
                 />
-            </>
+            </View>
 
 
         )
@@ -58,7 +65,17 @@ export default Meals;
 const styles = StyleSheet.create({
     root: {
         flex: 1,
+        backgroundColor: colors.darkBackground,
         justifyContent: 'center',
+        paddingHorizontal: 10,
         alignItems: 'center'
+    },
+    title: {
+        textAlign: 'center',
+        color: colors.white,
+        marginTop: 60,
+        fontFamily: 'king',
+        fontSize: 40,
+        fontWeight: '100'
     }
 })
