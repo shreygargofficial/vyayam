@@ -34,7 +34,11 @@ function DrawerNavigator() {
             headerStyle: { backgroundColor: colors.primaryDark },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
-            headerTitleAlign: 'left'
+            drawerInactiveTintColor: colors.primary,
+            headerTitleAlign: 'left',
+            drawerContentStyle: {
+                backgroundColor: colors.bottomNavigation
+            }
 
         }
     }>
