@@ -14,7 +14,6 @@ import { snackbarReducer } from './redux/slice/snakbarSlice';
 import { exerciseReducer } from './redux/slice/exerciseSlice';
 import { splitReducer } from './redux/slice/splitExerciseSlice';
 import { useFonts } from 'expo-font';
-import CustomLoader from './components/ui/CustomLoader';
 import { StatusBar } from 'expo-status-bar';
 
 const persistConfig = {

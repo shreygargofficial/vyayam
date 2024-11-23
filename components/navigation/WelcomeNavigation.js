@@ -37,7 +37,7 @@ function DrawerNavigator() {
             drawerInactiveTintColor: colors.primary,
             headerTitleAlign: 'left',
             drawerContentStyle: {
-                backgroundColor: colors.bottomNavigation
+                backgroundColor: colors.black
             }
 
         }
@@ -87,7 +87,9 @@ function BottomTabNavigator() {
                 tabBarActiveTintColor: colors.grey,
                 tabBarInactiveTintColor: colors.primary,
                 tabBarStyle: {
-                    backgroundColor: colors.bottomNavigation
+                    backgroundColor: colors.black,
+                    paddingTop: 10,
+                    borderTopColor: 'transparent'
                 },
 
             }
@@ -98,14 +100,6 @@ function BottomTabNavigator() {
                 options={
                     {
                         tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
-                        tabBarStyle: {
-                            position: 'absolute',               // Makes the tab bar overlay content
-                            backgroundColor: 'rgba(0, 0, 0, 0.5)', // White with 50% opacity
-                            borderTopWidth: 0,                  // Optional: Remove top border
-                            elevation: 0,                       // Optional: Remove shadow on Android
-                        },
-
-
                     }
                 }
             />

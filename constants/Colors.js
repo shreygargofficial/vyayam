@@ -14,7 +14,6 @@ export const colors = {
     brown: '#6e2c00',
     purple100: '#512e5f',
     darkBackground: '#1a1a1a',
-    bottomNavigation: '#1c1c1c'
 
 
 }
