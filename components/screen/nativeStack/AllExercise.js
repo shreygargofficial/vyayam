@@ -5,14 +5,16 @@ import ExerciseCard from "../../LandingPage/ExerciseCard";
 import { colors } from "../../../constants/Colors";
 import IconInputCustom from "../../ui/IconInputCustom";
 import { useNavigation } from "@react-navigation/native";
+import ButtonWithIcon from "../../ui/ButtonWithIcon";
+import { usePaginationNormal } from "../../../hooks/usePaginationNormal";
 
 function AllExercise() {
+    const ITEMS_TO_DISPLAY = 10
     const [searchTerm, setSearchTerm] = useState('')
     const reduxExercise = useSelector(state => state.exercise);
     const [exercises, setExercises] = useState(reduxExercise.exerciseData);
+    const { firstIndex, lastIndex, nextPage, prevPage } = usePaginationNormal(ITEMS_TO_DISPLAY, exercises)
     const navigation = useNavigation();
-    const ITEMS_TO_DISPLAY = 20
-
     useEffect(() => {
 
         if (searchTerm.length >= 3 && reduxExercise?.exerciseData) {
@@ -44,14 +46,34 @@ function AllExercise() {
     return (
         <View style={styles.root}>
             <View style={styles.searchInputContainer}>
-                <IconInputCustom placeholder={'Search Exercise'} name={'search'} style={styles.searchInput} onChangeText={onSearchChange} />
+                <IconInputCustom
+                    placeholder={'Search Exercise'}
+                    name={'search'}
+                    style={styles.searchInput}
+                    onChangeText={onSearchChange} />
             </View>
-            <Text style={styles.itemsToDisplayText}>Top {ITEMS_TO_DISPLAY} Items Search for More</Text>
+            <Text style={styles.itemsToDisplayText}> Navigate Left or Right for more</Text>
+            <View style={styles.flexRow}>
+                <ButtonWithIcon
+                    title={"Left"}
+                    name={'keyboard-arrow-left'}
+                    color={firstIndex === 0 ? colors.grey : colors.primary}
+                    size={30}
+                    onPress={prevPage} />
+                <ButtonWithIcon
+                    buttonStyle={styles.rightButtonStyle}
+                    title={"Right"}
+                    name={'keyboard-arrow-right'}
+                    color={lastIndex >= exercises.length ? colors.grey : colors.primary}
+                    size={30}
+                    onPress={nextPage} />
+            </View>
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
-                data={exercises.slice(0, ITEMS_TO_DISPLAY)}
+                data={exercises.slice(firstIndex, lastIndex)}
                 numColumns={2}
+                contentContainerStyle={{ paddingBottom: 100 }}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: { _id, exerciseName, photoURL } }) => (
                     <ExerciseCard
@@ -95,6 +117,18 @@ let styles = StyleSheet.create({
         paddingVertical: 7,
         paddingLeft: 10,
         borderRadius: 5
+    },
+    flexRow: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    rightButtonStyle: {
+        flexDirection: 'row-reverse'
+    },
+    textNavigation: {
+        color: colors.white
     },
     itemsToDisplayText: {
         color: colors.primary,
