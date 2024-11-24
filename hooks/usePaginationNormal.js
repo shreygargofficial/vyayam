@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function usePaginationNormal(numberOfContent = 10, array = []) {
     const [firstIndex, setFirstIndex] = useState(0);
     const [lastIndex, setLastIndex] = useState(numberOfContent);
+
+    useEffect(() => {
+        setLastIndex(numberOfContent)
+        setFirstIndex(0)
+    }, [array, numberOfContent])
 
     const prevPage = () => {
         if (firstIndex === 0)

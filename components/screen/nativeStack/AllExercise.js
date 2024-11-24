@@ -57,19 +57,16 @@ function AllExercise() {
                 <ButtonWithIcon
                     title={"Left"}
                     name={'keyboard-arrow-left'}
-                    color={firstIndex === 0 ? colors.grey : colors.white}
+                    color={firstIndex === 0 ? colors.grey : colors.primary}
                     size={30}
                     onPress={prevPage} />
                 <ButtonWithIcon
                     buttonStyle={styles.rightButtonStyle}
                     title={"Right"}
                     name={'keyboard-arrow-right'}
-                    color={lastIndex >= exercises.length ? colors.grey : colors.white}
+                    color={lastIndex >= exercises.length ? colors.grey : colors.primary}
                     size={30}
                     onPress={nextPage} />
-
-
-
             </View>
             {exercises && exercises.length > 0 && <FlatList
                 alwaysBounceVertical={false}
