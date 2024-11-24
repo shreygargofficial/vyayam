@@ -12,7 +12,8 @@ export const colors = {
     red200: '#C70039',
     purple800: '#581845',
     brown: '#6e2c00',
-    purple100: '#512e5f'
+    purple100: '#512e5f',
+    darkBackground: '#1a1a1a',
 
 
 }

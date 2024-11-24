@@ -14,7 +14,6 @@ import { snackbarReducer } from './redux/slice/snakbarSlice';
 import { exerciseReducer } from './redux/slice/exerciseSlice';
 import { splitReducer } from './redux/slice/splitExerciseSlice';
 import { useFonts } from 'expo-font';
-import CustomLoader from './components/ui/CustomLoader';
 import { StatusBar } from 'expo-status-bar';
 
 const persistConfig = {
@@ -57,16 +56,20 @@ export default function App() {
   const [loadedFont] = useFonts({
     'king': require('./assets/fonts/king.ttf'),
   })
+
   useEffect(() => {
     async function callDelay() {
-      await delay(3000);
-      SplashScreen.hideAsync();
+
+      if (loadedFont) {
+        await delay(2000);
+        await SplashScreen.hideAsync();
+      }
     }
     callDelay()
-  }, []);
+  }, [loadedFont]);
 
   if (!loadedFont) {
-    return <CustomLoader />
+    return null; // Prevent rendering anything until the font is loaded
   }
   return (
     <>

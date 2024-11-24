@@ -9,7 +9,7 @@ import { colors } from "../../constants/Colors";
 import Supplements from "../screen/bottomTabs/Supplements";
 import Meals from "../screen/bottomTabs/Meals";
 import User from "../screen/bottomTabs/User";
-import MyMeal from "../meals/MyMeal";
+import MyMeal from "../screen/nativeStack/MyMeal";
 import { View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
 import AllExercise from "../screen/nativeStack/AllExercise";
@@ -34,7 +34,11 @@ function DrawerNavigator() {
             headerStyle: { backgroundColor: colors.primaryDark },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
-            headerTitleAlign: 'left'
+            drawerInactiveTintColor: colors.primary,
+            headerTitleAlign: 'left',
+            drawerContentStyle: {
+                backgroundColor: colors.black
+            }
 
         }
     }>
@@ -77,20 +81,25 @@ function DrawerNavigator() {
 
 function BottomTabNavigator() {
     return (
-        <tab.Navigator screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.grey, tabBarInactiveTintColor: colors.primary }}>
+        <tab.Navigator screenOptions={
+            {
+                headerShown: false,
+                tabBarActiveTintColor: colors.grey,
+                tabBarInactiveTintColor: colors.primary,
+                tabBarStyle: {
+                    backgroundColor: colors.black,
+                    paddingTop: 10,
+                    borderTopColor: 'transparent'
+                },
+
+            }
+        }>
             <tab.Screen
                 name="landing"
                 component={DrawerNavigator}
                 options={
                     {
                         tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
-                        tabBarStyle: {
-                            position: 'absolute',               // Makes the tab bar overlay content
-                            backgroundColor: 'rgba(0, 0, 0, 0.5)', // White with 50% opacity
-                            borderTopWidth: 0,                  // Optional: Remove top border
-                            elevation: 0,                       // Optional: Remove shadow on Android
-                        },
-
                     }
                 }
             />
@@ -100,7 +109,9 @@ function BottomTabNavigator() {
                 component={Meals}
                 options={
                     {
-                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />
+                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
+                        title: 'Recipes',
+
                     }
                 }
             />
@@ -131,7 +142,10 @@ function WelcomeNavigation() {
             <nativeStack.Navigator screenOptions={
                 {
                     headerTintColor: colors.white,
-                    headerStyle: { backgroundColor: colors.primaryDark }
+                    headerStyle: { backgroundColor: colors.primaryDark },
+                    contentStyle: {
+                        // backgroundColor: colors.darkBackground
+                    }
                 }
             }>
                 <nativeStack.Screen
