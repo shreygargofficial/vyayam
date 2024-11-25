@@ -1,28 +1,49 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { colors } from "../../../../constants/Colors";
 import InputCustom from "../../../ui/InputCustom";
 import { styles } from "./SignUp";
+import { loaderActions } from "../../../../redux/slice/loaderSlice";
+import { SERVERURL } from "../../../../constants/Environment";
+import Axios from "axios";
+import { useDispatch } from "react-redux";
+import { styles as SignUpStyles } from "./SignUp";
 
 function Contact() {
     const navigation = useNavigation();
-    const route = useRoute()
+    const route = useRoute();
+    const dispatch = useDispatch();
     const [userPhoneNumber, setUserPhoneNumber] = useState('')
     const [userPhoneNumberValidators, setUserPhoneNumberValidators] = useState("");
-    const [userPhoneNumberValid, setUserPhoneNumberValid] = useState(false)
-    const nextHandler = () => {
-        navigation.navigate('metric', {
-            ...route.params,
-            userPhoneNumber: userPhoneNumber
-        })
+    const nextHandler = async () => {
+
+        try {
+            if (!userPhoneNumberValidatorsFunction(userPhoneNumber))
+                return
+            dispatch(loaderActions.setLoading(true))
+            await Axios.get(`${SERVERURL}/userPhoneExist/${userPhoneNumber}`);
+            navigation.navigate('metric', {
+                ...route.params,
+                userPhoneNumber: userPhoneNumber
+            })
+
+        }
+        catch (e) {
+            if (e.response)
+                setUserPhoneNumberValidators(e.response.data.message)
+            else
+                setUserPhoneNumberValidators(e.message)
+        }
+        finally {
+            dispatch(loaderActions.setLoading(false))
+        }
     }
     const onChangeValue = (val) => {
         let newVal = val.trim();
         if (newVal.includes(" "))
             return
-        userPhoneNumberValidatorsFunction(newVal)
         setUserPhoneNumber(newVal)
     }
 
@@ -32,19 +53,22 @@ function Contact() {
 
         if (!val) {
             setUserPhoneNumberValidators("Phone Number can't be empty");
-            setUserPhoneNumberValid(false)
+            return false
         }
         else if (!phoneRegex.test(val)) {
             setUserPhoneNumberValidators("Enter valid Phone Number!");
-            setUserPhoneNumberValid(false)
+            return false
         }
         else {
-            setUserPhoneNumberValidators("")
-            setUserPhoneNumberValid(true)
+            setUserPhoneNumberValidators("");
+            return true
         }
     }
     return (
         <View style={styles.root}>
+            <View style={SignUpStyles.imageContainer}>
+                <Image source={require('../../../../assets/images/logo.png')} style={SignUpStyles.image} />
+            </View>
             <View style={styles.signUpTextContainer}>
                 <Text style={styles.signUpText}>
                     Phone Number
@@ -60,11 +84,10 @@ function Contact() {
                     size={30}
                     value={userPhoneNumber}
                 />
+                {userPhoneNumberValidators && <Text style={styles.errorText}>{userPhoneNumberValidators}</Text>}
             </View>
             <View style={styles.buttonContainer}>
-                {/* {userPhoneNumberValidators && <Text style={styles.errorText}>{userPhoneNumberValidators}</Text>} */}
                 <ButtonSimple
-                    disabled={!userPhoneNumberValid}
                     style={styles.button} title={'Next'}
                     onPress={nextHandler}
                     color={colors.white} />
