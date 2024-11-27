@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { colors } from "../../../../constants/Colors";
 import InputCustom from "../../../ui/InputCustom";
 import { styles } from "./SignUp";
@@ -10,6 +10,7 @@ import { SERVERURL } from "../../../../constants/Environment";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { styles as SignUpStyles } from "./SignUp";
+import { Button } from "react-native";
 
 function Contact() {
     const navigation = useNavigation();
@@ -17,8 +18,9 @@ function Contact() {
     const dispatch = useDispatch();
     const [userPhoneNumber, setUserPhoneNumber] = useState('')
     const [userPhoneNumberValidators, setUserPhoneNumberValidators] = useState("");
-    const nextHandler = async () => {
 
+
+    const nextHandler = async () => {
         try {
             if (!userPhoneNumberValidatorsFunction(userPhoneNumber))
                 return

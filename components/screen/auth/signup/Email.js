@@ -23,7 +23,8 @@ function Email() {
                 return
             dispatch(loaderActions.setLoading(true))
             await Axios.get(`${SERVERURL}/emailExist/${emailAddress}`);
-            navigation.navigate('contact', {
+            await Axios.get(`${SERVERURL}/emailOtpGenerate/${emailAddress}`);
+            navigation.navigate('emailOTP', {
                 ...route.params,
                 emailAddress: emailAddress
             })
