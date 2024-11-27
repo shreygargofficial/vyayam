@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import { loaderActions } from "../../../../redux/slice/loaderSlice";
 import { snackbarActions } from "../../../../redux/slice/snakbarSlice";
 import { mealActions } from "../../../../redux/slice/MealsSlice";
 import axios from "axios";
+import { styles as SignUpStyles } from "./SignUp";
 
 function Password() {
     const navigation = useNavigation();
@@ -75,6 +76,9 @@ function Password() {
     }
     return (
         <View style={styles.root}>
+            <View style={SignUpStyles.imageContainer}>
+                <Image source={require('../../../../assets/images/logo.png')} style={SignUpStyles.image} />
+            </View>
             <View style={styles.signUpTextContainer}>
                 <Text style={styles.signUpText}>
                     Password

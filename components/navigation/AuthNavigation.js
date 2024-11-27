@@ -8,6 +8,8 @@ import BasicInfo from "../screen/auth/signup/BasicInfo";
 import Email from "../screen/auth/signup/Email";
 import Contact from "../screen/auth/signup/Contact";
 import Password from "../screen/auth/signup/Password";
+import EmailOTP from "../screen/auth/signup/EmailOTP";
+import { Button } from "react-native";
 function AuthNavigation() {
     let nativeStack = createNativeStackNavigator()
     return (
@@ -17,6 +19,7 @@ function AuthNavigation() {
                 <nativeStack.Screen name="signup" component={SignUp} options={{ title: 'Sign Up' }} />
                 <nativeStack.Screen name="name" component={Name} options={{ title: 'Your Name', headerBackTitle: "User" }} />
                 <nativeStack.Screen name="email" component={Email} options={{ title: 'Your Email', headerBackTitle: "Name" }} />
+                <nativeStack.Screen name="emailOTP" component={EmailOTP} options={{ title: 'OTP for Email', headerBackTitle: "Email" }} />
                 <nativeStack.Screen name="contact" component={Contact} options={{ title: 'Your Phone', headerBackTitle: "Email" }} />
                 <nativeStack.Screen name="metric" component={BasicInfo} options={{ title: 'Your Metrics', headerBackTitle: "contact" }} />
                 <nativeStack.Screen name="password" component={Password} options={{ title: 'Set Password', headerBackTitle: "metric" }} />

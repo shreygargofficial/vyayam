@@ -1,50 +1,73 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { colors } from "../../../../constants/Colors";
 import InputCustom from "../../../ui/InputCustom";
 import { styles } from "./SignUp";
+import { useDispatch } from "react-redux";
+import { loaderActions } from "../../../../redux/slice/loaderSlice";
+import Axios from "axios";
+import { SERVERURL } from "../../../../constants/Environment";
+import { styles as SignUpStyles } from "./SignUp";
 
 function Email() {
     const navigation = useNavigation();
     const route = useRoute()
     const [emailAddress, setEmailAddress] = useState('')
+    const dispatch = useDispatch()
     const [emailAddressValidators, setEmailAddressValidators] = useState("");
-    const [emailAddressValid, setEmailAddressValid] = useState(false)
-    const nextHandler = () => {
-        navigation.navigate('contact', {
-            ...route.params,
-            emailAddress: emailAddress
-        })
+    const nextHandler = async () => {
+        try {
+            if (!emailAddressValidatorsFunction(emailAddress))
+                return
+            dispatch(loaderActions.setLoading(true))
+            await Axios.get(`${SERVERURL}/emailExist/${emailAddress}`);
+            await Axios.get(`${SERVERURL}/emailOtpGenerate/${emailAddress}`);
+            navigation.navigate('emailOTP', {
+                ...route.params,
+                emailAddress: emailAddress
+            })
+        }
+        catch (e) {
+            if (e.response)
+                setEmailAddressValidators(e.response.data.message)
+            else
+                setEmailAddressValidators(e.message)
+        }
+        finally {
+            dispatch(loaderActions.setLoading(false))
+        }
     }
     const onChangeValue = (val) => {
         let newVal = val.trim();
         if (newVal.includes(" "))
             return
-        emailAddressValidatorsFunction(newVal)
-        setEmailAddress(newVal)
+
+        setEmailAddress(newVal.toLowerCase())
     }
 
     const emailAddressValidatorsFunction = (val) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-
         if (!val) {
             setEmailAddressValidators("Email can't be empty");
-            setEmailAddressValid(false)
+            return false;
         }
         else if (!emailRegex.test(val)) {
             setEmailAddressValidators("Enter valid Email!");
-            setEmailAddressValid(false)
+            return false;
         }
         else {
             setEmailAddressValidators("")
-            setEmailAddressValid(true)
+            return true;
         }
     }
     return (
         <View style={styles.root}>
+            <View style={SignUpStyles.imageContainer}>
+                <Image source={require('../../../../assets/images/logo.png')} style={SignUpStyles.image} />
+            </View>
             <View style={styles.signUpTextContainer}>
                 <Text style={styles.signUpText}>
                     Email Address
@@ -59,11 +82,11 @@ function Email() {
                     size={30}
                     value={emailAddress}
                 />
+                {emailAddressValidators && <Text style={styles.errorText}>{emailAddressValidators}</Text>}
             </View>
             <View style={styles.buttonContainer}>
-                {emailAddressValidators && <Text style={styles.errorText}>{emailAddressValidators}</Text>}
+
                 <ButtonSimple
-                    disabled={!emailAddressValid}
                     style={styles.button} title={'Next'}
                     onPress={nextHandler}
                     color={colors.white} />

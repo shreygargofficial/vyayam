@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
@@ -55,6 +55,9 @@ function Name() {
     }
     return (
         <View style={SignUpStyles.root}>
+            <View style={SignUpStyles.imageContainer}>
+                <Image source={require('../../../../assets/images/logo.png')} style={SignUpStyles.image} />
+            </View>
             <View style={SignUpStyles.signUpTextContainer}>
                 <Text style={SignUpStyles.signUpText}>
                     Enter First and Last Name
