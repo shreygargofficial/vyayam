@@ -59,7 +59,6 @@ export default function ({ route, navigation }) {
                     inputRefs.current[index + 1].focus()
                     setOtp(prev => {
                         let arr = [...prev];
-                        console.log(e.nativeEvent.key, index, e.nativeEvent);
                         arr[index + 1] = e.nativeEvent.key;
                         return arr;
                     })
