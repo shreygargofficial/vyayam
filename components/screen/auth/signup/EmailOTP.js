@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { View } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
@@ -14,6 +14,7 @@ export default function ({ route, navigation }) {
     const dispatch = useDispatch()
     const [otp, setOtp] = useState(new Array(6).fill(''));
     const [emailAddressValidators, setEmailAddressValidators] = useState("");
+    const inputRefs = useRef(new Array(6).fill(''));
 
     const nextHandler = async () => {
         try {
@@ -42,8 +43,30 @@ export default function ({ route, navigation }) {
             arr[index] = val;
             return arr;
         })
+
     }
-    const keyPressOtp = (val, index) => {
+    const keyPressOtp = (e, index) => {
+        e.persist();
+        if (index >= 0 && index < otp.length && e.nativeEvent) {
+            if (e.nativeEvent.key == "Backspace") {
+                if (!otp[index] && index != 0) {
+                    inputRefs.current[index - 1].focus()
+
+                }
+            }
+            else {
+                if (otp[index] && index != (otp.length - 1) && !isNaN(e.nativeEvent.key)) {
+                    inputRefs.current[index + 1].focus()
+                    setOtp(prev => {
+                        let arr = [...prev];
+                        console.log(e.nativeEvent.key, index, e.nativeEvent);
+                        arr[index + 1] = e.nativeEvent.key;
+                        return arr;
+                    })
+
+                }
+            }
+        }
 
     }
     const onResend = async () => {
@@ -84,8 +107,9 @@ export default function ({ route, navigation }) {
                 {otp.map((ele, key) => {
                     return (
                         <TextInput
+                            ref={(ref) => (inputRefs.current[key] = ref)}
                             maxLength={1}
-                            onKeyPress={(val) => keyPressOtp(val, key)}
+                            onKeyPress={(e) => keyPressOtp(e, key)}
                             keyboardType="numeric"
                             onChangeText={(val) => otpValueChanger(val, key)}
                             style={styles.inputOTP}
