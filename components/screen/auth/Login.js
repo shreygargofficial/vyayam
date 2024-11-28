@@ -10,29 +10,14 @@ import IconInputCustom from "../../ui/IconInputCustom";
 function Login({ navigation }) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordError, setPasswordError] = useState("");
-    const [userError, setUserError] = useState("");
+    const [loginError, setLoginError] = useState("");
 
     const dispatch = useDispatch()
     const mystate = useSelector(state => state.user)
     const onChangePassword = (val) => {
-        if (password.length < 4) {
-            setPasswordError('password should be greater than 4')
-        }
-        else {
-            setPasswordError('')
-        }
         setPassword(val)
     }
-
     const onChangeUseName = (val) => {
-
-        if (userName.length < 4) {
-            setPasswordError('username should be greater than 4')
-        }
-        else {
-            setPasswordError('')
-        }
         setUserName(val);
 
     }
@@ -40,23 +25,21 @@ function Login({ navigation }) {
         navigation.push('signup')
     }
     const loginHandler = async () => {
-        if (!userName) {
-            setUserError("Enter username")
+        if (!userName || userName.length < 3) {
+            setLoginError("username should be more than 3 characters")
+            return
         }
-        if (!password) {
-            setPasswordError("Enter password")
+        if (!password || password.length < 3) {
+            setLoginError("password should be more than 3 characters");
+            return
         }
 
         else {
+            setLoginError("")
             dispatch(loginUserActionCreator({ userName, password }))
         }
     }
-    const disabledCondition = () => {
-        if (!passwordError && !userError && userName && password) {
-            return false;
-        }
-        return true;
-    }
+
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <KeyboardAvoidingView
@@ -65,16 +48,16 @@ function Login({ navigation }) {
             >
                 <View style={styles.form}>
                     <View style={styles.loginImage}>
-                        <Image source={require('../../../assets/images/loginIcon.png')} style={{ height: 50, width: 50 }} />
+                        <Image source={require('../../../assets/images/logo.png')} style={{ height: 50, width: 50 }} />
                     </View>
                     <Text style={styles.title}>Login</Text>
                     {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}
+                    {loginError && <Text style={{ color: 'red' }}>{loginError}</Text>}
                     <IconInputCustom value={userName} onChangeText={onChangeUseName}
                         name={'account-circle'}
                         style={styles.input}
                         placeholderTextColor={colors.grey}
                         placeholder={'Username or Email Address'}
-
                     />
                     <IconInputCustom
                         name={'key'}
@@ -88,7 +71,7 @@ function Login({ navigation }) {
                         color={colors.white}
                         onPress={loginHandler}
                         style={styles.button}
-                        disabled={disabledCondition()} />
+                    />
                 </View>
                 <Pressable style={styles.signUpTextContainer} onPress={signUpToggler}>
                     <Text style={styles.signUpText}>New user? Sign up now</Text>
