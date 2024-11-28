@@ -61,9 +61,9 @@ export function loginUserActionCreator(data) {
 
 
         }
-        finally {
-            dispatch(loaderActions.setLoading(false))
-        }
+        // finally {
+        //     dispatch(loaderActions.setLoading(false))
+        // }
     }
 }
 
