@@ -1,6 +1,10 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { SERVERURL } from "../../constants/Environment";
+import { useState } from "react";
+import CustomLoader from "../ui/CustomLoader";
+import ImageLoader from "../ui/ImageLoader";
+
 function ExerciseCard({
     exerciseName,
     onPress,
@@ -12,16 +16,22 @@ function ExerciseCard({
     infoContainerStyle,
     titleColor
 }) {
-
+    const [imageLoading, setImageLoading] = useState(true);
     return (
         <Pressable
             style={({ pressed }) => [styles.card, pressed && styles.pressed, style]}
             onPress={onPress.bind(this, _id)}>
-
+            {imageLoading && <ImageLoader />}
             <View style={[styles.imageContainer, imageContainerStyle]}>
                 {photoURL ?
-                    <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.cardImage} /> :
-                    <Image source={require('../../assets/images/exercise/exercise.jpg')} style={styles.cardImage} />}
+                    <Image
+                        onLoadEnd={() => setImageLoading(false)}
+                        source={{ uri: `${SERVERURL}/${photoURL}` }}
+                        style={styles.cardImage} /> :
+                    <Image
+                        onLoadEnd={() => setImageLoading(false)}
+                        source={require('../../assets/images/exercise/exercise.jpg')}
+                        style={styles.cardImage} />}
 
             </View>
             <View style={[styles.infoContainer, infoContainerStyle]}>

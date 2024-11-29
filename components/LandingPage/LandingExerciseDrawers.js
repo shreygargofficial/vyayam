@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import ExerciseCard from "./ExerciseCard";
+import ExerciseCard from "../exercise/ExerciseCard";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../../constants/Colors";
 

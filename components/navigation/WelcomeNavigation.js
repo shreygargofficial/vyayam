@@ -12,7 +12,7 @@ import User from "../screen/bottomTabs/User";
 import MyMeal from "../screen/nativeStack/MyMeal";
 import { View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
-import AllExercise from "../screen/nativeStack/AllExercise";
+import AllExercise from "../exercise/AllExercise"
 import WeightLog from "../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
 import SplitExerciseOption from "../screen/nativeStack/SplitExerciseOption";
@@ -23,6 +23,9 @@ import EditSplitPerDay from "../screen/nativeStack/EditSplitPerDay";
 import About from "../screen/Drawer/About";
 import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import ExerciseWrapper from "../screen/bottomTabs/ExerciseWrapper";
+
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
@@ -111,6 +114,22 @@ function BottomTabNavigator() {
                     {
                         tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
                         title: 'Recipes',
+
+                    }
+                }
+            />
+            <tab.Screen
+                name="exercise"
+                component={ExerciseWrapper}
+                options={
+                    {
+                        headerStyle: {
+                            backgroundColor: colors.primaryDark,
+                        },
+                        headerTintColor: colors.white,
+                        headerShown: true,
+                        tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size} />,
+                        title: 'Exercise',
 
                     }
                 }

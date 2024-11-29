@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
-import ExerciseCard from "../../LandingPage/ExerciseCard";
-import { colors } from "../../../constants/Colors";
-import IconInputCustom from "../../ui/IconInputCustom";
+import ExerciseCard from "./ExerciseCard";
 import { useNavigation } from "@react-navigation/native";
-import ButtonWithIcon from "../../ui/ButtonWithIcon";
-import { usePaginationNormal } from "../../../hooks/usePaginationNormal";
+import { usePaginationNormal } from "../../hooks/usePaginationNormal";
+import { colors } from "../../constants/Colors";
+import IconInputCustom from "../ui/IconInputCustom";
+import ButtonWithIcon from "../ui/ButtonWithIcon";
 
 function AllExercise() {
     const ITEMS_TO_DISPLAY = 10
@@ -49,7 +49,9 @@ function AllExercise() {
                 <IconInputCustom
                     placeholder={'Search Exercise'}
                     name={'search'}
+                    styleWrapper={styles.searchWrapper}
                     style={styles.searchInput}
+                    placeholderTextColor={colors.white}
                     onChangeText={onSearchChange} />
             </View>
             <Text style={styles.itemsToDisplayText}> Navigate Left or Right for more</Text>
@@ -99,7 +101,7 @@ export default AllExercise;
 
 let styles = StyleSheet.create({
     root: {
-        backgroundColor: 'rgba(0,0,0,0.9)',
+        backgroundColor: colors.darkBackground,
         flex: 1,
         alignItems: 'center',
     },
@@ -109,14 +111,24 @@ let styles = StyleSheet.create({
 
     },
     searchInputContainer: {
-        width: 250,
-        alignSelf: 'center'
+        width: 280,
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderColor: colors.primary,
+        borderRadius: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 11,
+        marginVertical: 20,
+
+    },
+    searchWrapper: {
+        marginVertical: 0
     },
     searchInput: {
-        backgroundColor: 'white',
-        paddingVertical: 7,
-        paddingLeft: 10,
-        borderRadius: 5
+        paddingVertical: 0,
+        width: 200,
+        borderRadius: 5,
+        color: colors.white
     },
     flexRow: {
         width: '100%',

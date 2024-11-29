@@ -1,18 +1,31 @@
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { SERVERURL } from "../../constants/Environment";
+import { useState } from "react";
+import ImageLoader from "../ui/ImageLoader";
 
 function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
 
 
+    const [imageLoading, setImageLoading] = useState(true);
     return (
-        <Pressable onPress={() => onPress(_id)} style={({ pressed }) => [styles.cardPressable, pressed && styles.pressed]}>
+        <Pressable
+            onPress={() => onPress(_id)}
+            style={({ pressed }) => [styles.cardPressable, pressed && styles.pressed]}>
+
             <View style={styles.card}>
                 <View style={styles.imageContainer}>
+                    {imageLoading && <ImageLoader style={styles.imageLoader} />}
                     {
                         photoURL ?
-                            <Image source={{ uri: `${SERVERURL}/${photoURL}` }} style={styles.image} /> :
-                            <Image source={require('../../assets/images/meals/mealDefault.jpg')} style={styles.image} />
+                            <Image
+                                source={{ uri: `${SERVERURL}/${photoURL}` }}
+                                onLoadEnd={() => setImageLoading(false)}
+                                style={styles.image} /> :
+                            <Image
+                                onLoadEnd={() => setImageLoading(false)}
+                                source={require('../../assets/images/meals/mealDefault.jpg')}
+                                style={styles.image} />
                     }
                 </View>
                 <View style={styles.infoContainer}>
@@ -43,6 +56,13 @@ let styles = StyleSheet.create({
         padding: 2,
         alignItems: 'center',
         flex: 1,
+    },
+    imageLoader: {
+        width: 100,
+        height: 100,
+        top: -6,
+        left: -5,
+        borderRadius: Platform.select({ ios: '50%', android: 50 }),
     },
     imageContainer: {
         width: 100,

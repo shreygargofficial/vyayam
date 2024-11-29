@@ -3,16 +3,18 @@ import { colors } from "../../constants/Colors";
 import { MaterialIcons } from '@expo/vector-icons'
 
 
-function IconInputCustom({ placeholder, style, value, onChangeText, secureTextEntry = false, placeholderTextColor, name, size = 25 }) {
+function IconInputCustom({ placeholder, style, styleWrapper, value, onChangeText, secureTextEntry = false, placeholderTextColor, name, size = 25, ...props }) {
     return (
-        <View style={styles.inputWrapper}>
+        <View style={[styles.inputWrapper, styleWrapper]}>
             <MaterialIcons name={name} size={size} style={styles.icon} color={colors.primary} />
             <TextInput placeholder={placeholder}
                 placeholderTextColor={placeholderTextColor}
                 style={[styles.input, style]}
                 value={value}
                 onChangeText={onChangeText}
-                secureTextEntry={secureTextEntry} />
+                secureTextEntry={secureTextEntry}
+                {...props}
+            />
         </View>
     );
 }
