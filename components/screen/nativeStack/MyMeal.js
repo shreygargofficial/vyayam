@@ -5,7 +5,6 @@ import { SERVERURL } from "../../../constants/Environment";
 import { colors } from "../../../constants/Colors";
 import HTMLView from 'react-native-htmlview';
 import NutritionList from "../../meals/NutritionList";
-import ImageLoader from "../../ui/ImageLoader";
 import CustomLoader from "../../ui/CustomLoader";
 
 const TEXT_COLOR = colors.white
@@ -21,74 +20,72 @@ function MyMeal({ route }) {
 
     if (meals)
         return (
-            <>
+            <View style={styles.root}>
                 {imageLoading && <CustomLoader />}
-                <View style={styles.root}>
-                    <ScrollView
-                        style={styles}
-                        alwaysBounceVertical={false}
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={{ paddingBottom: 100 }}
-                    >
-                        <View style={styles.photoContainer}>
-                            {myMeal?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
-                        </View>
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.title}> {myMeal?.dishName} </Text>
-                            <View style={styles.description}>
-                                <HTMLView
-                                    stylesheet={{
-                                        p: {
-                                            color: TEXT_COLOR,
-                                            lineHeight: 23,
-                                            letterSpacing: 1,
-                                        },
-                                        span: {
-                                            color: TEXT_COLOR
-                                        },
-                                        h1: {
-                                            color: TEXT_COLOR
-                                        },
-                                        h2: {
-                                            color: TEXT_COLOR
-                                        },
-                                        h3: {
-                                            color: TEXT_COLOR
-                                        },
-                                        h4: {
-                                            color: TEXT_COLOR
-                                        },
-                                        strong: {
-                                            color: TEXT_COLOR
-                                        },
-                                        ul: {
-                                            color: TEXT_COLOR
-                                        },
-                                        b: {
-                                            color: TEXT_COLOR
-                                        },
-                                        li: {
-                                            color: TEXT_COLOR
-                                        },
+                <ScrollView
+                    style={styles}
+                    alwaysBounceVertical={false}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: 100 }}
+                >
+                    <View style={styles.photoContainer}>
+                        {myMeal?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.title}> {myMeal?.dishName} </Text>
+                        <View style={styles.description}>
+                            <HTMLView
+                                stylesheet={{
+                                    p: {
+                                        color: TEXT_COLOR,
+                                        lineHeight: 23,
+                                        letterSpacing: 1,
+                                    },
+                                    span: {
+                                        color: TEXT_COLOR
+                                    },
+                                    h1: {
+                                        color: TEXT_COLOR
+                                    },
+                                    h2: {
+                                        color: TEXT_COLOR
+                                    },
+                                    h3: {
+                                        color: TEXT_COLOR
+                                    },
+                                    h4: {
+                                        color: TEXT_COLOR
+                                    },
+                                    strong: {
+                                        color: TEXT_COLOR
+                                    },
+                                    ul: {
+                                        color: TEXT_COLOR
+                                    },
+                                    b: {
+                                        color: TEXT_COLOR
+                                    },
+                                    li: {
+                                        color: TEXT_COLOR
+                                    },
 
-                                    }}
-                                    value={myMeal?.description || ''}
-                                />
-                            </View>
-                            <NutritionList nutritionContent={myMeal?.nutritionContent} />
-                            <Text style={styles.ingredientsTitle}>Ingredients: </Text>
-                            {myMeal?.ingredients.map(ele => {
-                                return (
-                                    <View key={ele._id} style={[styles.ingredients]}>
-                                        <Text style={styles.name}><Text style={styles.bold}>{ele.name} </Text>: {ele.quantity}</Text>
-                                    </View>
-                                )
-                            })}
+                                }}
+                                value={myMeal?.description || ''}
+                            />
                         </View>
+                        <NutritionList nutritionContent={myMeal?.nutritionContent} />
+                        <Text style={styles.ingredientsTitle}>Ingredients: </Text>
+                        {myMeal?.ingredients.map(ele => {
+                            return (
+                                <View key={ele._id} style={[styles.ingredients]}>
+                                    <Text style={styles.name}><Text style={styles.bold}>{ele.name} </Text>: {ele.quantity}</Text>
+                                </View>
+                            )
+                        })}
+                    </View>
 
-                    </ScrollView>
-                </View>
-            </>
+                </ScrollView>
+            </View>
         );
     else
         return (

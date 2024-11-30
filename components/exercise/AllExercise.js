@@ -66,7 +66,7 @@ function AllExercise() {
                     buttonStyle={styles.rightButtonStyle}
                     title={"Right"}
                     name={'keyboard-arrow-right'}
-                    color={lastIndex >= exercises.length ? colors.grey : colors.primary}
+                    color={lastIndex >= exercises?.length ? colors.grey : colors.primary}
                     size={30}
                     onPress={nextPage} />
             </View>

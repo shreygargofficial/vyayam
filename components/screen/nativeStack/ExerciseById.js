@@ -24,10 +24,10 @@ function ExerciseById() {
 
     const videoURI = 'https://www.youtube.com/embed/0cXAp6WhSj4';
     return (
-        <>
+        <View style={styles.root}>
             {imageLoading && <CustomLoader />}
             <ScrollView
-                contentContainerStyle={{ paddingBottom: 100 }}
+                contentContainerStyle={{ paddingBottom: 100, backgroundColor: colors.darkBackground }}
             >
                 {myExercise?.photoURL ?
                     <Image
@@ -42,8 +42,8 @@ function ExerciseById() {
                 <Text style={styles.title}>{myExercise?.exerciseName}</Text>
                 <Text style={styles.normalText}>
                     <Text style={styles.bold}>Type of Exercise:</Text>
-                    {myExercise?.exerciseType}
                 </Text>
+                <Text style={styles.normalText}>{myExercise?.exerciseType}</Text>
                 <View style={styles.allMusclesContainer}>
                     <Text style={[styles.normalText, styles.bold]}>All Muscles used: </Text>
                     {myExercise?.allMusclesUsed?.map((ele, key) => (
@@ -66,35 +66,37 @@ function ExerciseById() {
                         />}
                 </View>
             </ScrollView>
-        </>
+        </View>
     );
 }
 
 export default ExerciseById;
 
 const styles = StyleSheet.create({
+    root: {
+        backgroundColor: colors.darkBackground
+    },
     title: {
         fontSize: 44,
         textAlign: 'center',
         fontWeight: '200',
         textTransform: 'capitalize',
+        color: colors.white,
         marginTop: 30,
     },
     normalText: {
         textAlign: 'center',
         marginTop: 19,
         fontSize: 16,
+        color: colors.white,
     },
     bold: {
-        fontWeight: '700'
+        fontWeight: '700',
+        color: colors.white,
     },
     allMusclesContainer: {
-        borderColor: colors.grey,
-        borderWidth: 1,
-        paddingVertical: 50,
         paddingHorizontal: 50,
         alignSelf: 'center',
-        margin: 30
     },
     image: {
         alignSelf: 'center',
@@ -107,8 +109,6 @@ const styles = StyleSheet.create({
     videoContainer: {
         width: 300,
         height: 300,
-        borderWidth: 4,
-        borderColor: colors.primaryDark,
         alignSelf: 'center',
         marginTop: 50,
     },
