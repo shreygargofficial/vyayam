@@ -52,7 +52,10 @@ function Landing({ navigation }) {
             <ScrollView
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
-                style={{ backgroundColor: colors.black }}
+                style={
+                    {
+                        backgroundColor: colors.black,
+                    }}
             >
                 <ImageBackground
                     source={user?.userData?.gender == "male" ?
@@ -65,28 +68,25 @@ function Landing({ navigation }) {
                     </View>
                 </ImageBackground>
 
-
-                <LinearGradient
-                    colors={['rgba(255,255,255,0.02)', 'rgba(255, 255, 255, 0.1)']}
-                    style={{ width: width, paddingBottom: 200 }}
-                >
-                    <View>
-                        <Text style={styles.slogan}>Record Your</Text>
-                        <LandingCardsTiles />
-                        <Testimonials />
-                        <Text style={styles.slogan}>Learn Exercise</Text>
-                        {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
-                            return (
-                                <View style={styles.horizontalScrollContainer} key={muscleName}>
-                                    <Text style={styles.horizontalScrollContainerTitle}>{muscleName.toUpperCase()}</Text>
-                                    <LandingExerciseDrawer exerciseArray={muscleOBJ[muscleName]} />
-                                </View>
-                            )
-                        })}
-                        <ButtonWithBorder title={'More Exercise'} style={styles.allExerciseButton} color={colors.primary} onPress={allExerciseButtonhandler} />
-                    </View>
-                </LinearGradient>
-
+                <View style={styles.landingContent}>
+                    <Text style={styles.slogan}>Record Your</Text>
+                    <LandingCardsTiles />
+                    <Testimonials />
+                    <Text style={styles.slogan}>Learn Exercise</Text>
+                    {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
+                        return (
+                            <View style={styles.horizontalScrollContainer} key={muscleName}>
+                                <Text style={styles.horizontalScrollContainerTitle}>{muscleName.toUpperCase()}</Text>
+                                <LandingExerciseDrawer exerciseArray={muscleOBJ[muscleName]} />
+                            </View>
+                        )
+                    })}
+                    <ButtonWithBorder
+                        title={'More Exercise'}
+                        style={styles.allExerciseButton}
+                        color={colors.primary}
+                        onPress={allExerciseButtonhandler} />
+                </View>
             </ScrollView>
         </>
     );
@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20
+    },
+    landingContent: {
+        paddingBottom: 100,
     },
     slogan: {
         marginTop: 60,

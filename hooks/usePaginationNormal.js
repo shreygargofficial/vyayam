@@ -16,7 +16,7 @@ export function usePaginationNormal(numberOfContent = 10, array = []) {
         setLastIndex(prev => prev - numberOfContent)
     }
     const nextPage = () => {
-        if (lastIndex >= array.length)
+        if (lastIndex >= array?.length)
             return;
         setFirstIndex(prev => prev + numberOfContent);
         setLastIndex(prev => prev + numberOfContent)

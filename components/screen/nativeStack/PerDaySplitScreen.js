@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { colors } from "../../../constants/Colors";
-import ExerciseCard from "../../LandingPage/ExerciseCard";
+import ExerciseCard from "../../exercise/ExerciseCard";
 import IconButton from "../../ui/IconButton";
 
 function PerDaySplitScreen({ navigation, route }) {

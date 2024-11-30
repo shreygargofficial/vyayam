@@ -5,13 +5,14 @@ import { SERVERURL } from "../../../constants/Environment";
 import { colors } from "../../../constants/Colors";
 import HTMLView from 'react-native-htmlview';
 import NutritionList from "../../meals/NutritionList";
+import CustomLoader from "../../ui/CustomLoader";
 
 const TEXT_COLOR = colors.white
 
 function MyMeal({ route }) {
     const meals = useSelector(state => state.meals.allMeals)
     const [myMeal, setMyMeal] = useState(null)
-
+    const [imageLoading, setImageLoading] = useState(true);
     useEffect(() => {
         let meal = meals.find(ele => ele._id == route.params.id)
         setMyMeal(meal);
@@ -20,6 +21,7 @@ function MyMeal({ route }) {
     if (meals)
         return (
             <View style={styles.root}>
+                {imageLoading && <CustomLoader />}
                 <ScrollView
                     style={styles}
                     alwaysBounceVertical={false}
@@ -27,7 +29,7 @@ function MyMeal({ route }) {
                     contentContainerStyle={{ paddingBottom: 100 }}
                 >
                     <View style={styles.photoContainer}>
-                        {myMeal?.photoURL ? <Image source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
+                        {myMeal?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
                     </View>
                     <View style={styles.infoContainer}>
                         <Text style={styles.title}> {myMeal?.dishName} </Text>
@@ -101,26 +103,22 @@ let styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
         backgroundColor: colors.darkBackground
     },
     photoContainer: {
         height: 200,
-        width: 200,
-        borderRadius: 100,
+        width: '100%',
         alignSelf: 'center',
-        marginVertical: 10,
+        marginBottom: 10,
     },
     photo: {
-        width: 200,
+        width: '100%',
         height: 200,
-        borderRadius: 100,
-        borderWidth: 6,
-        borderColor: 'rgba(0, 150, 255, 0.3)',
         flex: 1
     },
     infoContainer: {
         padding: 10,
+        paddingHorizontal: 14,
         marginTop: 30,
     },
     title: {
