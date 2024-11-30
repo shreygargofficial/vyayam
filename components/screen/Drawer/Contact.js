@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { Values } from "../../../constants/Values";
 import * as Linking from 'expo-linking';
 import { colors } from "../../../constants/Colors";
@@ -24,6 +24,7 @@ function Contact() {
     return (
         <View style={styles.root} >
             <View style={styles.infoContainer}>
+                <Image source={require('../../../assets/images/about/shrey.png')} style={styles.myImage} />
                 <Text style={[styles.text, styles.heading]}>Any Query?</Text>
                 <Text style={styles.text}>Reach out to us at</Text>
                 <Pressable onPress={handleEmailPress}>
@@ -39,11 +40,18 @@ export default Contact;
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        // justifyContent: 'center',
-        alignItems: 'center'
+        padding: 20,
+        backgroundColor: colors.white,
+
     },
     infoContainer: {
-        marginTop: 200
+        alignItems: 'center',
+        marginTop: 40,
+    },
+    myImage: {
+        alignSelf: 'center',
+        height: 400,
+        width: 300,
     },
     text: {
         color: colors.primary,
