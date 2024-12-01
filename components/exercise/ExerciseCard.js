@@ -14,9 +14,10 @@ function ExerciseCard({
     style,
     imageContainerStyle,
     infoContainerStyle,
-    titleColor
+    titleColor,
+    loading = true
 }) {
-    const [imageLoading, setImageLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState(loading);
     return (
         <Pressable
             style={({ pressed }) => [styles.card, pressed && styles.pressed, style]}
