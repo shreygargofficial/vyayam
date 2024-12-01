@@ -25,6 +25,7 @@ export default function ({ exercisesArray, title }) {
                             exerciseName={exercise.exerciseName}
                             _id={exercise._id}
                             onPress={onPress}
+                            loading={false}
                             style={styles.card}
                             imageContainerStyle={styles.imageContainerStyle}
                             infoContainerStyle={styles.infoContainerStyle}
