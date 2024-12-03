@@ -71,6 +71,7 @@ export default Recipes;
 const styles = StyleSheet.create({
     root: {
         flex: 1,
+        width: '100%',
         backgroundColor: colors.darkBackground,
         justifyContent: 'center',
         paddingHorizontal: 10,

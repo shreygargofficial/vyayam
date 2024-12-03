@@ -13,7 +13,7 @@ export function allRecipesFetchActionCreator() {
                 return;
             }
             dispatch(loaderActions.setLoading(true))
-            let response = await Axios.get(`${SERVERURL}/getMeals`, {
+            let response = await Axios.get(`${SERVERURL}/getRecipes`, {
                 headers: headers
             })
             dispatch(recipeActions.fetchRecipe(response.data))

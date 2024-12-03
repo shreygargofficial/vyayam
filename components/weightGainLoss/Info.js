@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 
 function Info({ bmr, tdee }) {
@@ -14,18 +14,22 @@ function Info({ bmr, tdee }) {
             <View style={styles.weightTarget}>
                 <Text style={styles.chooseGoalHeading}>Choose Your Goal</Text>
                 <View style={styles.flex}>
-                    <View style={styles.weightCard}>
+                    <Pressable
+                        onPress={() => { }}
+                        style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightGain.jpg')}
                             style={styles.image}
                         />
-                    </View>
-                    <View style={styles.weightCard}>
+                    </Pressable>
+                    <Pressable
+                        onPress={() => { }}
+                        style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightLoss.jpg')}
                             style={styles.image}
                         />
-                    </View>
+                    </Pressable>
                 </View>
             </View>
         </View>
@@ -66,9 +70,19 @@ const styles = StyleSheet.create({
         lineHeight: 40,
     },
     weightCard: {
+        backgroundColor: colors.white,
+        elevation: 5,
+        borderRadius: 20,
+        shadowColor: colors.grey,
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
         flex: 1,
         marginHorizontal: 10
 
+    },
+    pressed: {
+        opacity: 0.4,
     },
     image: {
         width: '100%',

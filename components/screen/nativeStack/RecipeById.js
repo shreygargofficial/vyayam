@@ -101,6 +101,7 @@ export default RecipeById;
 let styles = StyleSheet.create({
     root: {
         flex: 1,
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.darkBackground
