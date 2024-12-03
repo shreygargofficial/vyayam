@@ -38,7 +38,8 @@ function DrawerNavigator() {
             headerTintColor: colors.primary,
             headerStyle: {
                 backgroundColor: colors.black,
-
+                shadowColor: 'transparent', // Remove shadow
+                elevation: 0, // For Android
             },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
@@ -55,6 +56,7 @@ function DrawerNavigator() {
             component={Landing}
             options={{
                 headerTintColor: colors.primary,
+
                 drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color}
 
                 />,
