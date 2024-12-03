@@ -5,8 +5,6 @@ import { useState } from "react";
 import ImageLoader from "../ui/ImageLoader";
 
 function RecipesCard({ dishName, totalCalories, photoURL, onPress, _id }) {
-
-
     const [imageLoading, setImageLoading] = useState(true);
     return (
         <Pressable
@@ -48,9 +46,10 @@ let styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         width: 170,
-        margin: 5,
         margin: 10,
         borderRadius: 10,
+        borderWidth: 0.8,
+        borderColor: colors.grey,
     },
     card: {
         padding: 2,
@@ -106,7 +105,7 @@ let styles = StyleSheet.create({
         letterSpacing: 1,
         lineHeight: 20,
         paddingHorizontal: 10,
-        color: colors.white,
+        color: colors.black,
 
 
     },

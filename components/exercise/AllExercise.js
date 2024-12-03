@@ -51,7 +51,7 @@ function AllExercise() {
                     name={'search'}
                     styleWrapper={styles.searchWrapper}
                     style={styles.searchInput}
-                    placeholderTextColor={colors.white}
+                    placeholderTextColor={colors.primaryDark}
                     onChangeText={onSearchChange} />
             </View>
             <Text style={styles.itemsToDisplayText}> Navigate Left or Right for more</Text>
@@ -101,14 +101,14 @@ export default AllExercise;
 
 let styles = StyleSheet.create({
     root: {
-        backgroundColor: colors.darkBackground,
+        backgroundColor: colors.white,
         flex: 1,
         alignItems: 'center',
     },
     card: {
         width: 130,
         marginHorizontal: 24,
-
+        backgroundColor: 'rgba(0,0,0,0.3)',
     },
     searchInputContainer: {
         width: 280,
@@ -128,13 +128,14 @@ let styles = StyleSheet.create({
         paddingVertical: 0,
         width: 200,
         borderRadius: 5,
-        color: colors.white
+        color: colors.primary
     },
     flexRow: {
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        marginVertical: 20,
     },
     rightButtonStyle: {
         flexDirection: 'row-reverse'

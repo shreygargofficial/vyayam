@@ -35,8 +35,11 @@ function DrawerNavigator() {
     return <drawer.Navigator screenOptions={
         {
             headerTransparent: false,
-            headerTintColor: colors.white,
-            headerStyle: { backgroundColor: colors.primaryDark },
+            headerTintColor: colors.primary,
+            headerStyle: {
+                backgroundColor: colors.black,
+
+            },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
             drawerInactiveTintColor: colors.primary,
@@ -52,13 +55,9 @@ function DrawerNavigator() {
             component={Landing}
             options={{
                 headerTintColor: colors.primary,
-                headerTransparent: true,
-                drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color} />,
-                headerBackground: () => (
-                    <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', height: '100%', }}>
+                drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color}
 
-                    </View>
-                )
+                />,
             }}
         />
         <drawer.Screen
@@ -88,9 +87,14 @@ function BottomTabNavigator() {
     return (
         <tab.Navigator screenOptions={
             {
-                headerShown: false,
+                headerShown: true,
                 tabBarActiveTintColor: colors.grey,
                 tabBarInactiveTintColor: colors.primary,
+                headerStyle: {
+                    backgroundColor: colors.black,
+                    borderBottomColor: 'transparent'
+                },
+                headerTintColor: colors.primary,
                 tabBarStyle: {
                     backgroundColor: colors.black,
                     paddingTop: 10,
@@ -104,6 +108,7 @@ function BottomTabNavigator() {
                 component={DrawerNavigator}
                 options={
                     {
+                        headerShown: false,
                         tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
                     }
                 }
@@ -125,10 +130,6 @@ function BottomTabNavigator() {
                 component={ExerciseWrapper}
                 options={
                     {
-                        headerStyle: {
-                            backgroundColor: colors.primaryDark,
-                        },
-                        headerTintColor: colors.white,
                         headerShown: true,
                         tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size} />,
                         title: 'Exercise',
@@ -162,11 +163,10 @@ function WelcomeNavigation() {
         <NavigationContainer>
             <nativeStack.Navigator screenOptions={
                 {
-                    headerTintColor: colors.white,
-                    headerStyle: { backgroundColor: colors.primaryDark },
-                    contentStyle: {
-                        // backgroundColor: colors.darkBackground
-                    }
+                    headerTintColor: colors.primary,
+                    headerStyle: {
+                        backgroundColor: colors.black
+                    },
                 }
             }>
                 <nativeStack.Screen

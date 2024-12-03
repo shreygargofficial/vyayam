@@ -32,7 +32,7 @@ function Recipes({ navigation }) {
                         </Text>
                     </View>
                     <FlatList
-                        style={{ marginTop: 60 }}
+                        style={{ marginTop: 30 }}
                         showsVerticalScrollIndicator={false}
                         alwaysBounceVertical={false}
                         data={recipes?.allRecipes}
@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         width: '100%',
-        backgroundColor: colors.darkBackground,
+        backgroundColor: colors.white,
         justifyContent: 'center',
         paddingHorizontal: 10,
         alignItems: 'center'
     },
     title: {
         textAlign: 'center',
-        color: colors.white,
+        color: colors.black,
         marginTop: 60,
         fontFamily: 'king',
         fontSize: 40,
