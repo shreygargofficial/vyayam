@@ -25,6 +25,7 @@ import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import ExerciseWrapper from "../screen/bottomTabs/ExerciseWrapper";
+import WeightGainOrLoss from "../screen/nativeStack/WeightLossOrGain";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -195,6 +196,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Your Measurement', headerBackTitle: 'Home' }}
                     name="measurement"
                     component={BodyMeasurement}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Weight Loss/Gain', headerBackTitle: 'Home' }}
+                    name="weightLossGain"
+                    component={WeightGainOrLoss}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Workout Splits', headerBackTitle: 'Home' }}

@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/Colors';
+import ButtonSimple from '../ui/ButtonSimple';
 
 const { View, Pressable, Image, Text, StyleSheet } = require('react-native');
 
@@ -47,6 +48,20 @@ function LandingCardsTiles() {
                     </View>
                 </Pressable>
             </View>
+            <View style={styles.rowFlex}>
+                <View
+                    style={[styles.card, styles.cardFull]}>
+                    <View style={[styles.cardTitleContainer]}>
+                        <Text style={[styles.cardTitle, styles.weightAlterHeadeing]}>Do You want to gain muscle or lose fat?</Text>
+                        <ButtonSimple
+                            title={'Yes'}
+                            onPress={tileClickHandler.bind(this, 'weightLossGain')}
+                            color={colors.grey}
+                            style={styles.yesBtn}
+                        />
+                    </View>
+                </View>
+            </View>
         </View>
     );
 }
@@ -70,6 +85,12 @@ const styles = StyleSheet.create({
         margin: 10,
         borderRadius: 10,
     },
+    cardFull: {
+        flex: 1,
+        backgroundColor: 'rgba(255,255,255,0.5)',
+        marginHorizontal: 30,
+        marginTop: 50,
+    },
     pressed: {
         opacity: 0.3
     },
@@ -84,8 +105,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 10
     },
+    weightAlterHeadeing: {
+        color: colors.white,
+        letterSpacing: 1,
+        lineHeight: 20,
+    },
     cardTitle: {
         color: colors.primary
     },
-
+    yesBtn: {
+        backgroundColor: colors.primaryDark,
+        marginTop: 20,
+        borderRadius: 10,
+    },
 })
