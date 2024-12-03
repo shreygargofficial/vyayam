@@ -18,18 +18,17 @@ function RecipeById({ route }) {
         setMyRecipe(recipe);
     }, [route.params.id])
 
-    if (recipes)
+    if (recipes) {
         return (
             <View style={styles.root}>
                 {imageLoading && <CustomLoader />}
                 <ScrollView
-                    style={styles}
                     alwaysBounceVertical={false}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ paddingBottom: 100 }}
                 >
                     <View style={styles.photoContainer}>
-                        {myRecipe?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myRecipe.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/recipes/recipeDefault.jpg')} style={styles.photo} />}
+                        {myRecipe?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myRecipe.photoURL}` }} style={styles.photo} /> : <Image onLoadEnd={() => setImageLoading(false)} source={require('../../../assets/images/recipes/recipeDefault.jpg')} style={styles.photo} />}
                     </View>
                     <View style={styles.infoContainer}>
                         <Text style={styles.title}> {myRecipe?.dishName} </Text>
@@ -87,6 +86,7 @@ function RecipeById({ route }) {
                 </ScrollView>
             </View>
         );
+    }
     else
         return (
             <View style={styles.root}>
@@ -101,9 +101,6 @@ export default RecipeById;
 let styles = StyleSheet.create({
     root: {
         flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: colors.darkBackground
     },
     photoContainer: {

@@ -182,8 +182,8 @@ const styles = StyleSheet.create({
     },
     form: {
         borderColor: colors.primaryDark,
-        borderRadius: 10,
-        borderWidth: 1,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
         marginTop: 30,
         paddingVertical: 40,
     },

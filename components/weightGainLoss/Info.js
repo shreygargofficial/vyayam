@@ -1,7 +1,15 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
 
 function Info({ bmr, tdee }) {
+    const navigation = useNavigation();
+    const navigateToMealDesigned = (type) => {
+        navigation.navigate('mealsForWeightManagement', {
+            type: type,
+            tdee: tdee
+        })
+    }
     return (
         <View style={styles.root}>
             <Text style={styles.text}>
@@ -15,7 +23,7 @@ function Info({ bmr, tdee }) {
                 <Text style={styles.chooseGoalHeading}>Choose Your Goal</Text>
                 <View style={styles.flex}>
                     <Pressable
-                        onPress={() => { }}
+                        onPress={navigateToMealDesigned.bind(this, 'gain')}
                         style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightGain.jpg')}
@@ -23,7 +31,7 @@ function Info({ bmr, tdee }) {
                         />
                     </Pressable>
                     <Pressable
-                        onPress={() => { }}
+                        onPress={navigateToMealDesigned.bind(this, 'loss')}
                         style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightLoss.jpg')}

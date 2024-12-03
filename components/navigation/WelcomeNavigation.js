@@ -15,17 +15,18 @@ import ExerciseById from "../screen/nativeStack/ExerciseById";
 import AllExercise from "../exercise/AllExercise"
 import WeightLog from "../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
-import SplitExerciseOption from "../screen/nativeStack/SplitExerciseOption";
-import SampleSplit from "../screen/nativeStack/SampleSplit";
-import CustomSplit from "../screen/nativeStack/CustomSplit";
-import PerDaySplitScreen from "../screen/nativeStack/PerDaySplitScreen";
-import EditSplitPerDay from "../screen/nativeStack/EditSplitPerDay";
 import About from "../screen/Drawer/About";
 import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import ExerciseWrapper from "../screen/bottomTabs/ExerciseWrapper";
-import WeightGainOrLoss from "../screen/nativeStack/WeightLossOrGain";
+import WeightGainOrLoss from "../screen/nativeStack/weightManagement/WeightLossOrGain";
+import SplitExerciseOption from "../screen/nativeStack/exerciseSplit/SplitExerciseOption";
+import CustomSplit from "../screen/nativeStack/exerciseSplit/CustomSplit";
+import PerDaySplitScreen from "../screen/nativeStack/exerciseSplit/PerDaySplitScreen";
+import EditSplitPerDay from "../screen/nativeStack/exerciseSplit/EditSplitPerDay";
+import SampleSplit from "../screen/nativeStack/exerciseSplit/SampleSplit";
+import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/AllMealsForWeightManagement";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -226,6 +227,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Edit Day Split', headerBackTitle: 'Back' }}
                     name="EditSplit"
                     component={EditSplitPerDay}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Meals Designed for you', headerBackTitle: 'Back' }}
+                    name="mealsForWeightManagement"
+                    component={AllMealsForWeightManagement}
                 />
             </nativeStack.Navigator>
         </NavigationContainer>);

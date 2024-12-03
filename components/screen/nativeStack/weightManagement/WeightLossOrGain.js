@@ -1,9 +1,9 @@
 
 import { StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native";
-import TDEE from "../../weightGainLoss/TDEE";
+import TDEE from "../../../weightGainLoss/TDEE";
 import { useState } from "react";
-import Info from "../../weightGainLoss/Info";
+import Info from "../../../weightGainLoss/Info";
 
 export default function WeightGainOrLoss() {
     const [tdee, setTdee] = useState(null);

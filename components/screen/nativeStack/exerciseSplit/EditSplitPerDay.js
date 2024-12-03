@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import IconInputCustom from "../../ui/IconInputCustom";
-import { colors } from "../../../constants/Colors";
-import ButtonWithBorder from "../../ui/ButtonWithBorder";
-import { updateSplitForUserCreator } from "../../../redux/ActionCreators/userActionsCreator";
+import IconInputCustom from "../../../ui/IconInputCustom";
+import { colors } from "../../../../constants/Colors";
+import ButtonWithBorder from "../../../ui/ButtonWithBorder";
+import { updateSplitForUserCreator } from "../../../../redux/ActionCreators/userActionsCreator";
 
 function EditSplitPerDay({ navigation, route }) {
     const { day } = route.params;
