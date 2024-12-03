@@ -7,9 +7,9 @@ import { Octicons, MaterialIcons, Entypo } from '@expo/vector-icons'
 import Logout from "../screen/Drawer/Logout";
 import { colors } from "../../constants/Colors";
 import Supplements from "../screen/bottomTabs/Supplements";
-import Meals from "../screen/bottomTabs/Meals";
+import Recipes from "../screen/bottomTabs/Recipes";
 import User from "../screen/bottomTabs/User";
-import MyMeal from "../screen/nativeStack/MyMeal";
+import RecipeById from "../screen/nativeStack/RecipeById";
 import { View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
 import AllExercise from "../exercise/AllExercise"
@@ -109,8 +109,8 @@ function BottomTabNavigator() {
             />
 
             <tab.Screen
-                name="Meals"
-                component={Meals}
+                name="recipes"
+                component={Recipes}
                 options={
                     {
                         tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
@@ -173,9 +173,9 @@ function WelcomeNavigation() {
                     component={BottomTabNavigator}
                     options={{ headerShown: false }} />
                 <nativeStack.Screen
-                    options={{ title: 'Meal', headerBackTitle: 'All Meals' }}
-                    name="myMeal"
-                    component={MyMeal}
+                    options={{ title: 'Recipe', headerBackTitle: 'All Recipe' }}
+                    name="myRecipe"
+                    component={RecipeById}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Exercises', headerBackTitle: 'Home' }}

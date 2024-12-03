@@ -9,7 +9,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Use AsyncStorage
 import { PersistGate } from 'redux-persist/integration/react';
 import { loaderReducer } from './redux/slice/loaderSlice';
-import { mealReducer } from './redux/slice/MealsSlice';
+import { recipeReducer } from './redux/slice/recipeSlice';
 import { snackbarReducer } from './redux/slice/snakbarSlice';
 import { exerciseReducer } from './redux/slice/exerciseSlice';
 import { splitReducer } from './redux/slice/splitExerciseSlice';
@@ -26,7 +26,7 @@ const store = configureStore({
   reducer: {
     user: persistedReducer,
     loader: loaderReducer,
-    meals: mealReducer,
+    recipes: recipeReducer,
     exercise: exerciseReducer,
     snackbar: snackbarReducer,
     split: splitReducer

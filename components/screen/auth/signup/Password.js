@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { SERVERURL } from "../../../../constants/Environment";
 import { loaderActions } from "../../../../redux/slice/loaderSlice";
 import { snackbarActions } from "../../../../redux/slice/snakbarSlice";
-import { mealActions } from "../../../../redux/slice/MealsSlice";
+import { recipeActions } from "../../../../redux/slice/recipeSlice";
 import axios from "axios";
 import { styles as SignUpStyles } from "./SignUp";
 
@@ -36,11 +36,11 @@ function Password() {
             }
             catch (e) {
                 if (e.response) {
-                    dispatch(mealActions.logError(e.response.data.message))
+                    dispatch(recipeActions.logError(e.response.data.message))
                     dispatch(snackbarActions.enableSnakBar('Error ' + e.response.data.message))
                 }
                 else {
-                    dispatch(mealActions.logError(e.message))
+                    dispatch(recipeActions.logError(e.message))
                     dispatch(snackbarActions.enableSnakBar('Error ' + e.message))
                 }
             }

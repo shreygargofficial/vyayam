@@ -4,7 +4,7 @@ import { SERVERURL } from "../../constants/Environment";
 import { useState } from "react";
 import ImageLoader from "../ui/ImageLoader";
 
-function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
+function RecipesCard({ dishName, totalCalories, photoURL, onPress, _id }) {
 
 
     const [imageLoading, setImageLoading] = useState(true);
@@ -24,7 +24,7 @@ function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
                                 style={styles.image} /> :
                             <Image
                                 onLoadEnd={() => setImageLoading(false)}
-                                source={require('../../assets/images/meals/mealDefault.jpg')}
+                                source={require('../../assets/images/recipes/recipeDefault.jpg')}
                                 style={styles.image} />
                     }
                 </View>
@@ -41,7 +41,7 @@ function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
     );
 }
 
-export default MealCard;
+export default RecipesCard;
 
 let styles = StyleSheet.create({
     cardPressable: {
