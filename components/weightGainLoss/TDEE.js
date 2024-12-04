@@ -142,7 +142,7 @@ export default function TDEE({ setTdee, setBMR }) {
                                 <RadioButton value={1.55} />
                             </View>
                             <View style={styles.radioContainer}>
-                                <Text>Very Activee</Text>
+                                <Text>Very Active</Text>
                                 <RadioButton value={1.725} />
                             </View>
                             <View style={styles.radioContainer}>

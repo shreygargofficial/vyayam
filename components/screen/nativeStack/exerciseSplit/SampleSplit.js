@@ -19,7 +19,7 @@ function SampleSplit() {
             let finalExercise = {}
             for (let key in split) {
                 let exerciseArray = split[key].map(exerciseId => {
-                    let { exerciseName, _id } = allExercise.find(exercise => exercise._id == exerciseId);
+                    let { exerciseName, _id } = allExercise?.find(exercise => exercise._id == exerciseId);
                     return { exerciseName, _id };
                 })
                 finalExercise[key] = exerciseArray;

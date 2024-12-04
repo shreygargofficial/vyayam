@@ -81,9 +81,9 @@ let styles = StyleSheet.create({
 
     },
     pressed: {
-        opacity: 0.9,
+        opacity: 0.2,
         elevation: 2,
-        backgroundColor: colors.black,
+        backgroundColor: colors.white,
         shadowColor: colors.white,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.30,
