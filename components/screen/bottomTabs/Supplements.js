@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 function Supplements() {
     return (<View style={styles.root}>
         <Text>
-            Supplements
+            Supplements Coming Soon
         </Text>
     </View>);
 }

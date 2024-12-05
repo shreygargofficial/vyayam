@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { exerciseSplitActionCreator } from "../../../redux/ActionCreators/exerciseSplitActionCreator";
-import SampleSplitDayWiseExerciseCard from "../../splits/SampleSplitDayWiseExerciseCard";
+import { exerciseSplitActionCreator } from "../../../../redux/ActionCreators/exerciseSplitActionCreator";
+import SampleSplitDayWiseExerciseCard from "../../../splits/SampleSplitDayWiseExerciseCard";
 
 function SampleSplit() {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function SampleSplit() {
             let finalExercise = {}
             for (let key in split) {
                 let exerciseArray = split[key].map(exerciseId => {
-                    let { exerciseName, _id } = allExercise.find(exercise => exercise._id == exerciseId);
+                    let { exerciseName, _id } = allExercise?.find(exercise => exercise._id == exerciseId);
                     return { exerciseName, _id };
                 })
                 finalExercise[key] = exerciseArray;

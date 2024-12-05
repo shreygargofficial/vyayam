@@ -13,7 +13,7 @@ export default function ({ nutritionContent }) {
                         Protein
                     </Text>
                     <View style={styles.nutrientImageWrapper}>
-                        <Image source={require('../../assets/images/meals/protein.png')} style={styles.nutrientImage} />
+                        <Image source={require('../../assets/images/recipes/protein.png')} style={styles.nutrientImage} />
                     </View>
                     <Text style={styles.nutrientValue}>
                         {nutritionContent?.protein}g
@@ -24,7 +24,7 @@ export default function ({ nutritionContent }) {
                         Fats
                     </Text>
                     <View style={styles.nutrientImageWrapper}>
-                        <Image source={require('../../assets/images/meals/fats.png')} style={styles.nutrientImage} />
+                        <Image source={require('../../assets/images/recipes/fats.png')} style={styles.nutrientImage} />
                     </View>
                     <Text style={styles.nutrientValue}>
                         {nutritionContent?.fats}g
@@ -35,7 +35,7 @@ export default function ({ nutritionContent }) {
                         Carbs
                     </Text>
                     <View style={styles.nutrientImageWrapper}>
-                        <Image source={require('../../assets/images/meals/carbs.png')} style={styles.nutrientImage} />
+                        <Image source={require('../../assets/images/recipes/carbs.png')} style={styles.nutrientImage} />
                     </View>
                     <Text style={styles.nutrientValue}>
                         {nutritionContent?.carbs}g
@@ -46,7 +46,7 @@ export default function ({ nutritionContent }) {
                         Fiber
                     </Text>
                     <View style={styles.nutrientImageWrapper}>
-                        <Image source={require('../../assets/images/meals/fiber.png')} style={styles.nutrientImage} />
+                        <Image source={require('../../assets/images/recipes/fiber.png')} style={styles.nutrientImage} />
                     </View>
                     <Text style={styles.nutrientValue}>
                         {nutritionContent?.fiber}g
@@ -59,7 +59,7 @@ export default function ({ nutritionContent }) {
                         Total Calories
                     </Text>
                     <View style={styles.nutrientImageWrapper}>
-                        <Image source={require('../../assets/images/meals/calories.png')} style={styles.nutrientImage} />
+                        <Image source={require('../../assets/images/recipes/calories.png')} style={styles.nutrientImage} />
                     </View>
                     <Text style={styles.nutrientValue}>
                         {nutritionContent?.totalCalories}Kcal

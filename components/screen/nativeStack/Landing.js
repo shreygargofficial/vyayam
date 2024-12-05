@@ -10,6 +10,8 @@ import ButtonWithBorder from "../../ui/ButtonWithBorder";
 import Testimonials from "../../LandingPage/Testimonials";
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
+import ButtonSimple from "../../ui/ButtonSimple";
+import WeightManagementCard from "../../LandingPage/WeighManagementCard";
 
 
 function Landing({ navigation }) {
@@ -72,6 +74,7 @@ function Landing({ navigation }) {
                     <Text style={styles.slogan}>Record Your</Text>
                     <LandingCardsTiles />
                     <Testimonials />
+                    <WeightManagementCard />
                     <Text style={styles.slogan}>Learn Exercise</Text>
                     {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
                         return (

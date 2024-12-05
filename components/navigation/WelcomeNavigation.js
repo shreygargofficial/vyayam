@@ -7,24 +7,26 @@ import { Octicons, MaterialIcons, Entypo } from '@expo/vector-icons'
 import Logout from "../screen/Drawer/Logout";
 import { colors } from "../../constants/Colors";
 import Supplements from "../screen/bottomTabs/Supplements";
-import Meals from "../screen/bottomTabs/Meals";
+import Recipes from "../screen/bottomTabs/Recipes";
 import User from "../screen/bottomTabs/User";
-import MyMeal from "../screen/nativeStack/MyMeal";
+import RecipeById from "../screen/nativeStack/RecipeById";
 import { View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
 import AllExercise from "../exercise/AllExercise"
 import WeightLog from "../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
-import SplitExerciseOption from "../screen/nativeStack/SplitExerciseOption";
-import SampleSplit from "../screen/nativeStack/SampleSplit";
-import CustomSplit from "../screen/nativeStack/CustomSplit";
-import PerDaySplitScreen from "../screen/nativeStack/PerDaySplitScreen";
-import EditSplitPerDay from "../screen/nativeStack/EditSplitPerDay";
 import About from "../screen/Drawer/About";
 import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import ExerciseWrapper from "../screen/bottomTabs/ExerciseWrapper";
+import WeightGainOrLoss from "../screen/nativeStack/weightManagement/WeightLossOrGain";
+import SplitExerciseOption from "../screen/nativeStack/exerciseSplit/SplitExerciseOption";
+import CustomSplit from "../screen/nativeStack/exerciseSplit/CustomSplit";
+import PerDaySplitScreen from "../screen/nativeStack/exerciseSplit/PerDaySplitScreen";
+import EditSplitPerDay from "../screen/nativeStack/exerciseSplit/EditSplitPerDay";
+import SampleSplit from "../screen/nativeStack/exerciseSplit/SampleSplit";
+import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/AllMealsForWeightManagement";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -33,8 +35,12 @@ function DrawerNavigator() {
     return <drawer.Navigator screenOptions={
         {
             headerTransparent: false,
-            headerTintColor: colors.white,
-            headerStyle: { backgroundColor: colors.primaryDark },
+            headerTintColor: colors.primary,
+            headerStyle: {
+                backgroundColor: colors.black,
+                shadowColor: 'transparent', // Remove shadow
+                elevation: 0, // For Android
+            },
             drawerActiveBackgroundColor: colors.primaryDark,
             drawerActiveTintColor: colors.white,
             drawerInactiveTintColor: colors.primary,
@@ -50,13 +56,10 @@ function DrawerNavigator() {
             component={Landing}
             options={{
                 headerTintColor: colors.primary,
-                headerTransparent: true,
-                drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color} />,
-                headerBackground: () => (
-                    <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', height: '100%', }}>
 
-                    </View>
-                )
+                drawerIcon: ({ size, color }) => <Entypo name="home" size={size} color={color}
+
+                />,
             }}
         />
         <drawer.Screen
@@ -86,9 +89,14 @@ function BottomTabNavigator() {
     return (
         <tab.Navigator screenOptions={
             {
-                headerShown: false,
+                headerShown: true,
                 tabBarActiveTintColor: colors.grey,
                 tabBarInactiveTintColor: colors.primary,
+                headerStyle: {
+                    backgroundColor: colors.black,
+                    borderBottomColor: 'transparent'
+                },
+                headerTintColor: colors.primary,
                 tabBarStyle: {
                     backgroundColor: colors.black,
                     paddingTop: 10,
@@ -102,14 +110,15 @@ function BottomTabNavigator() {
                 component={DrawerNavigator}
                 options={
                     {
+                        headerShown: false,
                         tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
                     }
                 }
             />
 
             <tab.Screen
-                name="Meals"
-                component={Meals}
+                name="recipes"
+                component={Recipes}
                 options={
                     {
                         tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
@@ -123,10 +132,6 @@ function BottomTabNavigator() {
                 component={ExerciseWrapper}
                 options={
                     {
-                        headerStyle: {
-                            backgroundColor: colors.primaryDark,
-                        },
-                        headerTintColor: colors.white,
                         headerShown: true,
                         tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size} />,
                         title: 'Exercise',
@@ -160,11 +165,10 @@ function WelcomeNavigation() {
         <NavigationContainer>
             <nativeStack.Navigator screenOptions={
                 {
-                    headerTintColor: colors.white,
-                    headerStyle: { backgroundColor: colors.primaryDark },
-                    contentStyle: {
-                        // backgroundColor: colors.darkBackground
-                    }
+                    headerTintColor: colors.primary,
+                    headerStyle: {
+                        backgroundColor: colors.black
+                    },
                 }
             }>
                 <nativeStack.Screen
@@ -172,9 +176,9 @@ function WelcomeNavigation() {
                     component={BottomTabNavigator}
                     options={{ headerShown: false }} />
                 <nativeStack.Screen
-                    options={{ title: 'Meal', headerBackTitle: 'All Meals' }}
-                    name="myMeal"
-                    component={MyMeal}
+                    options={{ title: 'Recipe', headerBackTitle: 'All Recipe' }}
+                    name="myRecipe"
+                    component={RecipeById}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Exercises', headerBackTitle: 'Home' }}
@@ -195,6 +199,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Your Measurement', headerBackTitle: 'Home' }}
                     name="measurement"
                     component={BodyMeasurement}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Weight Loss/Gain', headerBackTitle: 'Home' }}
+                    name="weightLossGain"
+                    component={WeightGainOrLoss}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Workout Splits', headerBackTitle: 'Home' }}
@@ -220,6 +229,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Edit Day Split', headerBackTitle: 'Back' }}
                     name="EditSplit"
                     component={EditSplitPerDay}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Meals Designed for you', headerBackTitle: 'Back' }}
+                    name="mealsForWeightManagement"
+                    component={AllMealsForWeightManagement}
                 />
             </nativeStack.Navigator>
         </NavigationContainer>);

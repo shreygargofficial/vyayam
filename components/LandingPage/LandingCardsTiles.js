@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../constants/Colors';
+import ButtonSimple from '../ui/ButtonSimple';
 
 const { View, Pressable, Image, Text, StyleSheet } = require('react-native');
 
@@ -54,7 +55,7 @@ function LandingCardsTiles() {
 export default LandingCardsTiles;
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
 
     tilesContainer: {
         marginTop: 50
@@ -84,8 +85,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 10
     },
+
     cardTitle: {
-        color: colors.primary
+        color: colors.white,
+        letterSpacing: 1
     },
 
 })

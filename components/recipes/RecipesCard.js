@@ -4,9 +4,7 @@ import { SERVERURL } from "../../constants/Environment";
 import { useState } from "react";
 import ImageLoader from "../ui/ImageLoader";
 
-function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
-
-
+function RecipesCard({ dishName, totalCalories, photoURL, onPress, _id }) {
     const [imageLoading, setImageLoading] = useState(true);
     return (
         <Pressable
@@ -24,7 +22,7 @@ function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
                                 style={styles.image} /> :
                             <Image
                                 onLoadEnd={() => setImageLoading(false)}
-                                source={require('../../assets/images/meals/mealDefault.jpg')}
+                                source={require('../../assets/images/recipes/recipeDefault.jpg')}
                                 style={styles.image} />
                     }
                 </View>
@@ -41,16 +39,17 @@ function MealCard({ dishName, totalCalories, photoURL, onPress, _id }) {
     );
 }
 
-export default MealCard;
+export default RecipesCard;
 
 let styles = StyleSheet.create({
     cardPressable: {
         padding: 10,
         alignItems: 'center',
         width: 170,
-        margin: 5,
         margin: 10,
         borderRadius: 10,
+        borderWidth: 0.8,
+        borderColor: colors.grey,
     },
     card: {
         padding: 2,
@@ -82,9 +81,9 @@ let styles = StyleSheet.create({
 
     },
     pressed: {
-        opacity: 0.9,
+        opacity: 0.2,
         elevation: 2,
-        backgroundColor: colors.black,
+        backgroundColor: colors.white,
         shadowColor: colors.white,
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.30,
@@ -106,7 +105,7 @@ let styles = StyleSheet.create({
         letterSpacing: 1,
         lineHeight: 20,
         paddingHorizontal: 10,
-        color: colors.white,
+        color: colors.black,
 
 
     },

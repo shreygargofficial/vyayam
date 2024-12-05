@@ -4,35 +4,34 @@ import { useSelector } from "react-redux";
 import { SERVERURL } from "../../../constants/Environment";
 import { colors } from "../../../constants/Colors";
 import HTMLView from 'react-native-htmlview';
-import NutritionList from "../../meals/NutritionList";
+import NutritionList from "../../recipes/NutritionList";
 import CustomLoader from "../../ui/CustomLoader";
 
 const TEXT_COLOR = colors.white
 
-function MyMeal({ route }) {
-    const meals = useSelector(state => state.meals.allMeals)
-    const [myMeal, setMyMeal] = useState(null)
+function RecipeById({ route }) {
+    const recipes = useSelector(state => state.recipes.allRecipes)
+    const [myRecipe, setMyRecipe] = useState(null)
     const [imageLoading, setImageLoading] = useState(true);
     useEffect(() => {
-        let meal = meals.find(ele => ele._id == route.params.id)
-        setMyMeal(meal);
+        let recipe = recipes.find(ele => ele._id == route.params.id)
+        setMyRecipe(recipe);
     }, [route.params.id])
 
-    if (meals)
+    if (recipes) {
         return (
             <View style={styles.root}>
                 {imageLoading && <CustomLoader />}
                 <ScrollView
-                    style={styles}
                     alwaysBounceVertical={false}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{ paddingBottom: 100 }}
                 >
                     <View style={styles.photoContainer}>
-                        {myMeal?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myMeal.photoURL}` }} style={styles.photo} /> : <Image source={require('../../../assets/images/meals/mealDefault.jpg')} style={styles.photo} />}
+                        {myRecipe?.photoURL ? <Image onLoadEnd={() => setImageLoading(false)} source={{ uri: `${SERVERURL}/${myRecipe.photoURL}` }} style={styles.photo} /> : <Image onLoadEnd={() => setImageLoading(false)} source={require('../../../assets/images/recipes/recipeDefault.jpg')} style={styles.photo} />}
                     </View>
                     <View style={styles.infoContainer}>
-                        <Text style={styles.title}> {myMeal?.dishName} </Text>
+                        <Text style={styles.title}> {myRecipe?.dishName} </Text>
                         <View style={styles.description}>
                             <HTMLView
                                 stylesheet={{
@@ -70,12 +69,12 @@ function MyMeal({ route }) {
                                     },
 
                                 }}
-                                value={myMeal?.description || ''}
+                                value={myRecipe?.description || ''}
                             />
                         </View>
-                        <NutritionList nutritionContent={myMeal?.nutritionContent} />
+                        <NutritionList nutritionContent={myRecipe?.nutritionContent} />
                         <Text style={styles.ingredientsTitle}>Ingredients: </Text>
-                        {myMeal?.ingredients.map(ele => {
+                        {myRecipe?.ingredients.map(ele => {
                             return (
                                 <View key={ele._id} style={[styles.ingredients]}>
                                     <Text style={styles.name}><Text style={styles.bold}>{ele.name} </Text>: {ele.quantity}</Text>
@@ -87,6 +86,7 @@ function MyMeal({ route }) {
                 </ScrollView>
             </View>
         );
+    }
     else
         return (
             <View style={styles.root}>
@@ -95,14 +95,12 @@ function MyMeal({ route }) {
         )
 }
 
-export default MyMeal;
+export default RecipeById;
 
 
 let styles = StyleSheet.create({
     root: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: colors.darkBackground
     },
     photoContainer: {

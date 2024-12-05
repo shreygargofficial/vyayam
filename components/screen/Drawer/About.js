@@ -32,7 +32,7 @@ function About() {
 
             <Text style={styles.paragraph}>
                 <Text style={styles.bold}>Healthy Recipes:</Text>
-                Fuel your workouts and lifestyle with a selection of nutritious, easy-to-make recipes for meals and snacks.
+                Fuel your workouts and lifestyle with a selection of nutritious, easy-to-make recipes for recipes and snacks.
             </Text>
 
             <Text style={[styles.bold, styles.heading]}> Credits</Text>

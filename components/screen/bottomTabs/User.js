@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, Image, ScrollView, Keyboard } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { updateUserCreator } from "../../../redux/ActionCreators/userActionsCreator";
 import UserInfo from "../../user/UserInfo";
 import UserUpdateForm from "../../user/UserUpdateForm";
 import { colors } from "../../../constants/Colors";
 import IconButton from "../../ui/IconButton";
+import { sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
 
 
 
@@ -14,11 +15,14 @@ function User() {
     const [scrollViewPadding, setScrollViewPadding] = useState(100);
     const [editEnable, setEditEnable] = useState(false)
     const dispatch = useDispatch()
+    const sortedWeightArray = useMemo(() => sortArrayBasedOnDate(user?.userData?.weight), [user?.userData?.weight])
+
     const defaultValueUser = {
         firstName: user?.userData?.firstName || "",
         lastName: user?.userData?.lastName || "",
         birthDate: user?.userData?.birthDate || 0,
         height: user?.userData?.height || 0,
+        weight: sortedWeightArray[user?.userData?.weight?.length - 1].value,
         targetedWeight: user?.userData?.targetedWeight || 0,
         bio: user?.userData?.bio || "",
         gender: user?.userData?.gender || ""
@@ -33,7 +37,6 @@ function User() {
         'female': require('../../../assets/images/avatar/female/3.png'),
         'others': require('../../../assets/images/avatar/others/3.png')
     }
-
 
 
     useEffect(() => {

@@ -1,27 +1,27 @@
 import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { allMealsFetchActionCreator } from "../../../redux/ActionCreators/mealActionsCreator";
-import MealCard from "../../meals/MealsCard";
+import { allRecipesFetchActionCreator } from "../../../redux/ActionCreators/recipeActionsCreator";
+import RecipesCard from "../../recipes/RecipesCard";
 import { colors } from "../../../constants/Colors";
 import { StatusBar } from "expo-status-bar";
 import { useIsFocused } from "@react-navigation/native";
 
-function Meals({ navigation }) {
-    const meals = useSelector(state => state.meals)
+function Recipes({ navigation }) {
+    const recipes = useSelector(state => state.recipes)
     const dispatch = useDispatch();
     const isFocused = useIsFocused();
     useEffect(() => {
-        if (!meals.allMeals || meals.allMeals?.length == 0)
-            dispatch(allMealsFetchActionCreator())
-    }, [meals])
+        if (!recipes.allRecipes || recipes.allRecipes?.length == 0)
+            dispatch(allRecipesFetchActionCreator())
+    }, [recipes])
 
-    const navigateMyMeal = (_id) => {
-        navigation.navigate("myMeal", {
+    const navigateMyRecipe = (_id) => {
+        navigation.navigate("myRecipe", {
             id: _id
         })
     }
-    if (meals.allMeals)
+    if (recipes.allRecipes)
         return (
             <>
                 {isFocused && <StatusBar style="light" />}
@@ -32,20 +32,20 @@ function Meals({ navigation }) {
                         </Text>
                     </View>
                     <FlatList
-                        style={{ marginTop: 60 }}
+                        style={{ marginTop: 30 }}
                         showsVerticalScrollIndicator={false}
                         alwaysBounceVertical={false}
-                        data={meals?.allMeals}
+                        data={recipes?.allRecipes}
                         numColumns={2}
                         keyExtractor={(item) => item._id}
                         renderItem={({ item: { dishName, nutritionContent: { totalCalories }, photoURL, _id } }) => {
                             return (
-                                <MealCard
+                                <RecipesCard
                                     dishName={dishName}
                                     _id={_id}
                                     totalCalories={totalCalories}
                                     photoURL={photoURL}
-                                    onPress={navigateMyMeal}
+                                    onPress={navigateMyRecipe}
                                 />
 
                             )
@@ -60,25 +60,26 @@ function Meals({ navigation }) {
         return (
             <>
                 <View style={styles.root}>
-                    <Text>{meals.mealFetchError}</Text>
+                    <Text>{recipes.recipeFetchError}</Text>
                 </View>
             </>
         )
 }
 
-export default Meals;
+export default Recipes;
 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: colors.darkBackground,
+        width: '100%',
+        backgroundColor: colors.white,
         justifyContent: 'center',
         paddingHorizontal: 10,
         alignItems: 'center'
     },
     title: {
         textAlign: 'center',
-        color: colors.white,
+        color: colors.black,
         marginTop: 60,
         fontFamily: 'king',
         fontSize: 40,
