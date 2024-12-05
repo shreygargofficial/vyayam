@@ -8,7 +8,6 @@ function Snackbar({ style, textStyle }) {
     let snakState = useSelector(state => state.snackbar);
     let dispatch = useDispatch()
     const onPress = () => {
-        console.log("I am clicker");
         dispatch(snackbarActions.disableSnakBar())
     }
     useEffect(() => {
@@ -37,14 +36,13 @@ let styles = StyleSheet.create({
     root: {
         position: 'absolute',
         width: '90%',
-        padding: 35,
+        padding: 25,
         bottom: 100,
         backgroundColor: colors.black,
-        elevation: 0.2,
         alignSelf: 'center',
         justifyContent: 'center',
-        borderRadius: 5,
-        opacity: 0.9,
+        borderRadius: 15,
+        opacity: 1,
         zIndex: 6,
 
     },
@@ -54,7 +52,7 @@ let styles = StyleSheet.create({
     },
     x: {
         position: 'absolute',
-        top: 4,
+        top: 0,
         right: 5
     },
     green: {

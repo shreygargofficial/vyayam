@@ -2,44 +2,21 @@ import { useRoute } from "@react-navigation/native";
 import { useEffect, useMemo } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { allRecipesFetchActionCreator } from "../../../../redux/ActionCreators/recipeActionsCreator";
-import { FlatList } from "react-native";
-import MealCard from "../../../weightGainLoss/MealCard";
+import DietCard from "../../../weightGainLoss/DietCard";
+import { allDietsFetchActionCreator } from "../../../../redux/ActionCreators/dietActionCreator";
+import { colors } from "../../../../constants/Colors";
 
 function AllMealsForWeightManagement() {
     const { params: { type, tdee } } = useRoute();
-    const dispatch = useDispatch()
-    let totalCalories = 0;
-    let totalProtein = 0;
-    let totalCarbs = 0;
-    let totalFats = 0;
-
     const resultCalories = type === "loss" ? tdee - 500 : tdee + 500;
-    const recipes = useSelector(state => state.recipes.allRecipes);
-
-    const filteredRecipes = useMemo(() => {
-        if (recipes?.length) {
-            return recipes.filter(recipe => {
-                if (recipe?.nutritionContent?.totalCalories + totalCalories < resultCalories) {
-                    totalCalories = recipe?.nutritionContent?.totalCalories + totalCalories;
-                    totalProtein = recipe?.nutritionContent?.protein + totalProtein;
-                    totalCarbs = recipe?.nutritionContent?.carbs + totalCarbs;
-                    totalFats = recipe?.nutritionContent?.fats + totalFats;
-                    return recipe;
-                }
-            })
-        }
-    }, [recipes])
-
-
-
+    const diet = useSelector(state => state.diet)
+    const dispatch = useDispatch()
     useEffect(() => {
-        if (!recipes || recipes?.length == 0)
-            dispatch(allRecipesFetchActionCreator())
-    }, [recipes])
+        dispatch(allDietsFetchActionCreator())
+    }, []);
 
     return (
-        <View>
+        <View style={styles.root}>
             <ScrollView
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
@@ -47,28 +24,15 @@ function AllMealsForWeightManagement() {
             >
                 <View style={styles.mainWrapper}>
                     <Text style={styles.description}>
-                        You need to eat around {totalCalories} kcal for weight {type}. Below meals totals upto your desired daily calories intake.
+                        You need to eat around {resultCalories} kcal for weight {type}. There are diets mentioned below that can fulfill your desired daily calories intake. Click on each to get details
                     </Text>
-                    <View style={styles.nutritionContent}>
-                        <Text style={styles.nutrientValue}>
-                            Total nutrient breakdown for all the meal!
-                        </Text>
-                        <Text style={styles.nutrientValue}>
-                            Protein: {totalProtein} g
-                        </Text>
-                        <Text style={styles.nutrientValue}>
-                            Carbs: {totalCarbs} g
-                        </Text>
-                        <Text style={styles.nutrientValue}>
-                            Fats: {totalFats} g
-                        </Text>
-                    </View>
+
 
                 </View>
-                {filteredRecipes && filteredRecipes.length &&
-                    filteredRecipes.map((ele, index) => {
+                {diet?.dietData && diet.dietData?.length &&
+                    diet?.dietData.map((ele, index) => {
                         return (
-                            <MealCard key={ele._id} item={ele} index={index + 1} />
+                            <DietCard key={ele._id} item={ele} index={index + 1} />
                         )
                     })
                 }
@@ -81,6 +45,10 @@ function AllMealsForWeightManagement() {
 export default AllMealsForWeightManagement;
 
 const styles = StyleSheet.create({
+    root: {
+        backgroundColor: colors.white,
+        flex: 1
+    },
     mainWrapper: {
         paddingHorizontal: 30,
         marginVertical: 30
@@ -93,7 +61,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     description: {
-        letterSpacing: 1,
+        letterSpacing: 0.2,
         fontSize: 18,
     },
 })

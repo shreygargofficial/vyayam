@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, Pressable } from "react-native";
 import { colors } from "../../../constants/Colors";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
@@ -48,6 +48,9 @@ function Landing({ navigation }) {
     const allExerciseButtonhandler = () => {
         navigation.navigate('allExercise')
     }
+    const allMealsButtonhandler = () => {
+        navigation.navigate('recipes')
+    }
     return (
         <>
             {isFocused && <StatusBar style="light" />}
@@ -73,8 +76,8 @@ function Landing({ navigation }) {
                 <View style={styles.landingContent}>
                     <Text style={styles.slogan}>Record Your</Text>
                     <LandingCardsTiles />
-                    <Testimonials />
                     <WeightManagementCard />
+                    <Testimonials />
                     <Text style={styles.slogan}>Learn Exercise</Text>
                     {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
                         return (
@@ -84,11 +87,36 @@ function Landing({ navigation }) {
                             </View>
                         )
                     })}
-                    <ButtonWithBorder
-                        title={'More Exercise'}
-                        style={styles.allExerciseButton}
-                        color={colors.primary}
-                        onPress={allExerciseButtonhandler} />
+
+                    <Pressable
+                        style={styles.overlayCard}
+                        onPress={allExerciseButtonhandler}
+                    >
+                        <Image
+                            style={styles.imageOverlay}
+                            source={require('../../../assets/images/exercise/allExercise.jpg')}
+                        />
+                        <View style={styles.overlay}>
+                            <Text style={styles.overlayText}>
+                                All Exercise
+                            </Text>
+                        </View>
+                    </Pressable>
+
+                    <Pressable
+                        style={styles.overlayCard}
+                        onPress={allMealsButtonhandler}
+                    >
+                        <Image
+                            style={styles.imageOverlay}
+                            source={require('../../../assets/images/recipes/recipe.jpg')}
+                        />
+                        <View style={styles.overlay}>
+                            <Text style={styles.overlayText}>
+                                All Recipes
+                            </Text>
+                        </View>
+                    </Pressable>
                 </View>
             </ScrollView>
         </>
@@ -101,6 +129,7 @@ export default Landing;
 const styles = StyleSheet.create({
     banner: {
         justifyContent: 'center',
+        marginTop: -90,
         alignItems: 'center',
         paddingHorizontal: 20
     },
@@ -122,7 +151,8 @@ const styles = StyleSheet.create({
     },
     horizontalScrollContainerTitle: {
         textAlign: 'center',
-        fontSize: 30,
+        fontSize: 20,
+        textTransform: 'capitalize',
         fontWeight: '400',
         marginBottom: 20,
         color: colors.primary
@@ -131,5 +161,32 @@ const styles = StyleSheet.create({
         marginTop: 40,
         alignItems: 'center',
         alignSelf: 'center'
+    },
+    overlayCard: {
+        marginTop: 40,
+        height: 200,
+        marginHorizontal: 20,
+        justifyContent: 'center',
+        backgroundColor: 'rgba(255,255,255,0.1)'
+    },
+    overlayText: {
+        color: colors.white,
+        fontSize: 24,
+        fontWeight: '600',
+        fontFamily: 'king',
+        textAlign: 'center'
+    },
+    imageOverlay: {
+        width: '100%',
+        height: '100%'
+    },
+    overlay: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        zIndex: 9,
+        textAlign: 'center',
+        justifyContent: 'center'
     },
 })

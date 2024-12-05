@@ -45,15 +45,15 @@ function PerDaySplitScreen({ navigation, route }) {
                 >
 
                     {user.exerciseSplit[day].map(ele => {
-                        const exercise = allExercise.find(exercise => exercise._id == ele)
+                        const exercise = allExercise?.find(exercise => exercise._id == ele)
                         return (
                             <ExerciseCard
                                 key={ele}
-                                exerciseName={exercise.exerciseName}
+                                exerciseName={exercise?.exerciseName}
                                 style={styles.card}
-                                photoURL={exercise.photoURL}
-                                _id={exercise._id}
-                                onPress={onExerciseClick.bind(this, exercise._id)}
+                                photoURL={exercise?.photoURL}
+                                _id={exercise?._id}
+                                onPress={onExerciseClick.bind(this, exercise?._id)}
                             />
                         )
                     })}

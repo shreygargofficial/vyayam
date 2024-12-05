@@ -15,7 +15,7 @@ export default function WeightGainOrLoss() {
             contentContainerStyle={{
                 paddingBottom: 100,
                 paddingHorizontal: 20,
-                paddingTop: 30,
+                paddingTop: 0,
             }}>
             <Text style={styles.tdeeHeading}>
                 Calculate Calories you need to Maintain your current weight(TDEE)
