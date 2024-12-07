@@ -22,6 +22,8 @@ let delay = (time) => {
 export default function App() {
   const [loadedFont] = useFonts({
     'king': require('./assets/fonts/king.ttf'),
+    'nasa': require('./assets/fonts/nasa.ttf'),
+
   })
 
   useEffect(() => {
@@ -52,4 +54,3 @@ export default function App() {
     </>
   );
 }
-

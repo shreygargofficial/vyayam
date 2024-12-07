@@ -7,7 +7,9 @@ import { allDietsFetchActionCreator } from "../../../../redux/ActionCreators/die
 import { colors } from "../../../../constants/Colors";
 
 function AllMealsForWeightManagement() {
-    const { params: { type, tdee } } = useRoute();
+    const { params } = useRoute();
+    const type = params?.type;
+    const tdee = params?.tdee
     const resultCalories = type === "loss" ? tdee - 500 : tdee + 500;
     const diet = useSelector(state => state.diet)
     const dispatch = useDispatch()
@@ -22,13 +24,11 @@ function AllMealsForWeightManagement() {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 100 }}
             >
-                <View style={styles.mainWrapper}>
+                {tdee && type && <View style={styles.mainWrapper}>
                     <Text style={styles.description}>
                         You need to eat around {resultCalories} kcal for weight {type}. There are diets mentioned below that can fulfill your desired daily calories intake. Click on each to get details
                     </Text>
-
-
-                </View>
+                </View>}
                 {diet?.dietData && diet.dietData?.length &&
                     diet?.dietData.map((ele, index) => {
                         return (

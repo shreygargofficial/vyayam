@@ -1,17 +1,15 @@
 import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, Pressable } from "react-native";
 import { colors } from "../../../constants/Colors";
-import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { allExercisesFetchActionCreator } from "../../../redux/ActionCreators/exerciseActionsCreator";
 import LandingCardsTiles from "../../LandingPage/LandingCardsTiles";
 import LandingExerciseDrawer from "../../LandingPage/LandingExerciseDrawers";
-import ButtonWithBorder from "../../ui/ButtonWithBorder";
 import Testimonials from "../../LandingPage/Testimonials";
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
-import ButtonSimple from "../../ui/ButtonSimple";
 import WeightManagementCard from "../../LandingPage/WeighManagementCard";
+import { commonStyle } from "../../../constants/Style";
 
 
 function Landing({ navigation }) {
@@ -89,30 +87,30 @@ function Landing({ navigation }) {
                     })}
 
                     <Pressable
-                        style={styles.overlayCard}
+                        style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}
                         onPress={allExerciseButtonhandler}
                     >
                         <Image
-                            style={styles.imageOverlay}
+                            style={commonStyle.imageOverlay}
                             source={require('../../../assets/images/exercise/allExercise.jpg')}
                         />
-                        <View style={styles.overlay}>
-                            <Text style={styles.overlayText}>
+                        <View style={commonStyle.overlay}>
+                            <Text style={commonStyle.overlayText}>
                                 All Exercise
                             </Text>
                         </View>
                     </Pressable>
 
                     <Pressable
-                        style={styles.overlayCard}
+                        style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}
                         onPress={allMealsButtonhandler}
                     >
                         <Image
-                            style={styles.imageOverlay}
+                            style={commonStyle.imageOverlay}
                             source={require('../../../assets/images/recipes/recipe.jpg')}
                         />
-                        <View style={styles.overlay}>
-                            <Text style={styles.overlayText}>
+                        <View style={commonStyle.overlay}>
+                            <Text style={commonStyle.overlayText}>
                                 All Recipes
                             </Text>
                         </View>
@@ -162,31 +160,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
-    overlayCard: {
-        marginTop: 40,
-        height: 200,
-        marginHorizontal: 20,
-        justifyContent: 'center',
-        backgroundColor: 'rgba(255,255,255,0.1)'
-    },
-    overlayText: {
-        color: colors.white,
-        fontSize: 24,
-        fontWeight: '600',
-        fontFamily: 'king',
-        textAlign: 'center'
-    },
-    imageOverlay: {
-        width: '100%',
-        height: '100%'
-    },
-    overlay: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        zIndex: 9,
-        textAlign: 'center',
-        justifyContent: 'center'
-    },
+
 })

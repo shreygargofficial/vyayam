@@ -21,7 +21,7 @@ const schema = yup.object().shape({
 
 
 
-export default function TDEE({ setTdee, setBMR }) {
+export default function TDEE({ setTdee, setBMR, setShowModal }) {
 
     const userData = useSelector(state => state.user.userData);
     const sortedWeightArray = useMemo(
@@ -44,7 +44,8 @@ export default function TDEE({ setTdee, setBMR }) {
         const bmr = 10 * weight + 6.25 * height - 5 * age + (gender === 'male' ? 5 : -161);
         const tdee = bmr * activityLevel;
         setTdee(tdee);
-        setBMR(bmr)
+        setBMR(bmr);
+        setShowModal(true)
     }
     return (
         <View style={styles.form}>
@@ -97,7 +98,7 @@ export default function TDEE({ setTdee, setBMR }) {
                 />
                 <Text style={styles.error}>{errors?.age?.message}</Text>
             </View>
-            <View style={styles.formInputWrapper}>
+            <View style={[styles.formInputWrapper, styles.marTop]}>
                 <Controller
                     name="gender"
                     control={control}
@@ -202,6 +203,7 @@ const styles = StyleSheet.create({
     itemStyleList: {
 
     },
+    marTop: { marginTop: 20 },
     inputNormal: {
         borderColor: colors.grey,
         borderBottomWidth: 1

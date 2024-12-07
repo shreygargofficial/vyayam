@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Pressable, StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
+import { commonStyle } from "../../constants/Style";
 
 function DietCard({ item: { _id, mealTotal, nutrient, veg }, index }) {
     const navigation = useNavigation();
@@ -13,7 +14,7 @@ function DietCard({ item: { _id, mealTotal, nutrient, veg }, index }) {
     return (
         <View style={styles.cardWrapper}>
             <Pressable
-                style={styles.card}
+                style={({ pressed }) => [styles.card, pressed && commonStyle.pressed]}
                 onPress={clickHandlerCard.bind(this, _id)}>
                 <Text style={styles.heading}>
                     Diet-{index}

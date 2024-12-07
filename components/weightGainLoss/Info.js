@@ -2,9 +2,11 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 
-function Info({ bmr, tdee }) {
+function Info({ bmr, tdee, setShowModal }) {
     const navigation = useNavigation();
-    const navigateToMealDesigned = (type) => {
+    const navigateToMealDesigned = (e, type) => {
+        e.stopPropagation()
+        setShowModal(false)
         navigation.navigate('mealsForWeightManagement', {
             type: type,
             tdee: tdee
@@ -23,7 +25,7 @@ function Info({ bmr, tdee }) {
                 <Text style={styles.chooseGoalHeading}>Choose Your Goal</Text>
                 <View style={styles.flex}>
                     <Pressable
-                        onPress={navigateToMealDesigned.bind(this, 'gain')}
+                        onPress={(e) => navigateToMealDesigned(e, 'gain')}
                         style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightGain.jpg')}
@@ -31,7 +33,7 @@ function Info({ bmr, tdee }) {
                         />
                     </Pressable>
                     <Pressable
-                        onPress={navigateToMealDesigned.bind(this, 'loss')}
+                        onPress={(e) => navigateToMealDesigned(e, 'loss')}
                         style={({ pressed }) => [styles.weightCard, pressed && styles.pressed]}>
                         <Image
                             source={require('../../assets/images/weightGoal/weightLoss.jpg')}
@@ -52,12 +54,13 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     text: {
-        color: colors.black,
+        color: colors.white,
         lineHeight: 42,
         letterSpacing: 1,
         fontSize: 18,
     },
     strong: {
+        color: colors.white,
         fontWeight: '600',
         fontSize: 14,
     },
@@ -74,6 +77,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '200',
         fontSize: 26,
+        color: colors.white,
         marginBottom: 30,
         lineHeight: 40,
     },
