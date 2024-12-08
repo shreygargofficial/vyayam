@@ -1,17 +1,15 @@
-import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, Pressable } from "react-native";
 import { colors } from "../../../constants/Colors";
-import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { allExercisesFetchActionCreator } from "../../../redux/ActionCreators/exerciseActionsCreator";
 import LandingCardsTiles from "../../LandingPage/LandingCardsTiles";
 import LandingExerciseDrawer from "../../LandingPage/LandingExerciseDrawers";
-import ButtonWithBorder from "../../ui/ButtonWithBorder";
 import Testimonials from "../../LandingPage/Testimonials";
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
-import ButtonSimple from "../../ui/ButtonSimple";
 import WeightManagementCard from "../../LandingPage/WeighManagementCard";
+import { commonStyle } from "../../../constants/Style";
 
 
 function Landing({ navigation }) {
@@ -48,6 +46,9 @@ function Landing({ navigation }) {
     const allExerciseButtonhandler = () => {
         navigation.navigate('allExercise')
     }
+    const allMealsButtonhandler = () => {
+        navigation.navigate('recipes')
+    }
     return (
         <>
             {isFocused && <StatusBar style="light" />}
@@ -73,8 +74,8 @@ function Landing({ navigation }) {
                 <View style={styles.landingContent}>
                     <Text style={styles.slogan}>Record Your</Text>
                     <LandingCardsTiles />
-                    <Testimonials />
                     <WeightManagementCard />
+                    <Testimonials />
                     <Text style={styles.slogan}>Learn Exercise</Text>
                     {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
                         return (
@@ -84,11 +85,36 @@ function Landing({ navigation }) {
                             </View>
                         )
                     })}
-                    <ButtonWithBorder
-                        title={'More Exercise'}
-                        style={styles.allExerciseButton}
-                        color={colors.primary}
-                        onPress={allExerciseButtonhandler} />
+
+                    <Pressable
+                        style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}
+                        onPress={allExerciseButtonhandler}
+                    >
+                        <Image
+                            style={commonStyle.imageOverlay}
+                            source={require('../../../assets/images/exercise/allExercise.jpg')}
+                        />
+                        <View style={commonStyle.overlay}>
+                            <Text style={commonStyle.overlayText}>
+                                All Exercise
+                            </Text>
+                        </View>
+                    </Pressable>
+
+                    <Pressable
+                        style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}
+                        onPress={allMealsButtonhandler}
+                    >
+                        <Image
+                            style={commonStyle.imageOverlay}
+                            source={require('../../../assets/images/recipes/recipe.jpg')}
+                        />
+                        <View style={commonStyle.overlay}>
+                            <Text style={commonStyle.overlayText}>
+                                All Recipes
+                            </Text>
+                        </View>
+                    </Pressable>
                 </View>
             </ScrollView>
         </>
@@ -101,6 +127,7 @@ export default Landing;
 const styles = StyleSheet.create({
     banner: {
         justifyContent: 'center',
+        marginTop: -90,
         alignItems: 'center',
         paddingHorizontal: 20
     },
@@ -122,7 +149,8 @@ const styles = StyleSheet.create({
     },
     horizontalScrollContainerTitle: {
         textAlign: 'center',
-        fontSize: 30,
+        fontSize: 20,
+        textTransform: 'capitalize',
         fontWeight: '400',
         marginBottom: 20,
         color: colors.primary
@@ -132,4 +160,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
+
 })

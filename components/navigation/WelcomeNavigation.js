@@ -27,6 +27,7 @@ import PerDaySplitScreen from "../screen/nativeStack/exerciseSplit/PerDaySplitSc
 import EditSplitPerDay from "../screen/nativeStack/exerciseSplit/EditSplitPerDay";
 import SampleSplit from "../screen/nativeStack/exerciseSplit/SampleSplit";
 import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/AllMealsForWeightManagement";
+import DietById from "../screen/nativeStack/weightManagement/DietById";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -117,17 +118,6 @@ function BottomTabNavigator() {
             />
 
             <tab.Screen
-                name="recipes"
-                component={Recipes}
-                options={
-                    {
-                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
-                        title: 'Recipes',
-
-                    }
-                }
-            />
-            <tab.Screen
                 name="exercise"
                 component={ExerciseWrapper}
                 options={
@@ -135,6 +125,18 @@ function BottomTabNavigator() {
                         headerShown: true,
                         tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size} />,
                         title: 'Exercise',
+
+                    }
+                }
+            />
+
+            <tab.Screen
+                name="diet"
+                component={AllMealsForWeightManagement}
+                options={
+                    {
+                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
+                        title: 'Diet Plans',
 
                     }
                 }
@@ -175,6 +177,12 @@ function WelcomeNavigation() {
                     name="home"
                     component={BottomTabNavigator}
                     options={{ headerShown: false }} />
+
+                <nativeStack.Screen
+                    options={{ title: 'All Recipe', headerBackTitle: 'Home' }}
+                    name="recipes"
+                    component={Recipes}
+                />
                 <nativeStack.Screen
                     options={{ title: 'Recipe', headerBackTitle: 'All Recipe' }}
                     name="myRecipe"
@@ -235,6 +243,12 @@ function WelcomeNavigation() {
                     name="mealsForWeightManagement"
                     component={AllMealsForWeightManagement}
                 />
+                <nativeStack.Screen
+                    options={{ title: 'Diet', headerBackTitle: 'All' }}
+                    name="myDiet"
+                    component={DietById}
+                />
+
             </nativeStack.Navigator>
         </NavigationContainer>);
 }

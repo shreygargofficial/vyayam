@@ -17,7 +17,7 @@ function EditSplitPerDay({ navigation, route }) {
     const [daysExistingExerciseArrayOfId, setDaysExistingExerciseArrayOfId] = useState(user?.exerciseSplit[day]);
 
     const existingSelectedExerciseObjArray = useMemo(() => {
-        return allExercise.filter(exercise => daysExistingExerciseArrayOfId?.includes(exercise._id))
+        return allExercise?.filter(exercise => daysExistingExerciseArrayOfId?.includes(exercise._id))
     }, [allExercise, daysExistingExerciseArrayOfId])
 
     const ITEMS_TO_DISPLAY = 8;
@@ -83,7 +83,7 @@ function EditSplitPerDay({ navigation, route }) {
                 >
                     <View style={styles.existingTileContainer}>
                         {
-                            (existingSelectedExerciseObjArray.length > 0) ?
+                            (existingSelectedExerciseObjArray?.length > 0) ?
                                 existingSelectedExerciseObjArray.map(ele => {
                                     return (
                                         <View style={styles.selectedExerciseTile} key={ele._id}>
@@ -118,7 +118,7 @@ function EditSplitPerDay({ navigation, route }) {
                     alwaysBounceVertical={false}
                     showsVerticalScrollIndicator={false}
                 >
-                    {allExerciseState.slice(0, ITEMS_TO_DISPLAY).map(ele => {
+                    {allExerciseState?.slice(0, ITEMS_TO_DISPLAY).map(ele => {
                         return (
                             <Pressable
                                 key={ele._id}

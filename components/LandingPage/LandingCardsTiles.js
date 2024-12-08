@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     cardImage: {
         width: '100%',
         height: 140,
-        opacity: 0.9,
+        opacity: 0.5,
         borderRadius: 10
     },
     cardTitleContainer: {
@@ -88,6 +88,7 @@ export const styles = StyleSheet.create({
 
     cardTitle: {
         color: colors.white,
+        fontFamily: 'nasa',
         letterSpacing: 1
     },
 
