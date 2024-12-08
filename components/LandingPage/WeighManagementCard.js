@@ -11,7 +11,7 @@ function WeightManagementCard() {
     }
     return (
         <Pressable
-            onPress={tileClickHandler.bind(this, 'weightLossGain')}
+            onPress={tileClickHandler.bind(this, 'TdeeAndChoice')}
             style={({ pressed }) => [weightCardStyles.cardFull, pressed && commonStyle.pressed]}>
             <Image
                 source={require('../../assets/images/weightGoal/loveBody.jpg')}

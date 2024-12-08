@@ -2,11 +2,11 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native";
 import TDEE from "../../../weightGainLoss/TDEE";
-import { useEffect, useState } from "react";
-import Info from "../../../weightGainLoss/Info";
-import { colors } from "../../../../constants/Colors";
+import { useState } from "react";
+import MyMaintenceInfoAndChoiceSelection from "../../../weightGainLoss/MyMaintenceInfoAndChoiceSelection";
 
-export default function WeightGainOrLoss() {
+
+export default function TdeeAndChoice() {
     const [tdee, setTdee] = useState(null);
     const [bmr, setBMR] = useState(null);
     const [showModal, setShowModal] = useState(false)
@@ -29,7 +29,7 @@ export default function WeightGainOrLoss() {
                 transparent={true}
             >
                 <Pressable style={styles.modal} onPress={() => setShowModal(false)}>
-                    <Info bmr={bmr} tdee={tdee} setShowModal={setShowModal} />
+                    <MyMaintenceInfoAndChoiceSelection bmr={bmr} tdee={tdee} setShowModal={setShowModal} />
                 </Pressable>
             </Modal>
             <TDEE setTdee={setTdee} setBMR={setBMR} setShowModal={setShowModal} />

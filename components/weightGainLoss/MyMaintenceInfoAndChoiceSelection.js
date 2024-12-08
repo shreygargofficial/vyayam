@@ -2,7 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
 
-function Info({ bmr, tdee, setShowModal }) {
+function MyMaintenceInfoAndChoiceSelection({ bmr, tdee, setShowModal }) {
     const navigation = useNavigation();
     const navigateToMealDesigned = (e, type) => {
         e.stopPropagation()
@@ -46,7 +46,7 @@ function Info({ bmr, tdee, setShowModal }) {
     );
 }
 
-export default Info;
+export default MyMaintenceInfoAndChoiceSelection;
 
 const styles = StyleSheet.create({
     root: {

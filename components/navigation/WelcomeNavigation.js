@@ -20,7 +20,7 @@ import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import ExerciseWrapper from "../screen/bottomTabs/ExerciseWrapper";
-import WeightGainOrLoss from "../screen/nativeStack/weightManagement/WeightLossOrGain";
+import TdeeAndChoice from "../screen/nativeStack/weightManagement/TdeeAndChoice";
 import SplitExerciseOption from "../screen/nativeStack/exerciseSplit/SplitExerciseOption";
 import CustomSplit from "../screen/nativeStack/exerciseSplit/CustomSplit";
 import PerDaySplitScreen from "../screen/nativeStack/exerciseSplit/PerDaySplitScreen";
@@ -210,8 +210,8 @@ function WelcomeNavigation() {
                 />
                 <nativeStack.Screen
                     options={{ title: 'Weight Loss/Gain', headerBackTitle: 'Home' }}
-                    name="weightLossGain"
-                    component={WeightGainOrLoss}
+                    name="TdeeAndChoice"
+                    component={TdeeAndChoice}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Workout Splits', headerBackTitle: 'Home' }}
