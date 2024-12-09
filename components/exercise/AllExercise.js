@@ -82,6 +82,7 @@ function AllExercise() {
                         onPress={onExerciseClick}
                         exerciseName={exerciseName}
                         _id={_id}
+                        titleColor={colors.white}
                         photoURL={photoURL}
                         style={styles.card}
                     />
@@ -108,7 +109,7 @@ let styles = StyleSheet.create({
     card: {
         width: 130,
         marginHorizontal: 24,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,1)',
     },
     searchInputContainer: {
         width: 280,
