@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import { userReducer } from "./slice/userSlice";
 import { dietReducer } from "./slice/dietSlice";
+import { supplementReducer } from "./slice/supplementSlice";
 
 const persistConfig = {
     key: 'root', // key for the storage
@@ -23,7 +24,8 @@ export const store = configureStore({
         exercise: exerciseReducer,
         snackbar: snackbarReducer,
         split: splitReducer,
-        diet: dietReducer
+        diet: dietReducer,
+        supplement: supplementReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

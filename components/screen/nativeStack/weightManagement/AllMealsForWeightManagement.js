@@ -36,7 +36,6 @@ function AllMealsForWeightManagement() {
                         )
                     })
                 }
-
             </ScrollView>
         </View>
     );

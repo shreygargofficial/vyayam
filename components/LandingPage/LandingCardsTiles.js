@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     cardImage: {
         width: '100%',
         height: 140,
-        opacity: 0.5,
+        opacity: 1,
         borderRadius: 10
     },
     cardTitleContainer: {

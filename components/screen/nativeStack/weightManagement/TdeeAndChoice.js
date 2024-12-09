@@ -18,7 +18,7 @@ export default function TdeeAndChoice() {
             contentContainerStyle={{
                 paddingBottom: 100,
                 paddingHorizontal: 20,
-                paddingTop: 0,
+                paddingTop: 20,
             }}>
             <Text style={styles.tdeeHeading}>
                 Calculate Calories you need to Maintain your current weight(TDEE)
