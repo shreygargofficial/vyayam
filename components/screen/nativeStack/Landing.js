@@ -1,10 +1,9 @@
 import { Text, View, StyleSheet, ScrollView, Image, ImageBackground, useWindowDimensions, Pressable } from "react-native";
 import { colors } from "../../../constants/Colors";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { allExercisesFetchActionCreator } from "../../../redux/ActionCreators/exerciseActionsCreator";
 import LandingCardsTiles from "../../LandingPage/LandingCardsTiles";
-import LandingExerciseDrawer from "../../LandingPage/LandingExerciseDrawers";
 import Testimonials from "../../LandingPage/Testimonials";
 import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
@@ -16,31 +15,11 @@ function Landing({ navigation }) {
     const { height, width } = useWindowDimensions()
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const exercise = useSelector(state => state.exercise)
-    const [muscleOBJ, setMuscleOJ] = useState(null);
     const isFocused = useIsFocused();
     useEffect(() => {
         dispatch(allExercisesFetchActionCreator())
 
     }, [])
-
-    useEffect(() => {
-        if (exercise.exerciseData) {
-            let legs = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('leg')).slice(0, 4)
-            let back = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('back')).slice(0, 5)
-            let chest = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('chest')).slice(0, 5)
-            let shoulders = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('shoulders')).slice(0, 3)
-            let triceps = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('triceps')).slice(0, 5)
-            let biceps = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('biceps')).slice(0, 5)
-            let core = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('core')).slice(0, 5)
-            let calves = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('calves')).slice(0, 1)
-            let rd = exercise.exerciseData.filter(ele => ele.primaryMuscleTargeted.toLowerCase().includes('rear deltoids')).slice(0, 2)
-            let obj = {
-                legs: [...legs, ...calves], back, chest, shoulders: [...shoulders, ...rd], triceps, biceps, core
-            }
-            setMuscleOJ(obj)
-        }
-    }, [exercise?.exerciseData])
 
 
     const allExerciseButtonhandler = () => {
@@ -76,16 +55,6 @@ function Landing({ navigation }) {
                     <LandingCardsTiles />
                     <WeightManagementCard />
                     <Testimonials />
-                    <Text style={styles.slogan}>Learn Exercise</Text>
-                    {muscleOBJ && Object.keys(muscleOBJ).length && Object.keys(muscleOBJ).map(muscleName => {
-                        return (
-                            <View style={styles.horizontalScrollContainer} key={muscleName}>
-                                <Text style={styles.horizontalScrollContainerTitle}>{muscleName.toUpperCase()}</Text>
-                                <LandingExerciseDrawer exerciseArray={muscleOBJ[muscleName]} />
-                            </View>
-                        )
-                    })}
-
                     <Pressable
                         style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}
                         onPress={allExerciseButtonhandler}
@@ -96,7 +65,7 @@ function Landing({ navigation }) {
                         />
                         <View style={commonStyle.overlay}>
                             <Text style={commonStyle.overlayText}>
-                                All Exercise
+                                Learn Exercise
                             </Text>
                         </View>
                     </Pressable>
