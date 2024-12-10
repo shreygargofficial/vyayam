@@ -28,6 +28,7 @@ import EditSplitPerDay from "../screen/nativeStack/exerciseSplit/EditSplitPerDay
 import SampleSplit from "../screen/nativeStack/exerciseSplit/SampleSplit";
 import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/AllMealsForWeightManagement";
 import DietById from "../screen/nativeStack/weightManagement/DietById";
+import SupplementByID from "../screen/nativeStack/SupplementByID";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -247,6 +248,11 @@ function WelcomeNavigation() {
                     options={{ title: 'Diet', headerBackTitle: 'All' }}
                     name="myDiet"
                     component={DietById}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Supplement', headerBackTitle: 'All' }}
+                    name="mySupplement"
+                    component={SupplementByID}
                 />
 
             </nativeStack.Navigator>

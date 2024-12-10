@@ -69,6 +69,7 @@ let styles = StyleSheet.create({
     cardTitle: {
         color: colors.primaryDark,
         fontWeight: '300',
+        textTransform: 'capitalize',
         fontSize: 14,
         marginBottom: 8,
         alignItems: 'center',
