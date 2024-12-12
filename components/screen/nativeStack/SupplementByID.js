@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import CustomLoader from "../../ui/CustomLoader";
 import { colors } from "../../../constants/Colors";
 import { SERVERURL } from "../../../constants/Environment";
+import HTMLView from "react-native-htmlview";
 
+const TEXT_COLOR = colors.black
 function SupplementByID() {
 
     const route = useRoute();
@@ -60,7 +62,44 @@ function SupplementByID() {
                         {mySupplement?.supplementName}
                     </Text>
                     <Text style={styles.description}>
-                        {mySupplement?.description}
+                        <HTMLView
+                            stylesheet={{
+                                p: {
+                                    color: TEXT_COLOR,
+                                    lineHeight: 23,
+                                    letterSpacing: 1,
+                                },
+                                span: {
+                                    color: TEXT_COLOR
+                                },
+                                h1: {
+                                    color: TEXT_COLOR
+                                },
+                                h2: {
+                                    color: TEXT_COLOR
+                                },
+                                h3: {
+                                    color: TEXT_COLOR
+                                },
+                                h4: {
+                                    color: TEXT_COLOR
+                                },
+                                strong: {
+                                    color: TEXT_COLOR
+                                },
+                                ul: {
+                                    color: TEXT_COLOR
+                                },
+                                b: {
+                                    color: TEXT_COLOR
+                                },
+                                li: {
+                                    color: TEXT_COLOR
+                                },
+
+                            }}
+                            value={mySupplement?.description || ''}
+                        />
                     </Text>
 
                     {
