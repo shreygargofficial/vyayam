@@ -49,7 +49,10 @@ function DietById() {
                                 </View>
                                 <View style={styles.flex}>
                                     <Text style={styles.nutrientContent}>
-                                        <Text style={styles.bold}>P: </Text>{mealCategory.nutrient.protein}g
+                                        <Text style={styles.bold}>Cal: </Text>{mealCategory.nutrient.calories}kcal
+                                    </Text>
+                                    <Text style={styles.nutrientContent}>
+                                        <Text style={styles.bold}> P: </Text>{mealCategory.nutrient.protein}g
                                     </Text>
                                     <Text style={styles.nutrientContent}>
                                         <Text style={styles.bold}> C: </Text>{mealCategory.nutrient.carbs}g
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: '500',
+        textTransform: 'capitalize'
     },
     ml: {
         marginLeft: 10
@@ -138,6 +142,7 @@ const styles = StyleSheet.create({
     mealCategoryHeading: {
         fontSize: 20,
         fontWeight: '300',
+        textTransform: 'capitalize',
         letterSpacing: 1,
     },
     mealPartContainer: {
