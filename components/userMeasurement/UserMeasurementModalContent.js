@@ -24,6 +24,9 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
         "waist": sortedBodyMeasurement?.measurements?.waist || 0,
         "chest": sortedBodyMeasurement?.measurements?.chest || 0,
         "hips": sortedBodyMeasurement?.measurements?.hips || 0,
+        "forearm": sortedBodyMeasurement?.measurements?.hips || 0,
+        "bellyIn": sortedBodyMeasurement?.measurements?.hips || 0,
+        "bellyOut": sortedBodyMeasurement?.measurements?.hips || 0,
         "date": new Date()
 
     }
@@ -168,6 +171,45 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                         <InputPlusMinus
                             placeholder={'Hips'}
                             label={'Hips(cm)'}
+                            value={value}
+                            onChangeText={onChange}
+                            steps={0.5}
+                        />
+                    )}
+                />
+                <Controller
+                    name="forearm"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <InputPlusMinus
+                            placeholder={'Forearm'}
+                            label={'Forearm(cm)'}
+                            value={value}
+                            onChangeText={onChange}
+                            steps={0.5}
+                        />
+                    )}
+                />
+                <Controller
+                    name="bellyIn"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <InputPlusMinus
+                            placeholder={'Belly In'}
+                            label={'Belly In(cm)'}
+                            value={value}
+                            onChangeText={onChange}
+                            steps={0.5}
+                        />
+                    )}
+                />
+                <Controller
+                    name="bellyOut"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                        <InputPlusMinus
+                            placeholder={'Belly Out'}
+                            label={'Belly Out(cm)'}
                             value={value}
                             onChangeText={onChange}
                             steps={0.5}
