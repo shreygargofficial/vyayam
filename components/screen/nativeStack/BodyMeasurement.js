@@ -39,6 +39,9 @@ function BodyMeasurement() {
         rightCalfData,
         rightThighData,
         waistData,
+        forearmData,
+        bellyInData,
+        bellyOutData
     } = useMemo(() => {
         let dateData = [];
         let armLeftData = [];
@@ -50,6 +53,9 @@ function BodyMeasurement() {
         let rightCalfData = [];
         let rightThighData = [];
         let waistData = [];
+        let forearmData = [];
+        let bellyOutData = [];
+        let bellyInData = [];
         for (let measurementData of sortedBodyMeasurement) {
             dateData.push(measurementData.date);
             armLeftData.push(measurementData.measurements.armLeft)
@@ -60,7 +66,11 @@ function BodyMeasurement() {
             leftThighData.push(measurementData.measurements.leftThigh)
             rightCalfData.push(measurementData.measurements.rightCalf)
             rightThighData.push(measurementData.measurements.rightThigh)
-            waistData.push(measurementData.measurements.waist)
+            waistData.push(measurementData.measurements.waist);
+            forearmData.push(measurementData.measurements.forearm || 0);
+            bellyOutData.push(measurementData.measurements.bellyOut || 0);
+            bellyInData.push(measurementData.measurements.bellyIn || 0);
+
 
         }
         return {
@@ -74,6 +84,9 @@ function BodyMeasurement() {
             rightCalfData,
             rightThighData,
             waistData,
+            forearmData,
+            bellyInData,
+            bellyOutData
         }
     }, [sortedBodyMeasurement]);
 
@@ -93,7 +106,10 @@ function BodyMeasurement() {
                                     { dateData, measurementData: rightThighData, color: colors.purple800, label: "Right Thigh Measurement" },
                                     { dateData, measurementData: waistData, color: colors.red200, label: "Waist Measurement" },
                                     { dateData, measurementData: chestData, color: colors.black, label: "Chest Measurement" },
-                                    { dateData, measurementData: hipsData, color: colors.green, label: "Hips Measurement" }
+                                    { dateData, measurementData: hipsData, color: colors.green, label: "Hips Measurement" },
+                                    { dateData, measurementData: forearmData, color: colors.red, label: "Forearm Measurement" },
+                                    { dateData, measurementData: bellyInData, color: colors.primary, label: "Belly In Measurement" },
+                                    { dateData, measurementData: bellyOutData, color: colors.purple100, label: "Belly Out Measurement" }
 
                                 ]
                             }
