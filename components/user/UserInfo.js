@@ -6,7 +6,7 @@ import { logoutActionCreator } from "../../redux/ActionCreators/userActionsCreat
 
 function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, targetedWeight, birthDate, height, weight } }) {
     let dispatch = useDispatch()
-    const BMI = ((weight * 10000) / (height * height)).toFixed(2)
+    const BMI = ((weight * 10000) / (height * height)).toFixed(1)
 
     const logoutHandler = () => {
         dispatch(logoutActionCreator())
