@@ -26,7 +26,7 @@ function OneRepMaxCalculator() {
     }
 
     const calculate = () => {
-        if (isNaN(weight) || isNaN(reps)) {
+        if (isNaN(weight) || isNaN(reps) || weight <= 0 || reps <= 0) {
             setError('Input valid weight and reps!')
             return;
         }
@@ -90,8 +90,10 @@ function OneRepMaxCalculator() {
                 animationType="slide"
                 transparent={true}
                 visible={modalShow}>
-                <Pressable style={styles.overlay} onPress={setModalShow}>
-                    <View style={styles.modal}>
+                <Pressable style={styles.overlay} onPress={(e) => setModalShow(false)}>
+                    <Pressable style={styles.modal} onPress={(e) => {
+                        e.stopPropagation()
+                    }}>
                         <Text style={[styles.heading, styles.heading2]}>Results</Text>
                         <Text style={styles.resultValue}><Text style={styles.bold}>Your One Rep Max: </Text>{calculatedValue} {lbsEnabled ? 'lbs' : 'kg'}</Text>
                         <View style={{ alignItems: 'center' }}>
@@ -100,10 +102,10 @@ function OneRepMaxCalculator() {
                                 color={colors.primary}
                                 style={{ marginTop: 50 }}
                                 title={'Close'}
-                                onPress={setModalShow}
+                                onPress={() => setModalShow(false)}
                             />
                         </View>
-                    </View>
+                    </Pressable>
                 </Pressable>
             </Modal>
         </View>
