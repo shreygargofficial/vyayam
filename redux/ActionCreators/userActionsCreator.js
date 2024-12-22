@@ -58,12 +58,10 @@ export function loginUserActionCreator(data) {
             else {
                 dispatch(userActions.logError(e.message))
             }
-
-
         }
-        // finally {
-        //     dispatch(loaderActions.setLoading(false))
-        // }
+        finally {
+            dispatch(loaderActions.setLoading(false))
+        }
     }
 }
 

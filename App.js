@@ -40,6 +40,7 @@ export default function App() {
   if (!loadedFont) {
     return null; // Prevent rendering anything until the font is loaded
   }
+  console.log(process.env.NODE_ENV);
   return (
     <>
       <StatusBar style="auto" />
