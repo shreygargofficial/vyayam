@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     testimonialsText: {
         color: colors.white,
-        fontSize: 32,
+        fontSize: 26,
         lineHeight: 60,
         fontWeight: '100',
         textAlign: 'center',

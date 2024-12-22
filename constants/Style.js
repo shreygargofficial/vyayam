@@ -9,9 +9,15 @@ export const commonStyle = StyleSheet.create({
     },
     flex: {
         flexDirection: 'row',
+        alignItems: 'center'
     },
     textCenter: {
         textAlign: 'center'
+    },
+    textDanger: {
+        color: colors.red,
+        marginTop: 15,
+        fontSize: 12,
     },
     bold: {
         fontFamily: '500'
