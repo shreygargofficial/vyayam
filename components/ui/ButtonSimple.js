@@ -3,7 +3,7 @@ import { colors } from "../../constants/Colors";
 
 function ButtonSimple({ onPress, title, color, style, disabled }) {
     return (
-        <Pressable onPress={onPress} style={({ pressed }) => [styles.button, pressed && styles.pressed, disabled && styles.disabled, style]} disabled={disabled} >
+        <Pressable onPress={onPress} style={({ pressed }) => [styles.button, pressed && styles.pressed, style, disabled && styles.disabled]} disabled={disabled} >
             <Text style={[styles.text, { color: color }]}>{title}</Text>
         </Pressable>
     );

@@ -29,6 +29,7 @@ import SampleSplit from "../screen/nativeStack/exerciseSplit/SampleSplit";
 import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/AllMealsForWeightManagement";
 import DietById from "../screen/nativeStack/weightManagement/DietById";
 import SupplementByID from "../screen/nativeStack/SupplementByID";
+import OneRepMaxCalculator from "../screen/nativeStack/OneRepMaxCalculator";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -254,6 +255,12 @@ function WelcomeNavigation() {
                     name="mySupplement"
                     component={SupplementByID}
                 />
+                <nativeStack.Screen
+                    options={{ title: 'One Rep', headerBackTitle: 'Home' }}
+                    name="oneRep"
+                    component={OneRepMaxCalculator}
+                />
+
 
             </nativeStack.Navigator>
         </NavigationContainer>);

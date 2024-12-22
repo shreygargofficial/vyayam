@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useIsFocused } from "@react-navigation/native";
 import WeightManagementCard from "../../LandingPage/WeighManagementCard";
 import { commonStyle } from "../../../constants/Style";
+import OneRepMaxCalculatorCard from "../../LandingPage/OneRepMaxCalculatorCard";
 
 
 function Landing({ navigation }) {
@@ -54,6 +55,7 @@ function Landing({ navigation }) {
                     <Text style={styles.slogan}>Record Your</Text>
                     <LandingCardsTiles />
                     <WeightManagementCard />
+                    <OneRepMaxCalculatorCard />
                     <Testimonials />
                     <Pressable
                         style={({ pressed }) => [commonStyle.overlayCard, pressed && commonStyle.pressed]}

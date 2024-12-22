@@ -51,6 +51,7 @@ export function loginUserActionCreator(data) {
 
         }
         catch (e) {
+            dispatch(loaderActions.setLoading(false))
             if (e.response) {
                 dispatch(userActions.logError(e.response.data.message))
 
@@ -58,9 +59,6 @@ export function loginUserActionCreator(data) {
             else {
                 dispatch(userActions.logError(e.message))
             }
-        }
-        finally {
-            dispatch(loaderActions.setLoading(false))
         }
     }
 }
