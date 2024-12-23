@@ -41,6 +41,7 @@ function LandingCardsTiles() {
                     </View>
                 </Pressable>
                 <Pressable
+                    onPress={tileClickHandler.bind(this, 'log')}
                     style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
                     <Image style={styles.cardImage} source={require('../../assets/images/cardHome/log.jpg')} />
                     <View style={styles.cardTitleContainer}>

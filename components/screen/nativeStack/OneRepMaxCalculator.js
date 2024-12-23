@@ -32,7 +32,10 @@ function OneRepMaxCalculator() {
         }
         let w = +weight;
         let r = +reps;
-        setCalculatedValue((w * (1 + r / 30)).toFixed(2))
+        if (r === 1)
+            setCalculatedValue(w);
+        else
+            setCalculatedValue((w * (1 + r / 30)).toFixed(2))
         setError('');
         setModalShow(true)
 

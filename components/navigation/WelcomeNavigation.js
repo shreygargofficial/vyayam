@@ -30,6 +30,7 @@ import AllMealsForWeightManagement from "../screen/nativeStack/weightManagement/
 import DietById from "../screen/nativeStack/weightManagement/DietById";
 import SupplementByID from "../screen/nativeStack/SupplementByID";
 import OneRepMaxCalculator from "../screen/nativeStack/OneRepMaxCalculator";
+import WorkoutLog from "../screen/nativeStack/workoutLog";
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
@@ -259,6 +260,11 @@ function WelcomeNavigation() {
                     options={{ title: 'One Rep', headerBackTitle: 'Home' }}
                     name="oneRep"
                     component={OneRepMaxCalculator}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Workout Log', headerBackTitle: 'Home' }}
+                    name="log"
+                    component={WorkoutLog}
                 />
 
 
