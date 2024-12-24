@@ -21,12 +21,12 @@ function Snackbar({ style, textStyle }) {
     }, [snakState.show, dispatch]);
 
     return (
-        <View style={[styles.root, style]} >
-            <Pressable onPress={onPress}>
+        <Pressable style={[styles.root, style]} onPress={onPress}>
+            <View>
                 <View style={styles.x}><Text style={styles.text}>x</Text></View>
                 <Text style={[styles.text, textStyle, snakState?.message?.toLowerCase()?.includes('success') ? styles.green : styles.red]}>{snakState.message}</Text>
-            </Pressable>
-        </View>
+            </View>
+        </Pressable>
     );
 }
 
@@ -44,6 +44,7 @@ let styles = StyleSheet.create({
         borderRadius: 15,
         opacity: 1,
         zIndex: 6,
+        elevation: 6,
 
     },
     text: {
