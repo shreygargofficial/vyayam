@@ -61,7 +61,7 @@ function SupplementByID() {
                     <Text style={styles.heading}>
                         {mySupplement?.supplementName}
                     </Text>
-                    <Text style={styles.description}>
+                    <View style={styles.description}>
                         <HTMLView
                             stylesheet={{
                                 p: {
@@ -100,7 +100,7 @@ function SupplementByID() {
                             }}
                             value={mySupplement?.description || ''}
                         />
-                    </Text>
+                    </View>
 
                     {
                         mySupplement?.linkToBuy &&
@@ -147,8 +147,6 @@ const styles = StyleSheet.create({
     },
     description: {
         marginTop: 30,
-        letterSpacing: 1,
-        fontSize: 18,
     },
     infoContainer: {
         paddingHorizontal: 20
