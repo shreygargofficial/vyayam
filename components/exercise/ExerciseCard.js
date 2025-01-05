@@ -2,7 +2,6 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { SERVERURL } from "../../constants/Environment";
 import { useState } from "react";
-import CustomLoader from "../ui/CustomLoader";
 import ImageLoader from "../ui/ImageLoader";
 
 function ExerciseCard({
@@ -22,7 +21,7 @@ function ExerciseCard({
         <Pressable
             style={({ pressed }) => [styles.card, pressed && styles.pressed, style]}
             onPress={onPress.bind(this, _id)}>
-            {imageLoading && <ImageLoader />}
+            {imageLoading && <ImageLoader style={styles.cardImageLoader} />}
             <View style={[styles.imageContainer, imageContainerStyle]}>
                 {photoURL ?
                     <Image
@@ -46,14 +45,14 @@ function ExerciseCard({
 export default ExerciseCard;
 
 let styles = StyleSheet.create({
-
+    cardImageLoader: {
+        borderRadius: 14
+    },
     card: {
         borderRadius: 10,
         width: 120,
         margin: 10,
         backgroundColor: colors.white,
-
-
     },
     imageContainer: {
         flex: 5,
@@ -65,6 +64,7 @@ let styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        fontFamily: 'caviar'
     },
     cardTitle: {
         color: colors.primaryDark,
@@ -74,11 +74,13 @@ let styles = StyleSheet.create({
         marginBottom: 8,
         alignItems: 'center',
         justifyContent: 'center',
+        fontFamily: 'caviar'
     },
     cardSubTitle: {
         fontSize: 12,
         color: colors.primary,
         marginBottom: 3,
+        fontFamily: 'caviar'
     },
     rowFlex: {
         flexDirection: 'row'

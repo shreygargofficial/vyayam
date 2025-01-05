@@ -11,6 +11,7 @@ function Login({ navigation }) {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState("");
+    const [passwordHide, setPasswordHide] = useState(true)
 
     const dispatch = useDispatch()
     const mystate = useSelector(state => state.user)
@@ -20,6 +21,10 @@ function Login({ navigation }) {
     const onChangeUseName = (val) => {
         setUserName(val);
 
+    }
+    const passwordShowToggler = (e) => {
+        e.stopPropagation()
+        setPasswordHide(prev => !prev)
     }
     const signUpToggler = () => {
         navigation.push('signup')
@@ -65,8 +70,11 @@ function Login({ navigation }) {
                         onChangeText={onChangePassword}
                         placeholderTextColor={colors.grey}
                         style={styles.input}
+                        onPasswordToggle={passwordShowToggler}
                         placeholder={'Password'}
-                        secureTextEntry={true} />
+                        secureTextEntry={passwordHide}
+                        name2={passwordHide ? 'eye' : 'eye-off'}
+                    />
                     <ButtonSimple title="Login"
                         color={colors.white}
                         onPress={loginHandler}
@@ -115,6 +123,9 @@ let styles = StyleSheet.create({
         borderBottomWidth: 1,
         color: colors.primaryDark,
         borderBottomColor: colors.grey
+    },
+    password: {
+
     },
     button: {
         borderRadius: 3,

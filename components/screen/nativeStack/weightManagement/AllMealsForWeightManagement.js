@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         fontWeight: '500',
         letterSpacing: 1,
-
+        fontFamily: 'caviar'
     },
     switch: {
         transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }],

@@ -1,23 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
-
 
 export default function Testimonials() {
 
     return (
-        <View style={styles.root}>
-            <View style={styles.topLeft}></View>
-            <View style={styles.bottomRight}></View>
-            <View style={styles.rightBottom}></View>
-            <View style={styles.leftTop}></View>
-            <View style={styles.rightTop}></View>
-            <View style={styles.topRight}></View>
-            <View style={styles.leftBottom}></View>
-            <View style={styles.bottomLeft}></View>
-
+        <View>
+            <View style={styles.imageContainer}>
+                <Image source={require('../../assets/images/testimonials/trainer.png')} style={styles.image} />
+            </View>
             <Text style={styles.testimonialsText}>This all in one app will allow you to track all your health related stuff.</Text>
 
-        </View>
+        </View >
     )
 }
 
@@ -30,74 +23,30 @@ const styles = StyleSheet.create({
         margin: 20
     },
     testimonialsText: {
+        marginTop: 40,
         color: colors.white,
-        fontSize: 26,
-        lineHeight: 60,
+        fontSize: 17,
+        lineHeight: 25,
         fontWeight: '100',
         textAlign: 'center',
-        fontFamily: 'king',
-        // textTransform: 'capitalize',
-        letterSpacing: 3,
+        fontFamily: 'caviari',
+        letterSpacing: 1,
 
     },
-    topLeft: {
-        position: 'absolute',
-        width: 60,
-        height: 6,
-        backgroundColor: colors.white
+    imageContainer: {
+        width: 120,
+        height: 120,
+        // padding: 20,
+        borderRadius: 60,
+        alignSelf: 'center',
+        backgroundColor: colors.black
     },
-    leftTop: {
-        position: 'absolute',
-        left: 0,
-        width: 6,
-        height: 60,
-        backgroundColor: colors.white
-    },
-    rightBottom: {
-        position: 'absolute',
-        right: 0,
-        bottom: 0,
-        width: 6,
-        height: 60,
-        backgroundColor: colors.white
-    },
-    bottomRight: {
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        width: 60,
-        height: 6,
-        backgroundColor: colors.white
-    },
-
-    topRight: {
-        position: 'absolute',
-        right: 0,
-        width: 60,
-        height: 6,
-        backgroundColor: colors.white
-    },
-    rightTop: {
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        height: 60,
-        width: 6,
-        backgroundColor: colors.white
-    },
-    leftBottom: {
-        position: 'absolute',
-        bottom: 0,
-        width: 6,
-        height: 60,
-        backgroundColor: colors.white
-    },
-    bottomLeft: {
-        position: 'absolute',
-        bottom: 0,
-        width: 60,
-        height: 6,
-        backgroundColor: colors.white
-    },
-
+    image: {
+        alignSelf: 'center',
+        borderColor: colors.white,
+        borderRadius: 60,
+        overflow: 'hidden',
+        width: 120,
+        height: 120
+    }
 })

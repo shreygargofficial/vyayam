@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allSupplementsFetchActionCreator } from "../../../redux/ActionCreators/supplementActionCreator";
-import { commonStyle } from "../../../constants/Style";
-import { colors } from "../../../constants/Colors";
 import SupplementCard from "../../supplement/SupplementCard";
 
 function Supplements() {

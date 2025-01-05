@@ -55,8 +55,9 @@ const styles = StyleSheet.create({
     heading: {
         letterSpacing: 1,
         fontSize: 14,
-        fontWeight: '800',
+        fontWeight: '400',
         textTransform: 'capitalize',
+        fontFamily: 'caviarb'
     },
     card: {
         marginVertical: 0,
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 3,
         borderColor: colors.grey,
+
     },
     veg: {
         width: 10,
@@ -108,5 +110,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 15,
         letterSpacing: 1,
+        fontFamily: 'caviar'
     },
 })

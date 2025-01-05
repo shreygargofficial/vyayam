@@ -6,7 +6,7 @@ function ButtonWithIcon({ onPress, name, title, color, size, textStyle, iconStyl
     return (
         <Pressable onPress={onPress} style={[styles.buttonStyle, buttonStyle]}>
             <MaterialIcons name={name} size={size} color={color} style={iconStyle} />
-            <Text style={[{ color: color }, textStyle]}>{title}</Text>
+            <Text style={[{ color: color, fontFamily: 'caviar' }, textStyle]}>{title}</Text>
         </Pressable>
     );
 }

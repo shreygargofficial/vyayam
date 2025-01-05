@@ -23,9 +23,8 @@ function UserInfo({ defaultValueUser: { firstName, lastName, gender, bio, target
 
         <View style={styles.root}>
             <View style={styles.infoContainer}>
-                <Text style={styles.text}>First Name : {firstName}</Text>
-                <Text style={styles.text}>Last Name : {lastName}</Text>
-                <Text style={styles.text}>Gener : {gender}</Text>
+                <Text style={styles.text}>Name : {firstName} {lastName}</Text>
+                <Text style={styles.text}>Gender : {gender}</Text>
                 <Text style={styles.text}>Bio : {bio}</Text>
                 <Text style={styles.text}>Height: {height}cm</Text>
                 <Text style={styles.text}>Weight: {weight}kg</Text>
@@ -57,7 +56,8 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 18,
         fontWeight: '200',
-        color: colors.primaryDark
+        color: colors.primaryDark,
+        fontFamily: 'caviar'
     },
     logoutContainer: {
         marginTop: 30,
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     },
     buttonLogout: {
         marginTop: 10,
+        borderRadius: 15,
         marginLeft: 10,
         alignSelf: 'flex-start',
         paddingVertical: 10,

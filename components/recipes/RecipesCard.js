@@ -77,7 +77,8 @@ let styles = StyleSheet.create({
         flex: 1,
         width: 170,
         justifyContent: 'space-between',
-        borderRadius: 10
+        borderRadius: 10,
+        fontFamily: 'caviar'
 
     },
     pressed: {
@@ -106,7 +107,7 @@ let styles = StyleSheet.create({
         lineHeight: 20,
         paddingHorizontal: 10,
         color: colors.black,
-
+        fontFamily: 'caviar'
 
     },
     macro: {
@@ -116,6 +117,7 @@ let styles = StyleSheet.create({
         backgroundColor: colors.black,
         color: colors.white,
         paddingVertical: 4,
+        fontFamily: 'caviar'
     }
 
 })

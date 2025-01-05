@@ -7,7 +7,7 @@ import UserUpdateForm from "../../user/UserUpdateForm";
 import { colors } from "../../../constants/Colors";
 import IconButton from "../../ui/IconButton";
 import { sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
-
+import * as Animatable from "react-native-animatable";
 
 
 function User() {
@@ -72,7 +72,14 @@ function User() {
             alwaysBounceVertical={false}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: scrollViewPadding }}>
-            <View style={styles.rowFlexing}>
+
+            <Animatable.View
+                style={styles.rowFlexing}
+                animation="fadeIn"
+                easing={'linear'}
+                duration={1000}
+                iterationCount={1}
+            >
                 <View style={styles.imageContainer}>
                     <Image source={images[randomFolder]} style={styles.image} />
                 </View>
@@ -87,9 +94,16 @@ function User() {
                         {user?.userData?.userPhoneNumber}
                     </Text>
                 </View>
-            </View>
+            </Animatable.View>
 
-            <View style={styles.canEditTextContainer}>
+            <Animatable.View
+                animation={'fadeIn'}
+                duration={500}
+                delay={500}
+                iterationCount={1}
+                easing={'linear'}
+                style={styles.canEditTextContainer}
+            >
                 <View style={styles.rowFlexing}>
                     <Text style={styles.basicInfoText}>Basic Information</Text>
                     <View style={styles.iconContainer}>
@@ -101,7 +115,7 @@ function User() {
                     (<UserUpdateForm defaultValueUser={defaultValueUser} submitHandler={submitHandler} user={user} />)
                     : (<UserInfo defaultValueUser={defaultValueUser} />)}
                 {user?.error && <Text style={[styles.errorText]}>{user?.error}</Text>}
-            </View>
+            </Animatable.View>
 
         </ScrollView>);
 }
@@ -115,10 +129,11 @@ const styles = StyleSheet.create({
         marginTop: 40
     },
     lineHeight: {
-        lineHeight: 50,
+        lineHeight: 24,
     },
     rowFlexing: {
         flexDirection: 'row',
+        paddingVertical: 10,
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 50,
@@ -139,18 +154,18 @@ const styles = StyleSheet.create({
     },
 
     userName: {
-        fontSize: 36,
+        fontSize: 22,
         fontWeight: '300',
         color: '#222',
     },
     emailAddress: {
-        fontSize: 20,
+        fontSize: 12,
         fontWeight: '200',
         lineHeight: 30,
         color: '#222',
     },
     phoneNumber: {
-        fontSize: 16,
+        fontSize: 11,
         fontWeight: '200',
         color: '#222',
     },
@@ -159,6 +174,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         // marginTop: 40,
         fontSize: 34,
+        fontFamily: 'caviar',
         fontWeight: '200',
     },
     errorText: {

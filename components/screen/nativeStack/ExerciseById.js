@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
         fontWeight: '200',
         textTransform: 'capitalize',
         color: colors.white,
+        fontFamily: 'caviar',
         marginTop: 30,
     },
     normalText: {
@@ -89,10 +90,12 @@ const styles = StyleSheet.create({
         marginTop: 19,
         fontSize: 16,
         color: colors.white,
+        fontFamily: 'caviar'
     },
     bold: {
         fontWeight: '700',
         color: colors.white,
+        fontFamily: 'caviar'
     },
     allMusclesContainer: {
         paddingHorizontal: 50,

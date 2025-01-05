@@ -39,33 +39,43 @@ function RecipeById({ route }) {
                                         color: TEXT_COLOR,
                                         lineHeight: 23,
                                         letterSpacing: 1,
+                                        fontFamily: 'caviar'
                                     },
                                     span: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     h1: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     h2: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     h3: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     h4: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     strong: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     ul: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     b: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
                                     li: {
-                                        color: TEXT_COLOR
+                                        color: TEXT_COLOR,
+                                        fontFamily: 'caviar'
                                     },
 
                                 }}
@@ -118,6 +128,7 @@ let styles = StyleSheet.create({
         padding: 10,
         paddingHorizontal: 14,
         marginTop: 30,
+        fontFamily: 'caviar'
     },
     title: {
         fontSize: 35,
@@ -127,35 +138,40 @@ let styles = StyleSheet.create({
         fontWeight: '100',
         textAlign: 'center',
         lineHeight: 50,
+        fontFamily: 'caviar'
     },
 
     marginTop: {
         marginTop: 20
     },
     bold: {
-        fontWeight: '700',
-
+        fontWeight: '200',
+        fontFamily: 'caviarb'
     },
     description: {
         marginTop: 30,
+        fontFamily: 'caviar'
     },
 
     ingredientsTitle: {
         fontSize: 22,
         marginVertical: 30,
         marginBottom: 30,
-        color: TEXT_COLOR
+        color: TEXT_COLOR,
+        fontFamily: 'caviar'
     },
     ingredients: {
         padding: 8,
-        color: TEXT_COLOR
+        color: TEXT_COLOR,
     },
     name: {
         color: TEXT_COLOR,
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+        fontFamily: 'caviar'
     },
     quantity: {
-        color: TEXT_COLOR
+        color: TEXT_COLOR,
+        fontFamily: 'caviar'
     }
 
 })

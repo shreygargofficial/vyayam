@@ -83,10 +83,12 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: '500',
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+        fontFamily: 'caviar'
     },
     ml: {
-        marginLeft: 10
+        marginLeft: 10,
+        fontFamily: 'caviar'
     },
     heading: {
         letterSpacing: 1,
@@ -94,6 +96,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: '500',
+        fontFamily: 'caviar',
         textTransform: 'capitalize',
     },
 

@@ -59,7 +59,7 @@ export default SupplementCard;
 const styles = StyleSheet.create({
     supplementCard: {
         width: 300,
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingVertical: 20,
         borderWidth: 1,
         borderColor: colors.grey,
@@ -76,19 +76,21 @@ const styles = StyleSheet.create({
         marginTop: 20,
         fontWeight: '400',
         color: colors.primary,
+        fontFamily: 'caviar'
     },
     imageContainer: {
         width: '100%',
-        height: 300,
+        height: 160
     },
     image: {
         width: '100%',
-        height: 300,
+        height: 160
     },
     description: {
         marginTop: 20,
         letterSpacing: 1,
         lineHeight: 27,
+        fontFamily: 'caviar'
     },
     trustedContainer: {
         marginTop: 20,
@@ -97,10 +99,12 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         fontSize: 17,
         fontWeight: '500',
+        fontFamily: 'caviarb'
     },
     trustedBrandName: {
         marginTop: 5,
         letterSpacing: 1,
         marginRight: 5,
+        fontFamily: 'caviar'
     },
 })

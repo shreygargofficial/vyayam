@@ -117,8 +117,8 @@ let styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.primary,
         borderRadius: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 11,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
         marginVertical: 20,
 
     },
@@ -129,7 +129,8 @@ let styles = StyleSheet.create({
         paddingVertical: 0,
         width: 200,
         borderRadius: 5,
-        color: colors.primary
+        color: colors.primary,
+        fontFamily: 'caviar'
     },
     flexRow: {
         width: '100%',
@@ -148,14 +149,16 @@ let styles = StyleSheet.create({
         color: colors.primary,
         textAlign: 'center',
         marginVertical: 10,
+        fontFamily: 'caviar'
     },
     noExercise: {
         flex: 1,
         justifyContent: 'center',
         alignSelf: 'center',
-        color: colors.primaryDark
+        color: colors.primaryDark,
     },
     noExerciseText: {
-        color: colors.primary
+        color: colors.primary,
+        fontFamily: 'caviar'
     }
 })
