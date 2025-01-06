@@ -84,7 +84,7 @@ function Landing({ navigation }) {
                         />
                         <View style={commonStyle.overlay}>
                             <Text style={commonStyle.overlayText}>
-                                Learn Exercise
+                                All Exercise
                             </Text>
                         </View>
                     </Pressable>

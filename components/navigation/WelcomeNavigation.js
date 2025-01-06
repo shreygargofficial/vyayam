@@ -12,7 +12,6 @@ import User from "../screen/bottomTabs/User";
 import RecipeById from "../screen/nativeStack/RecipeById";
 import { Pressable, View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
-import AllExercise from "../exercise/AllExercise"
 import WeightLog from "../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
 import About from "../screen/Drawer/About";
@@ -32,6 +31,8 @@ import SupplementByID from "../screen/nativeStack/SupplementByID";
 import OneRepMaxCalculator from "../screen/nativeStack/OneRepMaxCalculator";
 import WorkoutLog from "../screen/nativeStack/workoutLog";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import MuscleList from "../exercise/MuscleList";
+import SelectedMuscleExercises from "../exercise/SelectedMuscleExercises";
 
 
 const drawer = createDrawerNavigator();
@@ -152,12 +153,12 @@ function BottomTabNavigator() {
 
             <tab.Screen
                 name="exercise"
-                component={ExerciseWrapper}
+                component={MuscleList}
                 options={
                     {
                         headerShown: true,
                         tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size - 4} />,
-                        title: 'Exercise',
+                        title: 'Learn Exercise',
 
                     }
                 }
@@ -227,7 +228,12 @@ function WelcomeNavigation() {
                 <nativeStack.Screen
                     options={{ title: 'Exercises', headerBackTitle: 'Home' }}
                     name="allExercise"
-                    component={AllExercise}
+                    component={ExerciseWrapper}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Exercises', headerBackTitle: 'Learn Exercises' }}
+                    name="selectedMuscle"
+                    component={SelectedMuscleExercises}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Exercise', headerBackTitle: 'All Exercise' }}
