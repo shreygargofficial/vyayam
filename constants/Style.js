@@ -23,7 +23,7 @@ export const commonStyle = StyleSheet.create({
         fontFamily: '500'
     },
     overlayCard: {
-        marginTop: 40,
+        marginTop: 90,
         height: 200,
         marginHorizontal: 20,
         justifyContent: 'center',

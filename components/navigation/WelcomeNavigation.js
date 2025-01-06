@@ -51,7 +51,11 @@ function DrawerNavigator() {
         drawerInactiveTintColor: colors.primary,
         headerTitleAlign: 'left',
         drawerContentStyle: {
-            backgroundColor: colors.black
+            backgroundColor: colors.black,
+            fontFamily: 'caviar'
+        },
+        drawerLabelStyle: {
+            fontFamily: 'caviar'
         },
         headerTitleStyle: {
             fontSize: 16,
@@ -139,6 +143,7 @@ function BottomTabNavigator() {
                 component={DrawerNavigator}
                 options={
                     {
+                        title: 'Home',
                         headerShown: false,
                         tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size - 4} />,
                     }

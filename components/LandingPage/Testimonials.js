@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
         // padding: 20,
         borderRadius: 60,
         alignSelf: 'center',
-        backgroundColor: colors.black
+        backgroundColor: colors.black,
+        marginTop: 100,
     },
     image: {
         alignSelf: 'center',
