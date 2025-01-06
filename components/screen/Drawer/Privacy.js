@@ -117,18 +117,22 @@ const styles = StyleSheet.create({
         textTransform: 'capitalize',
         fontSize: 26,
         marginVertical: 10,
+        fontFamily: 'caviarb',
     },
     paragraph: {
         fontSize: 16,
         lineHeight: 32,
         marginTop: 6,
+        fontFamily: 'caviar',
     },
     bold: {
         fontWeight: '600',
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'caviarb',
     },
     small: {
-        fontSize: 13
+        fontSize: 13,
+        fontFamily: 'caviar',
     }
 
 })

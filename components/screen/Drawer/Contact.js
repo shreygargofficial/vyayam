@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     infoContainer: {
         alignItems: 'center',
         marginTop: 40,
+        fontFamily: 'caviar',
     },
     myImage: {
         alignSelf: 'center',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontSize: 20,
         lineHeight: 32,
-
+        fontFamily: 'caviar',
     },
     heading: {
         fontSize: 23,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
         color: colors.black,
         // textAlign: 'center',
         fontWeight: '200',
-
+        fontFamily: 'caviarb',
     },
     mail: {
         color: colors.purple800
