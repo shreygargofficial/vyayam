@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
         borderRadius: 10,
         overflow: 'hidden',
-        marginTop: 50,
+        marginTop: 90,
     },
     image: {
         width: '100%',

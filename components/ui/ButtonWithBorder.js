@@ -14,16 +14,18 @@ export default ButtonWithBorder;
 let styles = StyleSheet.create({
     button: {
         borderColor: colors.primaryDark,
-        borderWidth: 1,
+        borderWidth: 0.7,
         paddingVertical: 12,
-        paddingHorizontal: 34
+        paddingHorizontal: 34,
+
     },
     disabled: {
         backgroundColor: colors.grey,
     },
     text: {
         color: colors.primary,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        fontFamily: 'caviar',
     },
     pressed: {
         opacity: 0.2

@@ -12,7 +12,7 @@ function Logout() {
     return (
         <View style={styles.root}>
             <Text style={styles.text}>Are you sure to logout <Text style={styles.textUserName}>{user?.userData?.userName}</Text>?</Text>
-            <ButtonWithBorder title={'Logout'} onPress={logoutHandler} />
+            <ButtonWithBorder style={styles.button} title={'Logout'} onPress={logoutHandler} />
         </View>
     );
 }
@@ -25,14 +25,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    button: {
+        paddingVertical: 8,
+        borderRadius: 4,
+        marginTop: 20,
+        fontFamily: 'caviar',
+        paddingHorizontal: 18
+    },
     text: {
         marginVertical: 10,
         fontSize: 16,
-        color: '#999'
+        color: '#999',
+        fontFamily: 'caviar',
     },
     textUserName: {
         fontWeight: '900',
-        fontSize: 17
+        fontSize: 17,
+        fontFamily: 'caviarb',
     }
 
 })

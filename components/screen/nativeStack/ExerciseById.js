@@ -12,6 +12,8 @@ function ExerciseById() {
     const navigation = useNavigation()
     const [myExercise, setMyExercise] = useState(null)
     const [imageLoading, setImageLoading] = useState(true);
+    const [videoLoading, setVideoLoading] = useState(true);
+
     const exercise = useSelector(state => state.exercise)
     const { _id, from } = route.params;
 
@@ -25,17 +27,17 @@ function ExerciseById() {
     const videoURI = 'https://www.youtube.com/embed/0cXAp6WhSj4';
     return (
         <View style={styles.root}>
-            {imageLoading && <CustomLoader />}
+            {(imageLoading || videoLoading) && <CustomLoader />}
             <ScrollView
                 contentContainerStyle={{ paddingBottom: 100, backgroundColor: colors.darkBackground }}
             >
                 {myExercise?.photoURL ?
                     <Image
-                        onLoadEnd={() => setImageLoading(false)}
+                        onLoadEnd={() => setTimeout(() => setImageLoading(false), 100)}
                         source={{ uri: SERVERURL + '/' + myExercise?.photoURL }}
                         style={styles.image} /> :
                     <Image
-                        onLoadEnd={() => setImageLoading(false)}
+                        onLoadEnd={() => setTimeout(() => setImageLoading(false), 100)}
                         source={require('../../../assets/images/exercise/exercise.jpg')}
                         style={styles.image} />
                 }
@@ -55,11 +57,13 @@ function ExerciseById() {
                 <View style={styles.videoContainer}>
                     {myExercise?.videoURL ?
                         <WebView
+                            onLoad={() => setTimeout(() => setVideoLoading(false), 1000)}
                             mediaPlaybackRequiresUserAction={true}
                             source={{ uri: myExercise?.videoURL + '?autoplay=0' }}
                             style={styles.video}
                         /> :
                         <WebView
+                            onLoad={() => setTimeout(() => setVideoLoading(false), 1000)}
                             mediaPlaybackRequiresUserAction={true}
                             source={{ uri: videoURI + '?autoplay=0' }}
                             style={styles.video}
@@ -74,7 +78,8 @@ export default ExerciseById;
 
 const styles = StyleSheet.create({
     root: {
-        backgroundColor: colors.darkBackground
+        backgroundColor: colors.darkBackground,
+        flex: 1
     },
     title: {
         fontSize: 44,
@@ -82,6 +87,7 @@ const styles = StyleSheet.create({
         fontWeight: '200',
         textTransform: 'capitalize',
         color: colors.white,
+        fontFamily: 'caviar',
         marginTop: 30,
     },
     normalText: {
@@ -89,10 +95,12 @@ const styles = StyleSheet.create({
         marginTop: 19,
         fontSize: 16,
         color: colors.white,
+        fontFamily: 'caviar'
     },
     bold: {
         fontWeight: '700',
         color: colors.white,
+        fontFamily: 'caviar'
     },
     allMusclesContainer: {
         paddingHorizontal: 50,

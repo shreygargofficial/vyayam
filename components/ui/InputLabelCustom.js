@@ -29,7 +29,7 @@ let styles = StyleSheet.create({
 
     },
     label: {
-
+        fontFamily: 'caviar'
     },
     input: {
         marginTop: 5,

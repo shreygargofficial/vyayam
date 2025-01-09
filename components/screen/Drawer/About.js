@@ -68,16 +68,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         textTransform: 'capitalize',
         fontSize: 30,
+        fontFamily: 'caviarb',
         marginVertical: 20,
     },
     paragraph: {
         fontSize: 16,
         lineHeight: 32,
         marginTop: 12,
+        fontFamily: 'caviar'
     },
     bold: {
         fontWeight: '500',
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'caviarb'
     }
 
 })

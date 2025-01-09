@@ -7,9 +7,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { store, persistor } from './redux/store';
-
-
 //splash screen delay logic
+
+
 SplashScreen.preventAutoHideAsync();
 let delay = (time) => {
   return new Promise((res, rej) => {
@@ -20,10 +20,12 @@ let delay = (time) => {
 }
 //splash screen delay logic end
 export default function App() {
+
   const [loadedFont] = useFonts({
     'king': require('./assets/fonts/king.ttf'),
-    'nasa': require('./assets/fonts/nasa.ttf'),
-
+    'caviar': require('./assets/fonts/caviar.ttf'),
+    'caviari': require('./assets/fonts/caviarI.ttf'),
+    'caviarb': require('./assets/fonts/caviarB.ttf')
   })
 
   useEffect(() => {

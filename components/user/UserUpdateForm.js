@@ -206,7 +206,8 @@ const styles = StyleSheet.create({
     },
     label: {
         color: colors.primaryDark,
-        paddingVertical: 10
+        paddingVertical: 10,
+        fontFamily: 'caviar'
     },
     radioContainer: {
         flexDirection: 'row',
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
         borderColor: colors.grey,
         borderRadius: 2,
         paddingVertical: 10,
-
+        fontFamily: 'caviar'
     },
     errorText: {
         fontSize: 12,

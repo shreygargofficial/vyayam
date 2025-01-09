@@ -10,9 +10,8 @@ import Supplements from "../screen/bottomTabs/Supplements";
 import Recipes from "../screen/bottomTabs/Recipes";
 import User from "../screen/bottomTabs/User";
 import RecipeById from "../screen/nativeStack/RecipeById";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
-import AllExercise from "../exercise/AllExercise"
 import WeightLog from "../screen/nativeStack/WeightLog";
 import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
 import About from "../screen/Drawer/About";
@@ -31,30 +30,47 @@ import DietById from "../screen/nativeStack/weightManagement/DietById";
 import SupplementByID from "../screen/nativeStack/SupplementByID";
 import OneRepMaxCalculator from "../screen/nativeStack/OneRepMaxCalculator";
 import WorkoutLog from "../screen/nativeStack/workoutLog";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import MuscleList from "../exercise/MuscleList";
+import SelectedMuscleExercises from "../exercise/SelectedMuscleExercises";
+
 
 const drawer = createDrawerNavigator();
 const tab = createBottomTabNavigator();
 
 function DrawerNavigator() {
-    return <drawer.Navigator screenOptions={
-        {
-            headerTransparent: false,
-            headerTintColor: colors.primary,
-            headerStyle: {
-                backgroundColor: colors.black,
-                shadowColor: 'transparent', // Remove shadow
-                elevation: 0, // For Android
-            },
-            drawerActiveBackgroundColor: colors.primaryDark,
-            drawerActiveTintColor: colors.white,
-            drawerInactiveTintColor: colors.primary,
-            headerTitleAlign: 'left',
-            drawerContentStyle: {
-                backgroundColor: colors.black
-            }
-
+    return <drawer.Navigator screenOptions={({ navigation }) => ({
+        headerTransparent: false,
+        headerTintColor: colors.primary,
+        headerStyle: {
+            backgroundColor: colors.black,
+            shadowColor: 'transparent', // Remove shadow
+            elevation: 0, // For Android
+        },
+        drawerActiveBackgroundColor: colors.primaryDark,
+        drawerActiveTintColor: colors.white,
+        drawerInactiveTintColor: colors.primary,
+        headerTitleAlign: 'left',
+        drawerContentStyle: {
+            backgroundColor: colors.black,
+            fontFamily: 'caviar'
+        },
+        drawerLabelStyle: {
+            fontFamily: 'caviar'
+        },
+        headerTitleStyle: {
+            fontSize: 16,
+            textTransform: 'uppercase',
+            marginLeft: -20,
+            fontFamily: 'caviarb'
+        },
+        headerLeft: () => {
+            return <Pressable onPress={() => navigation.toggleDrawer()} style={{ paddingHorizontal: 30, paddingVertical: 5, borderWidth: 3 }}>
+                <FontAwesome5 name="hamburger" size={20} color={colors.primaryDark} />
+            </Pressable>
         }
-    }>
+    })}
+    >
         <drawer.Screen
             name="Vyayam"
             component={Landing}
@@ -98,14 +114,28 @@ function BottomTabNavigator() {
                 tabBarInactiveTintColor: colors.primary,
                 headerStyle: {
                     backgroundColor: colors.black,
-                    borderBottomColor: 'transparent'
+                    borderBottomColor: 'transparent',
                 },
                 headerTintColor: colors.primary,
                 tabBarStyle: {
+                    // height: 50,
                     backgroundColor: colors.black,
                     paddingTop: 10,
                     borderTopColor: 'transparent'
                 },
+                tabBarLabelStyle: {
+                    fontSize: 8,
+                    fontFamily: 'caviarb',
+                    letterSpacing: 1,
+                    marginTop: 0
+                }, // Control spacing and size
+                tabBarIconStyle: {
+                    // height: 10,
+
+                },
+                headerTitleStyle: {
+                    fontFamily: 'caviarb'
+                }
 
             }
         }>
@@ -114,20 +144,21 @@ function BottomTabNavigator() {
                 component={DrawerNavigator}
                 options={
                     {
+                        title: 'Home',
                         headerShown: false,
-                        tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size} />,
+                        tabBarIcon: ({ color, size }) => <Entypo name="home" color={color} size={size - 4} />,
                     }
                 }
             />
 
             <tab.Screen
                 name="exercise"
-                component={ExerciseWrapper}
+                component={MuscleList}
                 options={
                     {
                         headerShown: true,
-                        tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size} />,
-                        title: 'Exercise',
+                        tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="dumbbell" color={color} size={size - 4} />,
+                        title: 'Learn Exercise',
 
                     }
                 }
@@ -138,7 +169,7 @@ function BottomTabNavigator() {
                 component={AllMealsForWeightManagement}
                 options={
                     {
-                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size} />,
+                        tabBarIcon: ({ color, size }) => <MaterialIcons name="fastfood" color={color} size={size - 4} />,
                         title: 'Diet Plans',
 
                     }
@@ -149,7 +180,7 @@ function BottomTabNavigator() {
                 component={Supplements}
                 options={
                     {
-                        tabBarIcon: ({ color, size }) => <Octicons name="archive" color={color} size={size} />
+                        tabBarIcon: ({ color, size }) => <Octicons name="archive" color={color} size={size - 4} />
                     }
                 }
             />
@@ -158,7 +189,7 @@ function BottomTabNavigator() {
                 component={User}
                 options={
                     {
-                        tabBarIcon: ({ color, size }) => <Entypo name="user" color={color} size={size} />
+                        tabBarIcon: ({ color, size }) => <Entypo name="user" color={color} size={size - 4} />
                     }
                 }
             />
@@ -174,6 +205,9 @@ function WelcomeNavigation() {
                     headerStyle: {
                         backgroundColor: colors.black
                     },
+                    headerTitleStyle: {
+                        fontFamily: 'caviarb'
+                    }
                 }
             }>
                 <nativeStack.Screen
@@ -194,7 +228,12 @@ function WelcomeNavigation() {
                 <nativeStack.Screen
                     options={{ title: 'Exercises', headerBackTitle: 'Home' }}
                     name="allExercise"
-                    component={AllExercise}
+                    component={ExerciseWrapper}
+                />
+                <nativeStack.Screen
+                    options={{ title: 'Exercises', headerBackTitle: 'Learn Exercises' }}
+                    name="selectedMuscle"
+                    component={SelectedMuscleExercises}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Exercise', headerBackTitle: 'All Exercise' }}

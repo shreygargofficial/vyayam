@@ -1,6 +1,8 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { MaterialIcons } from '@expo/vector-icons'
+import Feather from '@expo/vector-icons/Feather';
+
 
 
 function IconInputCustom({ placeholder, style, styleWrapper, value, onChangeText, secureTextEntry = false, placeholderTextColor, name, size = 25, ...props }) {
@@ -15,6 +17,12 @@ function IconInputCustom({ placeholder, style, styleWrapper, value, onChangeText
                 secureTextEntry={secureTextEntry}
                 {...props}
             />
+            {props.name2 && (
+                <Pressable onPress={props.onPasswordToggle} >
+                    <Feather name={props.name2} size={size} style={styles.icon} color={colors.primary} />
+                </Pressable>
+            )}
+
         </View>
     );
 }
@@ -27,12 +35,16 @@ let styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
 
 
     },
     icon: {
         marginRight: 10,
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 5
     },
     input: {
         paddingHorizontal: 4,
@@ -41,5 +53,5 @@ let styles = StyleSheet.create({
         flex: 9,
         color: colors.black,
 
-    }
+    },
 })

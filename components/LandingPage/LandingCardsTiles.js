@@ -59,17 +59,18 @@ export default LandingCardsTiles;
 export const styles = StyleSheet.create({
 
     tilesContainer: {
-        marginTop: 50
+        marginTop: 50,
+        paddingHorizontal: 30,
     },
     rowFlex: {
         flexDirection: 'row',
         alignItems: 'center'
     },
     card: {
-        padding: 10,
         flex: 1,
         backgroundColor: 'rgba(200,200,200,0.1)',
-        margin: 10,
+        marginVertical: 10,
+        marginHorizontal: 10,
         borderRadius: 10,
     },
     pressed: {
@@ -77,20 +78,22 @@ export const styles = StyleSheet.create({
     },
     cardImage: {
         width: '100%',
-        height: 140,
+        height: 100,
         opacity: 1,
-        borderRadius: 10
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
     },
     cardTitleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 8
     },
 
     cardTitle: {
         color: colors.white,
-        fontFamily: 'nasa',
-        letterSpacing: 1
+        fontFamily: 'caviar',
+        letterSpacing: 1,
+        fontSize: 10,
     },
 
 })

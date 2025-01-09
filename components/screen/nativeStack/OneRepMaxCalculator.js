@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     textContainer: {
         paddingHorizontal: 20,
         marginTop: 40,
+        fontFamily: 'caviar'
     },
     heading: {
         textAlign: 'center',
@@ -133,17 +134,20 @@ const styles = StyleSheet.create({
         fontWeight: '200',
         color: colors.white,
         lineHeight: 40,
-        letterSpacing: 1
+        letterSpacing: 1,
+        fontFamily: 'caviar'
     },
     heading2: {
-        color: colors.black
+        color: colors.black,
+        fontFamily: 'caviarb'
     },
     textInfo: {
         letterSpacing: 1,
         lineHeight: 26,
         fontSize: 20,
         marginTop: 50,
-        color: colors.white
+        color: colors.white,
+        fontFamily: 'caviar'
     },
     input: {
         color: colors.white,
@@ -153,10 +157,12 @@ const styles = StyleSheet.create({
     switchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20
+        marginTop: 20,
+        fontFamily: 'caviar'
     },
     switchText: {
         color: colors.primary,
+        fontFamily: 'caviar'
     },
     switch: {
         marginLeft: 20,
@@ -188,6 +194,7 @@ const styles = StyleSheet.create({
         marginTop: 50
     },
     bold: {
-        fontWeight: '600'
+        fontWeight: '600',
+        fontFamily: 'caviar'
     }
 })

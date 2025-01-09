@@ -68,33 +68,43 @@ function SupplementByID() {
                                     color: TEXT_COLOR,
                                     lineHeight: 23,
                                     letterSpacing: 1,
+                                    fontFamily: 'caviar'
                                 },
                                 span: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 h1: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 h2: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 h3: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 h4: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 strong: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 ul: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 b: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
                                 li: {
-                                    color: TEXT_COLOR
+                                    color: TEXT_COLOR,
+                                    fontFamily: 'caviar'
                                 },
 
                             }}
@@ -139,7 +149,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
         fontWeight: '400',
         color: colors.primary,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'caviarb'
     },
     image: {
         width: '100%',
@@ -147,25 +158,31 @@ const styles = StyleSheet.create({
     },
     description: {
         marginTop: 30,
+        fontFamily: 'caviar'
     },
     infoContainer: {
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        fontFamily: 'caviar'
     },
     link: {
         marginTop: 20,
-        color: colors.purple800
+        color: colors.purple800,
+        fontFamily: 'caviar'
     },
     trustedContainer: {
         marginTop: 20,
+        fontFamily: 'caviar'
     },
     trustedBrandsHeading: {
         marginBottom: 8,
         fontSize: 17,
         fontWeight: '500',
+        fontFamily: 'caviarb'
     },
     trustedBrandName: {
         marginTop: 5,
         letterSpacing: 1,
         marginRight: 5,
+        fontFamily: 'caviar'
     },
 })

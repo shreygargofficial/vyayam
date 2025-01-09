@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         fontWeight: '200',
         fontSize: 22,
+        fontFamily: 'caviar'
     },
     modal: {
         width: '100%',

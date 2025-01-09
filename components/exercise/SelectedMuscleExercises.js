@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import ExerciseCard from "./ExerciseCard";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { usePaginationNormal } from "../../hooks/usePaginationNormal";
 import { colors } from "../../constants/Colors";
 import IconInputCustom from "../ui/IconInputCustom";
 import ButtonWithIcon from "../ui/ButtonWithIcon";
 
-function AllExercise() {
+function SelectedMuscleExercises() {
+    const { params: { muscle } } = useRoute();
     const ITEMS_TO_DISPLAY = 10
     const [searchTerm, setSearchTerm] = useState('')
     const reduxExercise = useSelector(state => state.exercise);
-    const [exercises, setExercises] = useState(reduxExercise.exerciseData);
+    let myExercises = useMemo(() => {
+        let selectedMuscleExercise = reduxExercise?.exerciseData?.filter(ex =>
+            ex.exerciseName.toLowerCase().includes(muscle) ||
+            ex.exerciseType.toLowerCase().includes(muscle) ||
+            ex.primaryMuscleTargeted.toLowerCase().includes(muscle) ||
+            ex.splitDerivative.some(ele => ele.toLowerCase().includes(muscle))
+        );
+        return selectedMuscleExercise
+    }, [muscle])
+    const [exercises, setExercises] = useState(myExercises);
     const { firstIndex, lastIndex, nextPage, prevPage } = usePaginationNormal(ITEMS_TO_DISPLAY, exercises)
     const navigation = useNavigation();
     useEffect(() => {
-
-        if (searchTerm.length >= 3 && reduxExercise?.exerciseData) {
+        if (searchTerm.length >= 3 && myExercises) {
             const search = searchTerm.trim().toLowerCase();
-            const filteredExercise = reduxExercise.exerciseData.filter(ex =>
+            const filteredExercise = myExercises.filter(ex =>
                 ex.exerciseName.toLowerCase().includes(search) ||
                 ex.exerciseType.toLowerCase().includes(search) ||
                 ex.primaryMuscleTargeted.toLowerCase().includes(search) ||
@@ -28,7 +37,7 @@ function AllExercise() {
             setExercises(filteredExercise);
         }
         else {
-            setExercises(reduxExercise.exerciseData)
+            setExercises(myExercises)
         }
     }, [searchTerm])
 
@@ -42,6 +51,11 @@ function AllExercise() {
             from: 'Exercises'
         })
     }
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: muscle
+        })
+    }, [])
 
     return (
         <View style={styles.root}>
@@ -98,7 +112,7 @@ function AllExercise() {
     );
 }
 
-export default AllExercise;
+export default SelectedMuscleExercises;
 
 let styles = StyleSheet.create({
     root: {

@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         marginTop: 60,
         fontFamily: 'king',
         fontSize: 40,
-        fontWeight: '100'
+        fontWeight: '100',
+        fontFamily: 'caviar'
     }
 })
