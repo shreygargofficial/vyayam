@@ -105,13 +105,13 @@ export let styles = StyleSheet.create({
 
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.9)',
         justifyContent: 'flex-end',
     },
     modalContent: {
         padding: 20,
         borderRadius: 10,
-        backgroundColor: '#bbb',
+        backgroundColor: '#fff',
     },
     slider: {
         width: '80%',

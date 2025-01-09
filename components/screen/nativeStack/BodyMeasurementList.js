@@ -1,4 +1,4 @@
-import { FlatList, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { styles as weightLogStyles } from "./WeightLog";
 import IconButton from "../../ui/IconButton";
 import { colors } from "../../../constants/Colors";
@@ -7,10 +7,27 @@ import { useSelector } from "react-redux";
 import UserMeasurementModalContent from "../../userMeasurement/UserMeasurementModalContent";
 import { sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
 import GraphUserMeasurements from "../../ui/GraphUserMeasurements";
+import { MaterialIcons } from "@expo/vector-icons";
+import * as Animatable from "react-native-animatable";
+import { commonStyle } from "../../../constants/Style";
 
+function ListCardComponentBodyMeasurement({ label, data, onPress }) {
 
-function BodyMeasurement() {
+    return (
+        <Pressable
+            onPress={() => onPress(label)}
+            style={({ pressed }) => [styles.listCard, pressed && commonStyle.pressed]}
+        >
+            <Text style={styles.listLabel}>{label}</Text>
+            <Text style={styles.listValue}>{data[data.length - 1]} inch</Text>
+            <MaterialIcons style={styles.listIcon} name="arrow-forward-ios" size={30} color={colors.primary} />
+        </Pressable>
+    )
+}
+
+export default function BodyMeasurementList() {
     const [showModal, setShowModal] = useState(false);
+    const [selectedMuscle, setSelectedMuscle] = useState(null);
     const user = useSelector(state => state.user);
 
     useEffect(() => {
@@ -19,6 +36,12 @@ function BodyMeasurement() {
         }
     }, [user.userData.bodyMeasurements])
 
+    const muscleSelectedToggle = (label) => {
+        if (selectedMuscle !== label)
+            setSelectedMuscle(label)
+        else
+            setSelectedMuscle(null)
+    }
     const modalToggler = useCallback(() => {
         setShowModal((prev) => !prev);
     }, []);
@@ -26,6 +49,7 @@ function BodyMeasurement() {
     let sortedBodyMeasurement = useMemo(() => {
         return sortArrayBasedOnDate(user.userData.bodyMeasurements)
     }, [user.userData]);
+
 
 
     const {
@@ -90,41 +114,107 @@ function BodyMeasurement() {
         }
     }, [sortedBodyMeasurement]);
 
+    let arrayMuscleData = [
+        {
+            label: 'Arm Left',
+            data: armLeftData,
+            color: colors.red
+        },
+        {
+            label: 'Arm Right',
+            data: armRightData,
+            color: colors.primary
+        },
+        {
+            label: 'Chest',
+            data: chestData,
+            color: colors.green
+        },
+        {
+            label: 'Hips',
+            data: hipsData,
+            color: colors.purple100
+        },
+        {
+            label: 'Left Calf',
+            data: leftCalfData,
+            color: colors.red200
+        },
+        {
+            label: 'Right Calf',
+            data: rightCalfData,
+            color: colors.orange
+        },
+        {
+            label: 'Forearm',
+            data: forearmData,
+            color: colors.brown
+        },
+        {
+            label: 'Left Thigh',
+            data: leftThighData,
+            color: colors.black
+        },
+        {
+            label: 'Right Thigh',
+            data: rightThighData,
+            color: colors.primaryDark
+        },
+        {
+            label: 'Belly In',
+            data: bellyInData,
+            color: colors.purple800
+        },
+        {
+            label: 'Belly Out',
+            data: bellyOutData,
+            color: colors.red
+        },
+
+        {
+            label: 'Waist',
+            data: waistData,
+            color: colors.brown
+        }
+
+
+    ]
+
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.root}>
             {
                 (sortedBodyMeasurement && sortedBodyMeasurement?.length) ?
                     <View style={styles.allGraphs}>
-                        <FlatList
-                            data={
-                                [
-                                    { dateData, measurementData: armLeftData, color: colors.red, label: "Left Arm Measurement" },
-                                    { dateData, measurementData: armRightData, color: colors.primary, label: "Right Arm Measurement" },
-                                    { dateData, measurementData: leftCalfData, color: colors.purple100, label: "Left Calf Measurement" },
-                                    { dateData, measurementData: rightCalfData, color: colors.brown, label: "Right Calf Measurement" },
-                                    { dateData, measurementData: leftThighData, color: colors.orange, label: "Left Thigh Measurement" },
-                                    { dateData, measurementData: rightThighData, color: colors.purple800, label: "Right Thigh Measurement" },
-                                    { dateData, measurementData: waistData, color: colors.red200, label: "Waist Measurement" },
-                                    { dateData, measurementData: chestData, color: colors.black, label: "Chest Measurement" },
-                                    { dateData, measurementData: hipsData, color: colors.green, label: "Hips Measurement" },
-                                    { dateData, measurementData: forearmData, color: colors.red, label: "Forearm Measurement" },
-                                    { dateData, measurementData: bellyInData, color: colors.primary, label: "Belly In Measurement" },
-                                    { dateData, measurementData: bellyOutData, color: colors.purple100, label: "Belly Out Measurement" }
+                        <View>
+                            <Text style={styles.heading}>Measurements </Text>
+                        </View>
 
-                                ]
-                            }
-                            renderItem={({ item: { dateData, measurementData, color, label } }) => {
-                                return (
-                                    <View style={styles.graphContainer}>
-                                        <Text style={styles.headingMuscle}>{label}</Text>
-                                        <GraphUserMeasurements color={color} dateData={dateData} measurementData={measurementData} />
-                                    </View>
-                                )
-                            }}
-                            keyExtractor={(item) => item.label}
-                            initialNumToRender={3}
-                            windowSize={5}
-                        />
+                        <ScrollView contentContainerStyle={{
+                            paddingBottom: 260
+                        }}
+                            alwaysBounceVertical={false}
+                            showsVerticalScrollIndicator={false}
+                        >
+                            {arrayMuscleData.map(muscleData => (
+                                <View key={muscleData.label}>
+                                    <ListCardComponentBodyMeasurement label={muscleData.label} data={muscleData.data} onPress={muscleSelectedToggle} />
+                                    {muscleData.label == selectedMuscle &&
+                                        (
+                                            <Animatable.View
+                                                style={styles.rowFlexing}
+                                                animation="fadeInDown"
+                                                easing={'linear'}
+                                                duration={360}
+                                                iterationCount={1}
+                                            >
+                                                <Text style={styles.subHeading}>{muscleData.label}</Text>
+                                                <GraphUserMeasurements color={muscleData.color} dateData={dateData} measurementData={muscleData.data} />
+                                            </Animatable.View>
+                                        )}
+                                </View>
+                            ))}
+
+                        </ScrollView>
 
                     </View>
                     :
@@ -173,33 +263,66 @@ function BodyMeasurement() {
     );
 }
 
-export default BodyMeasurement;
 
 const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        backgroundColor: colors.white
+    },
+    heading: {
+        margin: 20,
+        fontFamily: 'caviarb',
+        fontSize: 40,
+
+    },
+    subHeading: {
+        margin: 20,
+        fontFamily: 'caviarb',
+        fontSize: 20,
+        textAlign: 'center'
+    },
     iconButton: {
-        bottom: 100,
+        top: 16,
         right: 16
     },
-    allGraphs: {
-        marginTop: 2,
+    listCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 5,
+        paddingVertical: 20,
+        paddingHorizontal: 5,
+        margin: 10,
+        elevation: 7,
+        shadowColor: colors.grey,
+        backgroundColor: colors.white,
+        shadowOffset: { width: 1, height: 2 },
+        shadowOpacity: 0.6,
+        zIndex: 900,
+        shadowRadius: 4,
+
     },
-    graphContainer: {
-        marginVertical: 10,
+    listLabel: {
+        color: colors.black,
+        fontWeight: '400',
+        flex: 8
     },
-    headingMuscle: {
-        marginVertical: 10,
-        textAlign: 'center',
-        fontSize: 24,
-        fontWeight: '300',
+
+    listValue: {
+        flex: 2,
+        textAlign: 'right',
+        // marginLeft: 240,
+    },
+    listIcon: {
+        flex: 1,
+        textAlign: 'right'
     },
 
     overlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.8)',
+        backgroundColor: 'rgba(0,0,0,0.9)',
         justifyContent: 'flex-end'
     },
     modalContent: {
-        backgroundColor: '#bbb',
         maxHeight: '80%',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
@@ -215,8 +338,10 @@ const styles = StyleSheet.create({
         padding: 10
     },
     cross: {
-        fontSize: 30,
-        fontWeight: '400',
+        paddingBottom: 2,
+        paddingHorizontal: 8,
+        fontSize: 20,
+        fontWeight: '800',
         color: colors.primaryDark
     },
 

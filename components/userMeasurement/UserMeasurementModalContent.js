@@ -53,212 +53,218 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
 
     }
     return (
-        <ScrollView
-            contentContainerStyle={{ paddingBottom: 50, backgroundColor: '#bbb' }}
-        >
-            <View style={styles.innerModalContent}>
-                <Controller
-                    name="armLeft"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Arm Left'}
-                            label={'Arm Left(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="armRight"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Arm Right'}
-                            label={'Arm Right(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="leftCalf"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Left Calf'}
-                            label={'Left Calf(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
+        <View style={styles.scrollViewContainer}>
+            <ScrollView
+                contentContainerStyle={{ paddingBottom: 50, backgroundColor: '#fff' }}
+            >
+                <View style={styles.innerModalContent}>
+                    <Controller
+                        name="armLeft"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Arm Left'}
+                                label={'Arm Left (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="armRight"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Arm Right'}
+                                label={'Arm Right (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="leftCalf"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Left Calf'}
+                                label={'Left Calf (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
 
-                <Controller
-                    name="rightCalf"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Right Calf'}
-                            label={'Right Calf(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="leftThigh"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Left Thigh'}
-                            label={'Left Thigh(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="rightThigh"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Right Thigh'}
-                            label={'Right Thigh(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
+                    <Controller
+                        name="rightCalf"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Right Calf'}
+                                label={'Right Calf (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="leftThigh"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Left Thigh'}
+                                label={'Left Thigh (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="rightThigh"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Right Thigh'}
+                                label={'Right Thigh (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
 
 
-                <Controller
-                    name="waist"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Waist'}
-                            label={'Waist(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="chest"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Chest'}
-                            label={'Chest(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="hips"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Hips'}
-                            label={'Hips(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="forearm"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Forearm'}
-                            label={'Forearm(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="bellyIn"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Belly In'}
-                            label={'Belly In(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Controller
-                    name="bellyOut"
-                    control={control}
-                    render={({ field: { onChange, value } }) => (
-                        <InputPlusMinus
-                            placeholder={'Belly Out'}
-                            label={'Belly Out(cm)'}
-                            value={value}
-                            onChangeText={onChange}
-                            steps={0.5}
-                        />
-                    )}
-                />
-                <Text style={{ marginTop: 30 }}>{selectedDate.toDateString()}</Text>
-                <View style={weightLogModalStyle.dateContainer}>
-                    <ButtonWithBorder
-                        title="Measurement Date"
-                        style={weightLogModalStyle.buttonDate}
-                        onPress={() => setShowDatePicker((prev) => !prev)} color={colors.primaryDark} />
-                    {showDatePicker &&
-                        <Controller
-                            name="date"
-                            control={control}
-                            render={({ field: { onChange, value } }) => {
-                                return <DateTimePicker
-                                    value={value}
-                                    mode="date"
-                                    textColor="red" //Not working
-                                    display="inline"
-                                    onChange={(event, selectedDate) => {
-                                        if (event.type === "dismissed" || !selectedDate) {
-                                            setShowDatePicker(false); // Hide picker when dismissed
-                                        } else {
-                                            if (Platform.OS == 'android')
-                                                setShowDatePicker(false); // Hide picker after selecting date
-                                            onChange(selectedDate); // Update the form field with the selected date
-                                        }
-                                    }}
-                                    maximumDate={maximumDate}  // This prevents picking a future year
-                                    minimumDate={minimumDate}
-                                />
-                            }}
-                        />}
+                    <Controller
+                        name="waist"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Waist'}
+                                label={'Waist (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="chest"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Chest'}
+                                label={'Chest (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="hips"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Hips'}
+                                label={'Hips (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="forearm"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Forearm'}
+                                label={'Forearm (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="bellyIn"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Belly In'}
+                                label={'Belly In (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Controller
+                        name="bellyOut"
+                        control={control}
+                        render={({ field: { onChange, value } }) => (
+                            <InputPlusMinus
+                                placeholder={'Belly Out'}
+                                label={'Belly Out (inch)'}
+                                value={value}
+                                onChangeText={onChange}
+                                steps={0.5}
+                            />
+                        )}
+                    />
+                    <Text style={{ marginTop: 30 }}>{selectedDate.toDateString()}</Text>
+                    <View style={weightLogModalStyle.dateContainer}>
+                        <ButtonWithBorder
+                            title="Measurement Date"
+                            style={weightLogModalStyle.buttonDate}
+                            onPress={() => setShowDatePicker((prev) => !prev)} color={colors.primaryDark} />
+                        {showDatePicker &&
+                            <Controller
+                                name="date"
+                                control={control}
+                                render={({ field: { onChange, value } }) => {
+                                    return <DateTimePicker
+                                        value={value}
+                                        mode="date"
+                                        textColor="red" //Not working
+                                        display="inline"
+                                        onChange={(event, selectedDate) => {
+                                            if (event.type === "dismissed" || !selectedDate) {
+                                                setShowDatePicker(false); // Hide picker when dismissed
+                                            } else {
+                                                if (Platform.OS == 'android')
+                                                    setShowDatePicker(false); // Hide picker after selecting date
+                                                onChange(selectedDate); // Update the form field with the selected date
+                                            }
+                                        }}
+                                        maximumDate={maximumDate}  // This prevents picking a future year
+                                        minimumDate={minimumDate}
+                                    />
+                                }}
+                            />}
+                    </View>
+                    <ButtonSimple title={'Submit'} style={styles.cancelBtn} onPress={(handleSubmit(submitHandler))} color={colors.white} />
+                    <ButtonWithBorder title={'Cancel'} style={styles.cancelBtn} onPress={(modalToggler)} />
                 </View>
-                <ButtonSimple title={'Submit'} style={styles.cancelBtn} onPress={(handleSubmit(submitHandler))} color={colors.white} />
-                <ButtonWithBorder title={'Cancel'} style={styles.cancelBtn} onPress={(modalToggler)} />
-            </View>
 
-        </ScrollView>
+            </ScrollView>
+        </View>
+
     );
 }
 
 export default ModalContent;
 
 const styles = StyleSheet.create({
-
+    scrollViewContainer: {
+        backgroundColor: colors.white,
+        paddingVertical: 30,
+    },
     cancelBtn: {
         margin: 10,
         alignItems: 'center',
@@ -266,7 +272,7 @@ const styles = StyleSheet.create({
     },
     innerModalContent: {
         padding: 40,
-        backgroundColor: '#bbb',
+        backgroundColor: colors.white,
     },
 
 })

@@ -11,8 +11,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 
 const chartConfig = {
-    backgroundGradientFrom: '#eee',
-    backgroundGradientTo: '#eee',
+    backgroundGradientFrom: '#fff',
+    backgroundGradientTo: '#fff',
     color: () => colors.primaryDark,
     strokeWidth: 1, // optional, default 3,
     barPercentage: 0.9,
@@ -133,7 +133,8 @@ export default WeightLog;
 
 export const styles = StyleSheet.create({
     root: {
-        flex: 1
+        flex: 1,
+        backgroundColor: colors.white
     },
     iconButton: {
         backgroundColor: colors.primaryDark,

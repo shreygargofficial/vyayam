@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View, } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { exerciseSplitActionCreator } from "../../../../redux/ActionCreators/exerciseSplitActionCreator";
 import SampleSplitDayWiseExerciseCard from "../../../splits/SampleSplitDayWiseExerciseCard";
+import { colors } from "../../../../constants/Colors";
 
 function SampleSplit() {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function SampleSplit() {
             <ScrollView
                 alwaysBounceVertical={false}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 60 }}
+                contentContainerStyle={{ paddingBottom: 60, backgroundColor: colors.white }}
             >
                 <SampleSplitDayWiseExerciseCard
                     exercisesArray={mySampleSplit['Monday']}
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: colors.white
     }
 })

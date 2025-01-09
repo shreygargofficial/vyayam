@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: '200',
+        fontFamily: 'caviarb',
         textAlign: 'center',
         marginVertical: 10
     },
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         elevation: 5,
-        shadowColor: colors.grey,
+        shadowColor: colors.black,
         shadowOpacity: 0.5,
         shadowRadius: 5,
         shadowOffset: { width: 2, height: 2 },
@@ -65,9 +66,11 @@ const styles = StyleSheet.create({
 
     },
     infoContainerStyle: {
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontSize: 10,
     },
     subtitle: {
-        fontSize: 18
+        fontSize: 17,
+        fontFamily: 'caviar'
     }
 })
