@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
@@ -12,6 +12,7 @@ import { snackbarActions } from "../../../../redux/slice/snakbarSlice";
 import { recipeActions } from "../../../../redux/slice/recipeSlice";
 import axios from "axios";
 import { styles as SignUpStyles } from "./SignUp";
+import Feather from '@expo/vector-icons/Feather';
 
 function Password() {
     const navigation = useNavigation();
@@ -19,6 +20,7 @@ function Password() {
     const [password, setPassword] = useState('')
     const [passwordValidators, setPasswordValidators] = useState("");
     const [passwordValid, setPasswordValid] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const dispatch = useDispatch()
     const nextHandler = () => {
 
@@ -57,7 +59,9 @@ function Password() {
         passwordValidatorsFunction(newVal)
         setPassword(newVal)
     }
-
+    const onPasswordToggle = () => {
+        setPasswordVisible(prev => !prev)
+    }
     const passwordValidatorsFunction = (val) => {
         const passwordRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,16}$/;
 
@@ -84,16 +88,21 @@ function Password() {
                     Password
                 </Text>
             </View>
-            <View style={styles.main}>
-                <InputCustom
-                    name={'account-circle'}
-                    placeholder={'Password'}
-                    onChangeText={onChangeValue}
-                    secureTextEntry={true}
-                    style={styles.input}
-                    size={30}
-                    value={password}
-                />
+            <View style={[styles.main]}>
+                <View style={passwordStyles.flex}>
+                    <InputCustom
+                        name={'account-circle'}
+                        placeholder={'Password'}
+                        onChangeText={onChangeValue}
+                        secureTextEntry={!passwordVisible}
+                        style={[styles.input, passwordStyles.input]}
+                        size={30}
+                        value={password}
+                    />
+                    <Pressable onPress={onPasswordToggle} >
+                        <Feather name={!passwordVisible ? 'eye' : 'eye-off'} size={25} style={passwordStyles.icon} color={colors.primary} />
+                    </Pressable>
+                </View>
             </View>
             <View style={styles.buttonContainer}>
                 {passwordValidators && <Text style={styles.errorText}>{passwordValidators}</Text>}
@@ -110,5 +119,15 @@ export default Password;
 
 
 export const passwordStyles = StyleSheet.create({
-
+    flex: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    input: {
+        marginLeft: -20,
+    },
+    icon: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })

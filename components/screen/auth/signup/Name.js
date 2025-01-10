@@ -99,6 +99,7 @@ const nameStyles = StyleSheet.create({
         flex: 1,
         padding: 40,
         paddingBottom: 40,
+        backgroundColo: colors.white
     },
 
 })

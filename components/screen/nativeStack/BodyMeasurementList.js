@@ -196,7 +196,12 @@ export default function BodyMeasurementList() {
                             showsVerticalScrollIndicator={false}
                         >
                             {arrayMuscleData.map(muscleData => (
-                                <View key={muscleData.label}>
+                                <Animatable.View
+                                    animation="fadeIn"
+                                    easing={'linear'}
+                                    duration={1000}
+                                    iterationCount={1}
+                                    key={muscleData.label}>
                                     <ListCardComponentBodyMeasurement label={muscleData.label} data={muscleData.data} onPress={muscleSelectedToggle} />
                                     {muscleData.label == selectedMuscle &&
                                         (
@@ -211,7 +216,7 @@ export default function BodyMeasurementList() {
                                                 <GraphUserMeasurements color={muscleData.color} dateData={dateData} measurementData={muscleData.data} />
                                             </Animatable.View>
                                         )}
-                                </View>
+                                </Animatable.View>
                             ))}
 
                         </ScrollView>
@@ -274,6 +279,11 @@ const styles = StyleSheet.create({
         fontFamily: 'caviarb',
         fontSize: 40,
 
+    },
+    headingMuscle: {
+        textAlign: 'center',
+        fontFamily: 'caviar',
+        fontSize: 18,
     },
     subHeading: {
         margin: 20,

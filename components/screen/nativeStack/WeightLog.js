@@ -7,8 +7,7 @@ import { dateFormatterToShowOnXAxis, sortArrayBasedOnDate } from "../../../utils
 import { LineChart } from 'react-native-chart-kit';
 import WeightAddModalContent from "../../weight/WeightAddModalContent";
 import { usePagination } from "../../../hooks/usePagination";
-import { MaterialIcons } from "@expo/vector-icons";
-
+import * as Animatable from "react-native-animatable";
 
 const chartConfig = {
     backgroundGradientFrom: '#fff',
@@ -81,7 +80,12 @@ function WeightLog() {
                 <IconButton name="keyboard-arrow-left" size={30} color={begginingIndex > 0 ? colors.primaryDark : colors.grey} onPress={prevPage} />
                 <IconButton name="keyboard-arrow-right" size={30} color={(lastIndex && lastIndex == sortedWeightArray.length) ? colors.grey : colors.primaryDark} onPress={nextPage} />
             </View>
-            <View style={styles.chartContainer}>
+            <Animatable.View
+                animation="fadeIn"
+                easing={'linear'}
+                duration={1000}
+                iterationCount={1}
+                style={styles.chartContainer}>
                 <LineChart
                     withInnerLines={false}
                     withOuterLines={true}
@@ -108,7 +112,7 @@ function WeightLog() {
                     chartConfig={chartConfig}
                     bezier // Optional for smooth curves
                 />
-            </View>
+            </Animatable.View>
             <View style={styles.axisDenotion}>
                 <Text style={styles.axisDenotionText}>X axis Date (dd/mm/yy)</Text>
                 <Text style={styles.axisDenotionText}>Y axis Weight(Kg)</Text>

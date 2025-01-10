@@ -83,6 +83,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: 40,
         paddingBottom: 40,
+        backgroundColor: colors.white
     },
     label: {
         fontSize: 20,
