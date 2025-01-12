@@ -40,10 +40,9 @@ function WeightLog() {
             dateData.push(ele.date);
             weightData.push(ele.value)
         }
-        if (begginingIndex !== null && lastIndex !== null) {
-            dateData = dateData.slice(begginingIndex, lastIndex)
-            weightData = weightData.slice(begginingIndex, lastIndex)
-        }
+
+        dateData = (begginingIndex != (null || 0) && lastIndex != (null || 0)) ? dateData.slice(begginingIndex, lastIndex) : dateData.slice(0, CONTENT_TO_SHOW);
+        weightData = (begginingIndex != (null || 0) && lastIndex != (null || 0)) ? weightData.slice(begginingIndex, lastIndex) : weightData.slice(0, CONTENT_TO_SHOW);;
         return { dateData, weightData }
     }, [begginingIndex, lastIndex, sortedWeightArray])
 
