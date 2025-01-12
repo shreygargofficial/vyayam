@@ -1,15 +1,14 @@
-import { FlatList, Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { styles as weightLogStyles } from "./WeightLog";
 import IconButton from "../../ui/IconButton";
 import { colors } from "../../../constants/Colors";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
-import UserMeasurementModalContent from "../../userMeasurement/UserMeasurementModalContent";
-import { sortArrayBasedOnDate } from "../../../utils/helperFunction/DateFunction";
 import GraphUserMeasurements from "../../ui/GraphUserMeasurements";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Animatable from "react-native-animatable";
 import { commonStyle } from "../../../constants/Style";
+import UserMeasurementModalContent from '../../userMeasurement/UserMeasurementModalContent'
 
 function ListCardComponentBodyMeasurement({ label, data, onPress }) {
 
@@ -19,7 +18,11 @@ function ListCardComponentBodyMeasurement({ label, data, onPress }) {
             style={({ pressed }) => [styles.listCard, pressed && commonStyle.pressed]}
         >
             <Text style={styles.listLabel}>{label}</Text>
-            <Text style={styles.listValue}>{data[data.length - 1]} inch</Text>
+            {data.length > 0 ?
+                <Text style={styles.listValue}>{data[data.length - 1].value} inch</Text>
+                :
+                <Text style={styles.listValue}>NA</Text>
+            }
             <MaterialIcons style={styles.listIcon} name="arrow-forward-ios" size={30} color={colors.primary} />
         </Pressable>
     )
@@ -28,13 +31,10 @@ function ListCardComponentBodyMeasurement({ label, data, onPress }) {
 export default function BodyMeasurementList() {
     const [showModal, setShowModal] = useState(false);
     const [selectedMuscle, setSelectedMuscle] = useState(null);
+    const [editMuscle, setEditMuscle] = useState('')
+    const [field, setField] = useState('')
     const user = useSelector(state => state.user);
 
-    useEffect(() => {
-        if (user.userData.bodyMeasurements.length == 0) {
-            setShowModal(true)
-        }
-    }, [user.userData.bodyMeasurements])
 
     const muscleSelectedToggle = (label) => {
         if (selectedMuscle !== label)
@@ -46,224 +46,161 @@ export default function BodyMeasurementList() {
         setShowModal((prev) => !prev);
     }, []);
 
-    let sortedBodyMeasurement = useMemo(() => {
-        return sortArrayBasedOnDate(user.userData.bodyMeasurements)
-    }, [user.userData]);
-
-
-
-    const {
-        dateData,
-        armLeftData,
-        armRightData,
-        chestData,
-        hipsData,
-        leftCalfData,
-        leftThighData,
-        rightCalfData,
-        rightThighData,
-        waistData,
-        forearmData,
-        bellyInData,
-        bellyOutData
-    } = useMemo(() => {
-        let dateData = [];
-        let armLeftData = [];
-        let armRightData = [];
-        let chestData = [];
-        let hipsData = [];
-        let leftCalfData = [];
-        let leftThighData = [];
-        let rightCalfData = [];
-        let rightThighData = [];
-        let waistData = [];
-        let forearmData = [];
-        let bellyOutData = [];
-        let bellyInData = [];
-        for (let measurementData of sortedBodyMeasurement) {
-            dateData.push(measurementData.date);
-            armLeftData.push(measurementData.measurements.armLeft)
-            armRightData.push(measurementData.measurements.armRight)
-            chestData.push(measurementData.measurements.chest)
-            hipsData.push(measurementData.measurements.hips)
-            leftCalfData.push(measurementData.measurements.leftCalf)
-            leftThighData.push(measurementData.measurements.leftThigh)
-            rightCalfData.push(measurementData.measurements.rightCalf)
-            rightThighData.push(measurementData.measurements.rightThigh)
-            waistData.push(measurementData.measurements.waist);
-            forearmData.push(measurementData.measurements.forearm || 0);
-            bellyOutData.push(measurementData.measurements.bellyOut || 0);
-            bellyInData.push(measurementData.measurements.bellyIn || 0);
-
-
-        }
-        return {
-            dateData,
-            armLeftData,
-            armRightData,
-            chestData,
-            hipsData,
-            leftCalfData,
-            leftThighData,
-            rightCalfData,
-            rightThighData,
-            waistData,
-            forearmData,
-            bellyInData,
-            bellyOutData
-        }
-    }, [sortedBodyMeasurement]);
 
     let arrayMuscleData = [
         {
             label: 'Arm Left',
-            data: armLeftData,
+            field: 'armLeft',
+            data: user?.userData?.bodyMeasurement?.armLeft,
             color: colors.red
         },
         {
             label: 'Arm Right',
-            data: armRightData,
+            field: 'armRight',
+            data: user?.userData?.bodyMeasurement?.armRight,
             color: colors.primary
         },
         {
             label: 'Chest',
-            data: chestData,
+            field: 'chest',
+            data: user?.userData?.bodyMeasurement?.chest,
             color: colors.green
         },
         {
             label: 'Hips',
-            data: hipsData,
+            field: 'hips',
+            data: user?.userData?.bodyMeasurement?.hips,
             color: colors.purple100
         },
         {
             label: 'Left Calf',
-            data: leftCalfData,
+            field: 'leftCalf',
+            data: user?.userData?.bodyMeasurement?.leftCalf,
             color: colors.red200
         },
         {
             label: 'Right Calf',
-            data: rightCalfData,
+            field: 'rightCalf',
+            data: user?.userData?.bodyMeasurement?.rightCalf,
             color: colors.orange
         },
         {
             label: 'Forearm',
-            data: forearmData,
+            field: 'forearm',
+            data: user?.userData?.bodyMeasurement?.forearm,
             color: colors.brown
         },
         {
             label: 'Left Thigh',
-            data: leftThighData,
+            field: 'leftThigh',
+            data: user?.userData?.bodyMeasurement?.leftThigh,
             color: colors.black
         },
         {
             label: 'Right Thigh',
-            data: rightThighData,
+            field: 'rightThigh',
+            data: user?.userData?.bodyMeasurement?.rightThigh,
             color: colors.primaryDark
         },
         {
             label: 'Belly In',
-            data: bellyInData,
+            field: 'bellyIn',
+            data: user?.userData?.bodyMeasurement?.bellyIn,
             color: colors.purple800
         },
         {
             label: 'Belly Out',
-            data: bellyOutData,
+            field: 'bellyOut',
+            data: user?.userData?.bodyMeasurement?.bellyOut,
             color: colors.red
         },
 
         {
             label: 'Waist',
-            data: waistData,
+            field: 'waist',
+            data: user?.userData?.bodyMeasurement?.waist,
             color: colors.brown
         }
 
 
     ]
-
+    const addClickHandler = (label, value) => {
+        setEditMuscle(prev => value)
+        setField(prev => label)
+        modalToggler()
+    }
     return (
         <View style={styles.root}>
-            {
-                (sortedBodyMeasurement && sortedBodyMeasurement?.length) ?
-                    <View style={styles.allGraphs}>
-                        <View>
-                            <Text style={styles.heading}>Measurements </Text>
-                        </View>
+            <View>
+                <View>
+                    <Text style={styles.heading}>Measurements </Text>
+                </View>
 
-                        <ScrollView contentContainerStyle={{
-                            paddingBottom: 260
-                        }}
-                            alwaysBounceVertical={false}
-                            showsVerticalScrollIndicator={false}
-                        >
-                            {arrayMuscleData.map(muscleData => (
-                                <Animatable.View
-                                    animation="fadeIn"
-                                    easing={'linear'}
-                                    duration={1000}
-                                    iterationCount={1}
-                                    key={muscleData.label}>
-                                    <ListCardComponentBodyMeasurement label={muscleData.label} data={muscleData.data} onPress={muscleSelectedToggle} />
-                                    {muscleData.label == selectedMuscle &&
-                                        (
-                                            <Animatable.View
-                                                style={styles.rowFlexing}
-                                                animation="fadeInDown"
-                                                easing={'linear'}
-                                                duration={360}
-                                                iterationCount={1}
-                                            >
-                                                <Text style={styles.subHeading}>{muscleData.label}</Text>
-                                                <GraphUserMeasurements color={muscleData.color} dateData={dateData} measurementData={muscleData.data} />
-                                            </Animatable.View>
-                                        )}
-                                </Animatable.View>
-                            ))}
+                <ScrollView contentContainerStyle={{
+                    paddingBottom: 260
+                }}
+                    alwaysBounceVertical={false}
+                    showsVerticalScrollIndicator={false}
+                >
+                    {arrayMuscleData.map(muscleData => (
+                        <Animatable.View
+                            animation="fadeIn"
+                            easing={'linear'}
+                            duration={1000}
+                            iterationCount={1}
+                            key={muscleData.label}>
+                            <ListCardComponentBodyMeasurement
+                                label={muscleData?.label} data={muscleData?.data}
+                                onPress={muscleSelectedToggle}
+                            />
+                            {muscleData.label == selectedMuscle &&
+                                (
+                                    <Animatable.View
+                                        style={styles.rowFlexing}
+                                        animation="fadeInDown"
+                                        easing={'linear'}
+                                        duration={360}
+                                        iterationCount={1}
+                                    >
+                                        <Text style={styles.subHeading}>{muscleData.label}</Text>
+                                        <IconButton
+                                            name={'add'}
+                                            size={20}
+                                            color={colors.white}
+                                            style={[weightLogStyles.iconButton, styles.iconButton]}
+                                            onPress={() => addClickHandler(muscleData.field, muscleData.data)}
+                                        />
+                                        <GraphUserMeasurements color={muscleData?.color} allDataArray={muscleData?.data || []} />
+                                    </Animatable.View>
+                                )}
+                        </Animatable.View>
+                    ))}
 
-                        </ScrollView>
+                </ScrollView>
 
-                    </View>
-                    :
-                    <View style={{ flex: 1, justifyContent: 'center', marginTop: -130 }}>
-                        <Text style={styles.headingMuscle}>
-                            Please Log your First Measurement!
-                        </Text>
-                    </View>
-            }
-
+            </View>
             <Modal
                 visible={showModal}
                 animationType="slide"
                 transparent={true}
             >
-                <View style={styles.overlay} >
-                    <View style={styles.modalContent}>
+                <Pressable style={styles.overlay} onPress={modalToggler}>
+                    <Pressable style={styles.modalContent} onPress={e => e.stopPropagation()}>
                         <Pressable style={styles.crossContainer} onPress={modalToggler}>
                             <Text style={styles.cross}>x</Text>
                         </Pressable>
                         <UserMeasurementModalContent
                             modalToggler={modalToggler}
                             userName={user.userData.userName}
-                            sortedBodyMeasurement={
-                                (sortedBodyMeasurement && sortedBodyMeasurement.length)
-                                    ? (sortedBodyMeasurement[sortedBodyMeasurement.length - 1])
-                                    : null
-                            }
+                            label={selectedMuscle}
+                            field={field}
+                            data={editMuscle}
                         />
-                    </View>
-
-                </View>
-
-
+                    </Pressable>
+                </Pressable>
             </Modal>
-            {/* </ScrollView> */}
 
-            <IconButton
-                name={'add'}
-                size={25}
-                color={colors.white}
-                style={[weightLogStyles.iconButton, styles.iconButton]}
-                onPress={modalToggler}
-            />
+
         </View>
     );
 }
@@ -293,7 +230,11 @@ const styles = StyleSheet.create({
     },
     iconButton: {
         top: 16,
-        right: 16
+        right: 16,
+        width: 40,
+        height: 40,
+        borderRadius: Platform.select({ ios: '50%', android: 20 }),
+        // borderRadius: 20
     },
     listCard: {
         flexDirection: 'row',
@@ -333,7 +274,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     modalContent: {
-        maxHeight: '80%',
+        height: 500,
+        backgroundColor: colors.white,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         overflow: 'hidden'

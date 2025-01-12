@@ -159,7 +159,7 @@ export function updateSplitForUserCreator(userName, data) {
 }
 
 
-export function updateUserMeasurementForUserCreator(userName, data) {
+export function updateUserMeasurementForUserCreator(userName, field, data, modalToggler) {
     return async (dispatch) => {
         try {
             let headers = await setHeader() //setting headers
@@ -168,7 +168,7 @@ export function updateUserMeasurementForUserCreator(userName, data) {
                 return;
             }
             dispatch(loaderActions.setLoading(true))
-            let myData = await Axios.put(`${SERVERURL}/updateCurrentUserMeasurement/${userName}`, data, {
+            let myData = await Axios.put(`${SERVERURL}/updateNewUserMeasurement/${userName}/${field}`, data, {
                 headers: headers
             });
             dispatch(userActions.addUserData(myData.data))
@@ -186,7 +186,7 @@ export function updateUserMeasurementForUserCreator(userName, data) {
 
         }
         finally {
-            dispatch(loaderActions.setLoading(false))
+            dispatch(loaderActions.setLoading(false));
         }
     }
 }

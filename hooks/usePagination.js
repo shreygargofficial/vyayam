@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export function usePagination(numberOfContent, contentArray) {
     const [page, setPage] = useState(1);
-    const [begginingIndex, setBegginingIndex] = useState(contentArray.length - numberOfContent)
+    const [begginingIndex, setBegginingIndex] = useState(contentArray.length > 0 ? (contentArray.length - numberOfContent) : 0)
     const [lastIndex, setLastIndex] = useState(contentArray.length)
 
     const nextPage = () => {
