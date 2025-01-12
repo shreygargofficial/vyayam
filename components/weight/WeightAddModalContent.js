@@ -9,6 +9,7 @@ import Slider from "@react-native-community/slider";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ButtonSimple from "../ui/ButtonSimple";
 import InputPlusMinus from "../ui/InputPlusMinus";
+import { dateFormatterToShowOnXAxis } from "../../utils/helperFunction/DateFunction";
 
 
 const maximumDate = new Date();
@@ -26,8 +27,23 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
     })
     const selectedDate = useWatch({ control, name: "date" })
 
-    const updateWeight = (data) => {
-        dispatch(updateWeightForUserCreator(userName, data))
+    const updateWeight = (newDefaultValues) => {
+        let dataToSend = JSON.parse(JSON.stringify(sortedWeightArray));
+        let flag = 0;
+        dataToSend.forEach((ele, index) => {
+            let existDate = dateFormatterToShowOnXAxis(ele.date);
+            let currentDate = dateFormatterToShowOnXAxis(newDefaultValues.date);
+            if (existDate == currentDate) {
+                flag = 1;
+                ele.value = newDefaultValues['value'];
+            }
+        })
+        if (flag == 0) {
+            dataToSend.push({ date: newDefaultValues.date, value: newDefaultValues['value'] })
+        }
+
+        dispatch(updateWeightForUserCreator(userName, dataToSend))
+
         modalToggler()
     }
     return (
