@@ -9,24 +9,14 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserMeasurementForUserCreator, updateWeightForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
+import { dateFormatterToShowOnXAxis } from "../../utils/helperFunction/DateFunction";
 const maximumDate = new Date();
 const minimumDate = new Date(`${maximumDate.getFullYear() - 2}-01-01`)
 
-function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
+function UserManagementModalContent({ modalToggler, userName, data, field, label }) {
     const [showDatePicker, setShowDatePicker] = useState(false)
     const defaultValues = {
-        "armRight": sortedBodyMeasurement?.measurements?.armRight || 0,
-        "armLeft": sortedBodyMeasurement?.measurements?.armLeft || 0,
-        "leftThigh": sortedBodyMeasurement?.measurements?.leftThigh || 0,
-        "rightThigh": sortedBodyMeasurement?.measurements?.rightThigh || 0,
-        "leftCalf": sortedBodyMeasurement?.measurements?.leftCalf || 0,
-        "rightCalf": sortedBodyMeasurement?.measurements?.rightCalf || 0,
-        "waist": sortedBodyMeasurement?.measurements?.waist || 0,
-        "chest": sortedBodyMeasurement?.measurements?.chest || 0,
-        "hips": sortedBodyMeasurement?.measurements?.hips || 0,
-        "forearm": sortedBodyMeasurement?.measurements?.hips || 0,
-        "bellyIn": sortedBodyMeasurement?.measurements?.hips || 0,
-        "bellyOut": sortedBodyMeasurement?.measurements?.hips || 0,
+        [field]: data[data.length - 1]?.value || 0,
         "date": new Date()
 
     }
@@ -48,9 +38,21 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                     newDefaultValues[key] = parseFloat(newDefaultValues[key])
                 }
         }
-        dispatch(updateUserMeasurementForUserCreator(userName, newDefaultValues))
+        let dataToSend = JSON.parse(JSON.stringify(data));
+        let flag = 0;
+        dataToSend.forEach((ele, index) => {
+            let existDate = dateFormatterToShowOnXAxis(ele.date);
+            let currentDate = dateFormatterToShowOnXAxis(newDefaultValues.date);
+            if (existDate == currentDate) {
+                flag = 1;
+                ele.value = newDefaultValues[field];
+            }
+        })
+        if (flag == 0) {
+            dataToSend.push({ date: newDefaultValues.date, value: newDefaultValues[field] })
+        }
+        dispatch(updateUserMeasurementForUserCreator(userName, field, dataToSend))
         modalToggler()
-
     }
     return (
         <View style={styles.scrollViewContainer}>
@@ -59,38 +61,12 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
             >
                 <View style={styles.innerModalContent}>
                     <Controller
-                        name="armLeft"
+                        name={field}
                         control={control}
                         render={({ field: { onChange, value } }) => (
                             <InputPlusMinus
-                                placeholder={'Arm Left'}
-                                label={'Arm Left (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="armRight"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Arm Right'}
-                                label={'Arm Right (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="leftCalf"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Left Calf'}
-                                label={'Left Calf (inch)'}
+                                placeholder={label}
+                                label={`${label} (inch)`}
                                 value={value}
                                 onChangeText={onChange}
                                 steps={0.5}
@@ -98,125 +74,6 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
                         )}
                     />
 
-                    <Controller
-                        name="rightCalf"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Right Calf'}
-                                label={'Right Calf (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="leftThigh"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Left Thigh'}
-                                label={'Left Thigh (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="rightThigh"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Right Thigh'}
-                                label={'Right Thigh (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-
-
-                    <Controller
-                        name="waist"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Waist'}
-                                label={'Waist (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="chest"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Chest'}
-                                label={'Chest (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="hips"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Hips'}
-                                label={'Hips (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="forearm"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Forearm'}
-                                label={'Forearm (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="bellyIn"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Belly In'}
-                                label={'Belly In (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
-                    <Controller
-                        name="bellyOut"
-                        control={control}
-                        render={({ field: { onChange, value } }) => (
-                            <InputPlusMinus
-                                placeholder={'Belly Out'}
-                                label={'Belly Out (inch)'}
-                                value={value}
-                                onChangeText={onChange}
-                                steps={0.5}
-                            />
-                        )}
-                    />
                     <Text style={{ marginTop: 30 }}>{selectedDate.toDateString()}</Text>
                     <View style={weightLogModalStyle.dateContainer}>
                         <ButtonWithBorder
@@ -258,7 +115,7 @@ function ModalContent({ modalToggler, userName, sortedBodyMeasurement }) {
     );
 }
 
-export default ModalContent;
+export default UserManagementModalContent;
 
 const styles = StyleSheet.create({
     scrollViewContainer: {
