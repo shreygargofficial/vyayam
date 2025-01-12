@@ -192,7 +192,8 @@ export default BasicInfo;
 
 const infoStyles = StyleSheet.create({
     root: {
-        padding: 10
+        padding: 10,
+        backgroundColor: colors.white
     },
     rowFlexing: {
         flexDirection: 'row',

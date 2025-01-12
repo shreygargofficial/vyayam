@@ -1,6 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/Colors";
 import { useNavigation } from "@react-navigation/native";
+import * as Animatable from "react-native-animatable";
 
 function MuscleCard({ muscle }) {
     const myItem = {
@@ -25,11 +26,16 @@ function MuscleCard({ muscle }) {
             style={({ pressed }) => [styles.card, pressed && styles.pressed]}
             onPress={navigateToSelectedMuscleExercises.bind(this, muscle)}
         >
-            <View style={styles.imageContainer}>
+            <Animatable.View
+                animation="bounceIn"
+                easing={'linear'}
+                duration={1000}
+                iterationCount={1}
+                style={styles.imageContainer}>
                 <Image source={myItem[muscle]}
                     style={styles.image}
                 />
-            </View>
+            </Animatable.View>
             <Text style={styles.text}>
                 {muscle}
             </Text>

@@ -15,8 +15,8 @@ function GraphUserMeasurements({ color, dateData, measurementData, CONTENT_TO_SH
         setChoosenIndex(data.index)
     }
     const chartConfig = {
-        backgroundGradientFrom: '#eee',
-        backgroundGradientTo: '#eee',
+        backgroundGradientFrom: '#fff',
+        backgroundGradientTo: '#fff',
         color: () => color,
         strokeWidth: 1, // optional, default 3,
         barPercentage: 0.9,
@@ -46,7 +46,7 @@ function GraphUserMeasurements({ color, dateData, measurementData, CONTENT_TO_SH
                 withInnerLines={false}
                 withOuterLines={true}
                 fromZero={true}
-                yAxisSuffix={" cm"}
+                yAxisSuffix={" inch"}
                 onDataPointClick={onDataPointClick}
                 renderDotContent={({ x, y, index, indexData }) => (
                     <View
@@ -57,7 +57,7 @@ function GraphUserMeasurements({ color, dateData, measurementData, CONTENT_TO_SH
                             fontSize: 30,
                         }}
                         key={index}>
-                        <Text style={{ color: colors.primary }}>{(choosenIndex >= 0 && choosenIndex == index) && `${indexData} cm`}</Text>
+                        <Text style={{ color: colors.primary }}>{(choosenIndex >= 0 && choosenIndex == index) && `${indexData} inch`}</Text>
                     </View>
                 )}
                 style={styles.chart}
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     chartContainer: {
         flex: 8,
         alignItems: 'center',
+        backgroundColor: colors.white,
         marginTop: 20,
         // padding: 20,
         alignItems: 'center'

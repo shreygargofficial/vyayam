@@ -13,7 +13,6 @@ import RecipeById from "../screen/nativeStack/RecipeById";
 import { Pressable, View } from "react-native";
 import ExerciseById from "../screen/nativeStack/ExerciseById";
 import WeightLog from "../screen/nativeStack/WeightLog";
-import BodyMeasurement from "../screen/nativeStack/BodyMeasurement";
 import About from "../screen/Drawer/About";
 import Privacy from "../screen/Drawer/Privacy";
 import Contact from "../screen/Drawer/Contact";
@@ -33,6 +32,7 @@ import WorkoutLog from "../screen/nativeStack/workoutLog";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MuscleList from "../exercise/MuscleList";
 import SelectedMuscleExercises from "../exercise/SelectedMuscleExercises";
+import BodyMeasurementList from "../screen/nativeStack/BodyMeasurementList";
 
 
 const drawer = createDrawerNavigator();
@@ -245,10 +245,11 @@ function WelcomeNavigation() {
                     name="weight"
                     component={WeightLog}
                 />
+
                 <nativeStack.Screen
                     options={{ title: 'Your Measurement', headerBackTitle: 'Home' }}
                     name="measurement"
-                    component={BodyMeasurement}
+                    component={BodyMeasurementList}
                 />
                 <nativeStack.Screen
                     options={{ title: 'Weight Loss/Gain', headerBackTitle: 'Home' }}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import { View } from "react-native";
 import ButtonSimple from "../../../ui/ButtonSimple";
 import { colors } from "../../../../constants/Colors";
@@ -127,14 +127,17 @@ export default function ({ route, navigation }) {
                 />
                 {emailAddressValidators && <Text style={styles.errorText}>{emailAddressValidators}</Text>}
             </View>
-            <Text style={styles.validityText}>The OTP is valid for 5 minutes</Text>
-            <ButtonSimple
-                title={'Resend'}
-                color={disabledButton ? colors.grey : colors.primary}
-                onPress={onResend}
-                disabled={disabledButton}
-                style={styles.resendBtn}
-            />
+            <View style={styles.resendContainer}>
+                <Text style={styles.validityText}>The OTP is valid for 5 minutes</Text>
+                <Pressable
+                    style={styles.resendBtn}
+                    disabled={disabledButton}
+                >
+                    <Text style={{ color: disabledButton ? colors.grey : colors.primary }}>
+                        Resend
+                    </Text>
+                </Pressable>
+            </View>
         </View>
     );
 }
@@ -144,6 +147,7 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         padding: 20,
+        backgroundColor: colors.white
     },
     header: {
         flex: 1
@@ -188,12 +192,15 @@ const styles = StyleSheet.create({
         borderColor: colors.grey,
         borderWidth: 1,
     },
+    resendContainer: {
+        flex: 1
+    },
     resendBtn: {
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1,
         width: 200,
-        backgroundColor: 'transparent'
+        marginTop: 20,
+        backgroundColor: 'white'
     }
 })
