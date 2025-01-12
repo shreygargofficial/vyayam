@@ -102,8 +102,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 140,
+        height: 140,
     },
     signUpTextContainer: {
         flex: 1,

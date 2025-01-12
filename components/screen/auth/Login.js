@@ -53,7 +53,7 @@ function Login({ navigation }) {
             >
                 <View style={styles.form}>
                     <View style={styles.loginImage}>
-                        <Image source={require('../../../assets/images/logo.png')} style={{ height: 50, width: 50 }} />
+                        <Image source={require('../../../assets/images/logo.png')} style={{ height: 120, width: 120, overflow: 'hidden' }} />
                     </View>
                     <Text style={styles.title}>Login</Text>
                     {mystate.error && <Text style={{ color: 'red' }}>{JSON.stringify(mystate.error)}</Text>}
@@ -95,17 +95,21 @@ export default Login;
 let styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.primaryDark,
+        backgroundColor: colors.white,
         justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
         fontSize: 30,
-        fontWeight: '700',
-        marginBottom: 40
+        fontWeight: '500',
+        marginBottom: 40,
+        fontFamily: 'caviar'
     },
     form: {
         backgroundColor: colors.white,
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: colors.grey,
         position: 'relative',
         padding: 30,
         width: '90%',
@@ -114,10 +118,11 @@ let styles = StyleSheet.create({
     },
     loginImage: {
         position: 'absolute',
-        top: -40,
+        top: -90,
+        borderRadius: 80,
         backgroundColor: colors.white,
-        padding: 20,
-        borderRadius: Platform.select({ ios: '50%', android: 40 })
+        padding: 14,
+        // borderRadius: Platform.select({ ios: '50%', android: 100 })
     },
     input: {
         borderBottomWidth: 1,
@@ -135,7 +140,8 @@ let styles = StyleSheet.create({
         padding: 10
     },
     signUpText: {
-        color: colors.white,
+        color: colors.black,
+        fontFamily: 'caviar',
         fontSize: 15
     }
 })
