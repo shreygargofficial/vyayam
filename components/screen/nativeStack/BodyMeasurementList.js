@@ -10,7 +10,7 @@ import * as Animatable from "react-native-animatable";
 import { commonStyle } from "../../../constants/Style";
 import UserMeasurementModalContent from '../../userMeasurement/UserMeasurementModalContent'
 
-function ListCardComponentBodyMeasurement({ label, data, onPress }) {
+function ListCardComponentBodyMeasurement({ label, data, onPress, selected }) {
 
     return (
         <Pressable
@@ -23,7 +23,7 @@ function ListCardComponentBodyMeasurement({ label, data, onPress }) {
                 :
                 <Text style={styles.listValue}>NA</Text>
             }
-            <MaterialIcons style={styles.listIcon} name="arrow-forward-ios" size={30} color={colors.primary} />
+            {selected ? <MaterialIcons style={styles.listIcon} name="keyboard-arrow-down" size={24} color={colors.primary} /> : <MaterialIcons style={styles.listIcon} name="arrow-forward-ios" size={14} color={colors.primary} />}
         </Pressable>
     )
 }
@@ -150,8 +150,10 @@ export default function BodyMeasurementList() {
                             iterationCount={1}
                             key={muscleData.label}>
                             <ListCardComponentBodyMeasurement
-                                label={muscleData?.label} data={muscleData?.data}
+                                label={muscleData?.label}
+                                data={muscleData?.data}
                                 onPress={muscleSelectedToggle}
+                                selected={muscleData.label == selectedMuscle}
                             />
                             {muscleData.label == selectedMuscle &&
                                 (
