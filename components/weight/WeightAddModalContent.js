@@ -5,16 +5,25 @@ import { useDispatch } from "react-redux";
 import { updateWeightForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 import { colors } from "../../constants/Colors";
 import ButtonWithBorder from "../ui/ButtonWithBorder";
-import Slider from "@react-native-community/slider";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ButtonSimple from "../ui/ButtonSimple";
 import InputPlusMinus from "../ui/InputPlusMinus";
 import { dateFormatterToShowOnXAxis } from "../../utils/helperFunction/DateFunction";
-
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { commonStyle } from "../../constants/Style";
 
 const maximumDate = new Date();
 const minimumDate = new Date(`${maximumDate.getFullYear() - 2}-01-01`)
 
+const validationSchema = Yup.object().shape({
+    value: Yup.number()
+        .typeError(`Weight must be a number`)
+        .positive(`Weight must be a positive value`)
+        .max(140, `Weight must be less than 140`)
+        .required(`Weight is required`),
+    date: Yup.date().required("Date is required"),
+});
 function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [sliderWeight, setSliderWeight] = useState(sortedWeightArray[sortedWeightArray.length - 1].value)
@@ -23,7 +32,8 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
         defaultValues: {
             value: sortedWeightArray[sortedWeightArray.length - 1].value,
             date: new Date()
-        }
+        },
+        resolver: yupResolver(validationSchema),
     })
     const selectedDate = useWatch({ control, name: "date" })
 
@@ -71,6 +81,7 @@ function WeightAddModalContent({ sortedWeightArray, userName, modalToggler }) {
                                     />
                                 }}
                             />
+                            {errors.value && <Text style={commonStyle.textDanger}>{errors.value?.message}</Text>}
                             <Text style={{ marginTop: 10 }}>{selectedDate.toDateString()}</Text>
                             <View style={styles.dateContainer}>
                                 <ButtonWithBorder

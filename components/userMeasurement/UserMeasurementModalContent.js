@@ -10,8 +10,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserMeasurementForUserCreator, updateWeightForUserCreator } from "../../redux/ActionCreators/userActionsCreator";
 import { dateFormatterToShowOnXAxis } from "../../utils/helperFunction/DateFunction";
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { commonStyle } from "../../constants/Style";
 const maximumDate = new Date();
 const minimumDate = new Date(`${maximumDate.getFullYear() - 2}-01-01`)
+
+
 
 function UserManagementModalContent({ modalToggler, userName, data, field, label }) {
     const [showDatePicker, setShowDatePicker] = useState(false)
@@ -20,9 +25,18 @@ function UserManagementModalContent({ modalToggler, userName, data, field, label
         "date": new Date()
 
     }
+    const validationSchema = Yup.object().shape({
+        [field]: Yup.number()
+            .typeError(`Value must be a number`)       // Show error if not a number
+            .positive(`Value must be a positive value`) // Must be positive
+            .max(140, `Value must be less than 140`)   // Max value of 140
+            .required(`Value is required`),            // Required field
+        date: Yup.date().required("Date is required"),   // Validate the date field
+    });
     const dispatch = useDispatch();
     const { control, formState: { errors }, handleSubmit } = useForm({
         defaultValues,
+        resolver: yupResolver(validationSchema),
     })
 
     const selectedDate = useWatch({ control, name: "date" })
@@ -104,6 +118,7 @@ function UserManagementModalContent({ modalToggler, userName, data, field, label
                                     />
                                 }}
                             />}
+                        {errors[field] && <Text style={[commonStyle.textDanger, styles.error]}>{errors[field]?.message}</Text>}
                     </View>
                     <ButtonSimple title={'Submit'} style={styles.cancelBtn} onPress={(handleSubmit(submitHandler))} color={colors.white} />
                     <ButtonWithBorder title={'Cancel'} style={styles.cancelBtn} onPress={(modalToggler)} />
@@ -131,5 +146,7 @@ const styles = StyleSheet.create({
         padding: 40,
         backgroundColor: colors.white,
     },
-
+    error: {
+        marginTop: -10,
+    }
 })
