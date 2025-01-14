@@ -10,7 +10,7 @@ import * as Animatable from "react-native-animatable";
 import { commonStyle } from "../../../constants/Style";
 import UserMeasurementModalContent from '../../userMeasurement/UserMeasurementModalContent'
 
-function ListCardComponentBodyMeasurement({ label, data, onPress, selected }) {
+function ListCardComponentBodyMeasurement({ label, data = [], onPress, selected }) {
 
     return (
         <Pressable
