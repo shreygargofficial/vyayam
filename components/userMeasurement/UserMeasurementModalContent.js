@@ -18,7 +18,7 @@ const minimumDate = new Date(`${maximumDate.getFullYear() - 2}-01-01`)
 
 
 
-function UserManagementModalContent({ modalToggler, userName, data, field, label }) {
+function UserManagementModalContent({ modalToggler, userName, data = [], field, label }) {
     const [showDatePicker, setShowDatePicker] = useState(false)
     const defaultValues = {
         [field]: data[data.length - 1]?.value || 0,

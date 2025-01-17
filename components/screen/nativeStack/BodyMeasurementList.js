@@ -31,7 +31,7 @@ function ListCardComponentBodyMeasurement({ label, data = [], onPress, selected 
 export default function BodyMeasurementList() {
     const [showModal, setShowModal] = useState(false);
     const [selectedMuscle, setSelectedMuscle] = useState(null);
-    const [editMuscle, setEditMuscle] = useState('')
+    const [editMuscle, setEditMuscle] = useState([])
     const [field, setField] = useState('')
     const user = useSelector(state => state.user);
 
@@ -51,74 +51,74 @@ export default function BodyMeasurementList() {
         {
             label: 'Arm Left',
             field: 'armLeft',
-            data: user?.userData?.bodyMeasurement?.armLeft,
+            data: user?.userData?.bodyMeasurement?.armLeft || [],
             color: colors.red
         },
         {
             label: 'Arm Right',
             field: 'armRight',
-            data: user?.userData?.bodyMeasurement?.armRight,
+            data: user?.userData?.bodyMeasurement?.armRight || [],
             color: colors.primary
         },
         {
             label: 'Chest',
             field: 'chest',
-            data: user?.userData?.bodyMeasurement?.chest,
+            data: user?.userData?.bodyMeasurement?.chest || [],
             color: colors.green
         },
         {
             label: 'Hips',
             field: 'hips',
-            data: user?.userData?.bodyMeasurement?.hips,
+            data: user?.userData?.bodyMeasurement?.hips || [],
             color: colors.purple100
         },
         {
             label: 'Left Calf',
             field: 'leftCalf',
-            data: user?.userData?.bodyMeasurement?.leftCalf,
+            data: user?.userData?.bodyMeasurement?.leftCalf || [],
             color: colors.red200
         },
         {
             label: 'Right Calf',
             field: 'rightCalf',
-            data: user?.userData?.bodyMeasurement?.rightCalf,
+            data: user?.userData?.bodyMeasurement?.rightCalf || [],
             color: colors.orange
         },
         {
             label: 'Forearm',
             field: 'forearm',
-            data: user?.userData?.bodyMeasurement?.forearm,
+            data: user?.userData?.bodyMeasurement?.forearm || [],
             color: colors.brown
         },
         {
             label: 'Left Thigh',
             field: 'leftThigh',
-            data: user?.userData?.bodyMeasurement?.leftThigh,
+            data: user?.userData?.bodyMeasurement?.leftThigh || [],
             color: colors.black
         },
         {
             label: 'Right Thigh',
             field: 'rightThigh',
-            data: user?.userData?.bodyMeasurement?.rightThigh,
+            data: user?.userData?.bodyMeasurement?.rightThigh || [],
             color: colors.primaryDark
         },
         {
             label: 'Belly In',
             field: 'bellyIn',
-            data: user?.userData?.bodyMeasurement?.bellyIn,
+            data: user?.userData?.bodyMeasurement?.bellyIn || [],
             color: colors.purple800
         },
         {
             label: 'Belly Out',
             field: 'bellyOut',
-            data: user?.userData?.bodyMeasurement?.bellyOut,
+            data: user?.userData?.bodyMeasurement?.bellyOut || [],
             color: colors.red
         },
 
         {
             label: 'Waist',
             field: 'waist',
-            data: user?.userData?.bodyMeasurement?.waist,
+            data: user?.userData?.bodyMeasurement?.waist || [],
             color: colors.brown
         }
 

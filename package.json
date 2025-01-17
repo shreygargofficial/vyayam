@@ -4,6 +4,8 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "watchman watch-del-all && expo start",
+    "build:prod": "expo build -p android",
+    "build:test": "expo build -p android --profile preview",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
