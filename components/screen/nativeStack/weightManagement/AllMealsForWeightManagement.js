@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DietCard from "../../../weightGainLoss/DietCard";
 import { allDietsFetchActionCreator } from "../../../../redux/ActionCreators/dietActionCreator";
 import { colors } from "../../../../constants/Colors";
+import { commonStyle } from "../../../../constants/Style";
 
 function AllMealsForWeightManagement() {
     const { params } = useRoute();
@@ -22,7 +23,8 @@ function AllMealsForWeightManagement() {
 
     useEffect(() => {
         if (diet.dietData?.length > 0) {
-            let unsortedDietData = []
+            let unsortedDietData = [];
+
             if (vegEnabled) {
                 unsortedDietData = diet.dietData.filter(ele => ele.veg == true)
             }
@@ -30,9 +32,15 @@ function AllMealsForWeightManagement() {
                 unsortedDietData = [...diet.dietData]
             }
             let sortedDiet = unsortedDietData.sort((a, b) => a.mealTotal - b.mealTotal);
+            if (resultCalories && type === "loss") {
+                sortedDiet = sortedDiet.filter(ele => ele.mealTotal < resultCalories)
+            }
+            else if (resultCalories && type === "gain") {
+                sortedDiet = sortedDiet.filter(ele => ele.mealTotal > resultCalories)
+            }
             setDietData(sortedDiet);
         }
-    }, [diet.dietData, vegEnabled]);
+    }, [diet.dietData, vegEnabled, resultCalories]);
 
 
     const toggleVegSwitch = () => {
@@ -47,7 +55,7 @@ function AllMealsForWeightManagement() {
             >
                 {tdee && type && <View style={styles.mainWrapper}>
                     <Text style={styles.description}>
-                        You need to eat around {resultCalories} kcal for weight {type}. There are diets mentioned below that can fulfill your desired daily calories intake. Click on each to get details
+                        You need to eat around {resultCalories ? resultCalories.toFixed(2) : ''} kcal for weight {type}. There are diets mentioned below that can fulfill your desired daily calories intake. Click on each to get details
                     </Text>
                 </View>}
                 <View style={styles.switchContainer}>
@@ -63,12 +71,16 @@ function AllMealsForWeightManagement() {
                     <Text style={styles.switchText}>Veg</Text>
                 </View>
 
-                {dietData && dietData?.length > 0 &&
+                {dietData && dietData?.length > 0 ?
                     dietData.map((ele, index) => {
                         return (
                             <DietCard key={ele._id} item={ele} index={index + 1} />
                         )
                     })
+                    :
+                    <View style={styles.noDietContainer}>
+                        <Text style={styles.textNoDiet}>Currently there is no diet for your calories requirements!</Text>
+                    </View>
                 }
             </ScrollView>
         </View>
@@ -97,6 +109,15 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         width: '100%',
         alignItems: 'center',
+
+    },
+    noDietContainer: {
+        // borderWidth: 2,
+        marginTop: 100,
+        alignSelf: 'center'
+    },
+    textNoDiet: {
+        fontFamily: 'caviarb',
 
     },
     switchText: {

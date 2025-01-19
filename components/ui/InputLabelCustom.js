@@ -11,6 +11,8 @@ function InputLabelCustom({ placeholder, style, value, onChangeText, secureTextE
                 style={[styles.input, style, multiline && styles.textArea]}
                 value={value}
                 multiline={multiline}
+                autoCorrect={false} // Disable autocorrect
+                autoCapitalize="none" // Disable capitalization
                 keyboardType={keyboardType}
                 onChangeText={onChangeText}
                 numberOfLines={numberOfLines}

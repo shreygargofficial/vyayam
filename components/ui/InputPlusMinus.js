@@ -47,6 +47,8 @@ function InputPlusMinus(
                         placeholder={placeholder}
                         onChangeText={onChangeText}
                         value={value.toString()}
+                        autoCorrect={false} // Disable autocorrect
+                        autoCapitalize="none" // Disable capitalization
                         style={[styles.input, inputStyle]}
                         keyboardType="numeric" />
                     <View style={styles.buttonContainer}>

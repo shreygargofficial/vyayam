@@ -9,6 +9,8 @@ function InputCustom({ placeholder, style, value, onChangeText, secureTextEntry 
                 style={[styles.input, style]}
                 keyboardType={keyboardType}
                 value={value}
+                autoCorrect={false} // Disable autocorrect
+                autoCapitalize="none" // Disable capitalization
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry} />
         </View>
