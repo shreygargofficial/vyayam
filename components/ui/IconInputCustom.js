@@ -13,6 +13,8 @@ function IconInputCustom({ placeholder, style, styleWrapper, value, onChangeText
                 placeholderTextColor={placeholderTextColor}
                 style={[styles.input, style]}
                 value={value}
+                autoCorrect={false} // Disable autocorrect
+                autoCapitalize="none" // Disable capitalization
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}
                 {...props}
